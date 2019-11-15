@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity() {
 
         val coinApi = CurrencyApi()
         coinApi.coinService().currencyList(
-            "BTC,ETH,XPC,BCH,USDT,LTC,BNB,EOS,BSV,XLM,TRX,ADA,XMR,LINK,LEO"
+            "BTC,ETH,LTC,BNB,EOS,NEO,DASH,ETC,BAT,MKR,ZEC,HT,BTM,DAI,XVG"
         ).enqueue(object : Callback<CurrencyResponse> {
             override fun onFailure(
                 call: Call<CurrencyResponse>,
