@@ -4,10 +4,14 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.smlnskgmail.jaman.cryptotracker.R
+import com.smlnskgmail.jaman.cryptotracker.list.holder.CurrencyHolder
+import com.smlnskgmail.jaman.cryptotracker.list.holder.HolderClickTarget
 import com.smlnskgmail.jaman.cryptotracker.model.Currency
+import com.smlnskgmail.jaman.cryptotracker.model.CurrencyMedia
 
 class CurrenciesAdapter(
-    private val currencies: List<Currency>
+    private val currencies: List<Currency>,
+    private val holderClickTarget: HolderClickTarget
 ) : RecyclerView.Adapter<CurrencyHolder>() {
 
     override fun onCreateViewHolder(
@@ -21,7 +25,8 @@ class CurrenciesAdapter(
                 R.layout.item_currency,
                 parent,
                 false
-            )
+            ),
+            holderClickTarget
         )
     }
 
@@ -29,8 +34,12 @@ class CurrenciesAdapter(
         holder: CurrencyHolder,
         position: Int
     ) {
+        val currency = currencies[position]
         holder.bind(
-            currencies[position]
+            currency,
+            CurrencyMedia.mediaForCurrency(
+                currency
+            )
         )
     }
 

@@ -1,5 +1,6 @@
 package com.smlnskgmail.jaman.cryptotracker.api
 
+import com.smlnskgmail.jaman.cryptotracker.api.responses.CurrencyListingResponse
 import com.smlnskgmail.jaman.cryptotracker.api.responses.CurrencyResponse
 import com.smlnskgmail.jaman.cryptotracker.model.CurrencyListing
 import retrofit2.Call
@@ -32,7 +33,7 @@ interface CurrencyService {
     fun listing(
         @Query(
             "id"
-        ) currencyName: String
-    ): Call<CurrencyListing>
+        ) currencyId: Int
+    ): Call<CurrencyListingResponse>
 
 }

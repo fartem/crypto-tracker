@@ -1,8 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#00BCD4</color>
-    <color name="colorPrimaryDark">#0097A7</color>
+    <color name="colorPrimary">#FFFFFF</color>
+    <color name="colorPrimaryDark">#FFFFFF</color>
     <color name="colorAccent">#D81B60</color>
 
     <color name="ic_launcher_background">#FFFFFF</color>
+
+    <!-- commons -->
+    <color name="colorTextPrimary">#212121</color>
+    <color name="colorTextSecondary">#757575</color>
+
+    <!-- currency listing -->
+    <color name="colorCurrencyPriceUp">#66bb6a</color>
+    <color name="colorCurrencyPriceDown">#ef5350</color>
+    <color name="colorCurrencyPriceStable">@color/colorTextSecondary</color>
 </resources>
