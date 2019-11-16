@@ -1,7 +1,7 @@
 package com.smlnskgmail.jaman.cryptotracker
 
+import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
@@ -12,6 +12,8 @@ import com.smlnskgmail.jaman.cryptotracker.list.holder.HolderClickTarget
 import com.smlnskgmail.jaman.cryptotracker.list.info.BottomSheetCurrencyInfo
 import com.smlnskgmail.jaman.cryptotracker.model.Currency
 import com.smlnskgmail.jaman.cryptotracker.model.CurrencyMedia
+import com.smlnskgmail.jaman.cryptotracker.preferences.PreferencesManager
+import com.smlnskgmail.jaman.cryptotracker.preferences.theme.Theme
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.list_empty_message.*
 import kotlinx.android.synthetic.main.list_progress_bar.*
@@ -24,6 +26,11 @@ class MainActivity : AppCompatActivity(), HolderClickTarget {
     override fun onCreate(
         savedInstanceState: Bundle?
     ) {
+        setTheme(
+            PreferencesManager.theme(
+                this
+            ).themeResId
+        )
         super.onCreate(
             savedInstanceState
         )
@@ -65,9 +72,16 @@ class MainActivity : AppCompatActivity(), HolderClickTarget {
                     call: Call<CurrencyResponse>,
                     response: Response<CurrencyResponse>
                 ) {
-                    createList(
-                        response.body()!!.currencies
-                    )
+                    val body = response.body()
+                    if (body == null) {
+                        createList(
+                            emptyList()
+                        )
+                    } else {
+                        createList(
+                            body.currencies
+                        )
+                    }
                 }
             }
         )
@@ -111,7 +125,27 @@ class MainActivity : AppCompatActivity(), HolderClickTarget {
     }
 
     private fun changeAppTheme() {
+        val newTheme = if (PreferencesManager.theme(
+                this
+            ) == Theme.Light) {
+            Theme.Dark
+        } else {
+            Theme.Light
+        }
 
+        PreferencesManager.changeTheme(
+            this,
+            newTheme
+        )
+
+        val restartIntent = Intent(
+            this,
+            MainActivity::class.java
+        )
+        finish()
+        startActivity(
+            restartIntent
+        )
     }
 
     override fun onPrepareOptionsMenu(

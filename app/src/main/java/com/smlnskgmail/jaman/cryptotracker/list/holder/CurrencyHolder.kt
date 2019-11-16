@@ -7,7 +7,6 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.smlnskgmail.jaman.cryptotracker.R
 import com.smlnskgmail.jaman.cryptotracker.api.CurrencyApi
-import com.smlnskgmail.jaman.cryptotracker.api.cache.CurrencyListingCache
 import com.smlnskgmail.jaman.cryptotracker.api.responses.CurrencyListingResponse
 import com.smlnskgmail.jaman.cryptotracker.model.Currency
 import com.smlnskgmail.jaman.cryptotracker.model.CurrencyListing
@@ -54,19 +53,9 @@ class CurrencyHolder(
             holderClickTarget.holderItemClick(currency)
         }
 
-        if (CurrencyListingCache.loadFor(
-                currency
-            ) == null) {
-            loadCurrencyListing(
-                currency
-            )
-        } else {
-            showCurrencyListing(
-                CurrencyListingCache.loadFor(
-                    currency
-                )!!
-            )
-        }
+        showCurrencyListing(
+            currency.listing
+        )
     }
 
     private fun loadCurrencyListing(
@@ -80,15 +69,6 @@ class CurrencyHolder(
                     call: Call<CurrencyListingResponse>,
                     t: Throwable
                 ) {
-                    val currencyListing = CurrencyListing(
-                        0.0f,
-                        0.0f,
-                        "-"
-                    )
-                    CurrencyListingCache.putFor(
-                        currency,
-                        currencyListing
-                    )
                     showErrorInfo()
                 }
 
@@ -97,13 +77,12 @@ class CurrencyHolder(
                     call: Call<CurrencyListingResponse>,
                     response: Response<CurrencyListingResponse>
                 ) {
-                    val currencyListing = response.body()!!.currencyListing
-                    CurrencyListingCache.putFor(
-                        currency,
-                        currencyListing
-                    )
+                    val body = response.body()
+                    if (body != null) {
+                        currency.listing = response.body()!!.currencyListing
+                    }
                     showCurrencyListing(
-                        currencyListing
+                        currency.listing
                     )
                 }
             }
@@ -150,12 +129,12 @@ class CurrencyHolder(
         itemView.currency_symbol.text = ""
         itemView.currency_name.text = ""
         itemView.currency_price.text = ""
+        itemView.currency_price_at_last_hour.text = ""
     }
 
     private fun showErrorInfo() {
-        itemView.currency_symbol.text = "-"
-        itemView.currency_name.text = "-"
         itemView.currency_price.text = "-"
+        itemView.currency_price_at_last_hour.text = "-"
     }
 
 }

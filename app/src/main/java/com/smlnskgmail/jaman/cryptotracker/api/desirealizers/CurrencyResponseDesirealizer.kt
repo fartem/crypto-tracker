@@ -8,6 +8,7 @@ import com.google.gson.reflect.TypeToken
 import com.smlnskgmail.jaman.cryptotracker.api.ApiResponseStatus
 import com.smlnskgmail.jaman.cryptotracker.api.responses.CurrencyResponse
 import com.smlnskgmail.jaman.cryptotracker.model.Currency
+import com.smlnskgmail.jaman.cryptotracker.model.CurrencyListing
 import java.lang.reflect.Type
 
 class CurrencyResponseDesirealizer : JsonDeserializer<CurrencyResponse> {
@@ -20,6 +21,7 @@ class CurrencyResponseDesirealizer : JsonDeserializer<CurrencyResponse> {
         val gson = Gson()
 
         val currencyType = object : TypeToken<Currency>() {}.type
+        val currencyListingType = object : TypeToken<CurrencyListing>() {}.type
         val apiResponseStatusType = object : TypeToken<ApiResponseStatus>() {}.type
 
         val currencies = arrayListOf<Currency>()
@@ -27,13 +29,28 @@ class CurrencyResponseDesirealizer : JsonDeserializer<CurrencyResponse> {
         val dataJson = json!!.asJsonObject.get(
             "data"
         )
-        for (data in dataJson.asJsonArray) {
-            val currencyAsString = data.toString()
+        for (data in dataJson.asJsonObject.entrySet()) {
+            val currency = gson.fromJson(
+                data.value,
+                currencyType
+            ) as Currency
+
+            val currencyAsJson = gson.toJsonTree(data.value)
+
+            val priceInfo = currencyAsJson.asJsonObject.get(
+                "quote"
+            ).asJsonObject.get(
+                "USD"
+            )
+            val currencyListing: CurrencyListing = gson.fromJson(
+                priceInfo,
+                currencyListingType
+            )
+
+            currency.listing = currencyListing
+
             currencies.add(
-                gson.fromJson(
-                    currencyAsString,
-                    currencyType
-                )
+                currency
             )
         }
 

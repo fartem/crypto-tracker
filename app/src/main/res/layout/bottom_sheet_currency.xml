@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="?attr/colorBackground"
     android:padding="16dp">
 
     <ImageView
@@ -21,7 +22,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:textSize="16sp"
-        android:textColor="@color/colorTextPrimary"
+        android:textColor="?attr/colorTextPrimary"
         app:layout_constraintBottom_toBottomOf="@+id/currency_image"
         app:layout_constraintStart_toEndOf="@+id/currency_image"
         app:layout_constraintTop_toTopOf="@+id/currency_image"
@@ -43,7 +44,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:textSize="16sp"
-        android:textColor="@color/colorTextSecondary"
+        android:textColor="?attr/colorTextSecondary"
         app:layout_constraintBottom_toBottomOf="@+id/currency_symbol"
         app:layout_constraintStart_toEndOf="@+id/currency_symbol"
         tools:text="Bitcoin" />
@@ -53,7 +54,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:textColor="@color/colorTextSecondary"
+        android:textColor="?attr/colorTextSecondary"
         app:layout_constraintStart_toStartOf="@+id/currency_id"
         app:layout_constraintTop_toBottomOf="@+id/currency_id"
         tools:text="bitcoin" />
@@ -63,7 +64,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:textColor="@color/colorTextSecondary"
+        android:textColor="?attr/colorTextSecondary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/currency_slug"
         tools:text="2013-04-28" />
@@ -74,7 +75,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
         android:layout_marginBottom="16dp"
-        android:textColor="@color/colorTextSecondary"
+        android:textColor="?attr/colorTextSecondary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintBottom_toTopOf="@+id/currency_site"
         app:layout_constraintEnd_toEndOf="@+id/currency_first_historical_data"
@@ -88,7 +89,7 @@
         android:background="@color/colorAccent"
         android:foreground="?selectableItemBackground"
         android:text="Visit on site"
-        android:textColor="@color/colorWhite"
+        android:textColor="?attr/colorWhite"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

@@ -2,7 +2,6 @@ package com.smlnskgmail.jaman.cryptotracker.api
 
 import com.smlnskgmail.jaman.cryptotracker.api.responses.CurrencyListingResponse
 import com.smlnskgmail.jaman.cryptotracker.api.responses.CurrencyResponse
-import com.smlnskgmail.jaman.cryptotracker.model.CurrencyListing
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Headers
@@ -11,10 +10,10 @@ import retrofit2.http.Query
 interface CurrencyService {
 
     @GET(
-        "v1/cryptocurrency/map"
+        "v1/cryptocurrency/quotes/latest"
     )
     @Headers(
-        "X-CMC_PRO_API_KEY: API_KEY",
+        "X-CMC_PRO_API_KEY: ",
         "Accept: application/json"
     )
     fun currencyList(
@@ -27,7 +26,7 @@ interface CurrencyService {
         "v1/cryptocurrency/quotes/latest"
     )
     @Headers(
-        "X-CMC_PRO_API_KEY: API_KEY",
+        "X-CMC_PRO_API_KEY: ",
         "Accept: application/json"
     )
     fun listing(

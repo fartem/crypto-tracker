@@ -33,6 +33,8 @@ class Currency(
     @SerializedName(
         "last_historical_data"
     )
-    val lastHistoricalData: String
+    val lastHistoricalData: String,
+
+    var listing: CurrencyListing
 
 ) : Serializable

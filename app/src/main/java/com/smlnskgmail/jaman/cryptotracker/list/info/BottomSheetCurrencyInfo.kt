@@ -1,7 +1,9 @@
 package com.smlnskgmail.jaman.cryptotracker.list.info
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.graphics.Color
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,11 +14,7 @@ import com.smlnskgmail.jaman.cryptotracker.R
 import com.smlnskgmail.jaman.cryptotracker.model.Currency
 import com.smlnskgmail.jaman.cryptotracker.model.CurrencyMedia
 import kotlinx.android.synthetic.main.bottom_sheet_currency.*
-import java.sql.Timestamp
 import java.text.SimpleDateFormat
-import java.util.*
-import android.content.Intent
-import android.net.Uri
 
 class BottomSheetCurrencyInfo : BottomSheetDialogFragment() {
 
@@ -63,6 +61,11 @@ class BottomSheetCurrencyInfo : BottomSheetDialogFragment() {
             currency.lastHistoricalData
         )
 
+        currency_site.background.setTint(
+            Color.parseColor(
+                currencyMedia.accentColor
+            )
+        )
         currency_site.setOnClickListener {
             val browserIntent = Intent(
                 Intent.ACTION_VIEW,
