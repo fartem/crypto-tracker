@@ -1,6 +1,7 @@
 package com.smlnskgmail.jaman.cryptotracker.model
 
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 class CurrencyListing(
 
@@ -12,12 +13,6 @@ class CurrencyListing(
     @SerializedName(
         "percent_change_1h"
     )
-    val chengeHour: Float,
+    val chengeHour: Float
 
-    @SerializedName(
-        "last_updated"
-    )
-    val latestUpdated: String
-
-
-)
+) : Serializable

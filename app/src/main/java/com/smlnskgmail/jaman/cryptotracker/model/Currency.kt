@@ -26,12 +26,12 @@ class Currency(
     val slug: String,
 
     @SerializedName(
-        "first_historical_data"
+        "date_added"
     )
     val firstHistoricalData: String,
 
     @SerializedName(
-        "last_historical_data"
+        "last_updated"
     )
     val lastHistoricalData: String,
 

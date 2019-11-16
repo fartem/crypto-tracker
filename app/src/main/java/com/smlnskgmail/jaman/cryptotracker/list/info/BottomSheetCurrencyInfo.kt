@@ -18,6 +18,7 @@ import java.text.SimpleDateFormat
 
 class BottomSheetCurrencyInfo : BottomSheetDialogFragment() {
 
+    @SuppressLint("SetTextI18n")
     override fun onViewCreated(
         view: View,
         savedInstanceState: Bundle?
@@ -60,6 +61,8 @@ class BottomSheetCurrencyInfo : BottomSheetDialogFragment() {
         currency_last_historical_data.text = dateFromTimestamp(
             currency.lastHistoricalData
         )
+
+        currency_price.text = "%.2f $".format(currency.listing.price)
 
         currency_site.background.setTint(
             Color.parseColor(

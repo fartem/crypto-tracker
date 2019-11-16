@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.os.Handler
 import androidx.appcompat.app.AppCompatActivity
 import com.smlnskgmail.jaman.cryptotracker.preferences.PreferencesManager
+import kotlinx.android.synthetic.main.activity_splash.*
 
 class SplashActivity : AppCompatActivity() {
 
@@ -23,6 +24,7 @@ class SplashActivity : AppCompatActivity() {
             R.layout.activity_splash
         )
         showLogo()
+        showAppVersion()
     }
 
     private fun showLogo() {
@@ -39,6 +41,10 @@ class SplashActivity : AppCompatActivity() {
             },
             1500
         )
+    }
+
+    private fun showAppVersion() {
+        logo_version.text = BuildConfig.VERSION_NAME
     }
 
 }
