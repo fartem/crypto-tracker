@@ -9,6 +9,7 @@
     <!-- commons -->
     <color name="colorTextPrimary">#212121</color>
     <color name="colorTextSecondary">#757575</color>
+    <color name="colorWhite">#FFFFFF</color>
 
     <!-- currency listing -->
     <color name="colorCurrencyPriceUp">#66bb6a</color>

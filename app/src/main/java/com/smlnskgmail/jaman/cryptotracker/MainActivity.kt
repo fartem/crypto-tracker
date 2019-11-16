@@ -9,7 +9,9 @@ import com.smlnskgmail.jaman.cryptotracker.api.CurrencyApi
 import com.smlnskgmail.jaman.cryptotracker.api.responses.CurrencyResponse
 import com.smlnskgmail.jaman.cryptotracker.list.CurrenciesAdapter
 import com.smlnskgmail.jaman.cryptotracker.list.holder.HolderClickTarget
+import com.smlnskgmail.jaman.cryptotracker.list.info.BottomSheetCurrencyInfo
 import com.smlnskgmail.jaman.cryptotracker.model.Currency
+import com.smlnskgmail.jaman.cryptotracker.model.CurrencyMedia
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.list_empty_message.*
 import kotlinx.android.synthetic.main.list_progress_bar.*
@@ -43,7 +45,11 @@ class MainActivity : AppCompatActivity(), HolderClickTarget {
 
     private fun loadCurrencies() {
         CurrencyApi.currencyService().currencyList(
-            "BTC,ETH,LTC,BNB,EOS,NEO,DASH,ETC,BAT,MKR,HT,BTM,DAI,XVG,AE"
+            CurrencyMedia.supportedSymbols().joinToString(
+                ","
+            ).dropLast(
+                1
+            )
         ).enqueue(
             object : Callback<CurrencyResponse> {
                 override fun onFailure(
@@ -76,8 +82,21 @@ class MainActivity : AppCompatActivity(), HolderClickTarget {
         )
     }
 
-    override fun holderItemClick(currency: Currency) {
+    override fun holderItemClick(
+        currency: Currency
+    ) {
+        val bundle = Bundle()
+        bundle.putSerializable(
+            "currency",
+            currency
+        )
 
+        val bottomSheetCurrencyInfo = BottomSheetCurrencyInfo()
+        bottomSheetCurrencyInfo.arguments = bundle
+        bottomSheetCurrencyInfo.show(
+            supportFragmentManager,
+            BottomSheetCurrencyInfo::class.java.canonicalName
+        )
     }
 
     override fun onOptionsItemSelected(

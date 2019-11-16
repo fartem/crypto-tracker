@@ -68,6 +68,7 @@
         android:id="@+id/currency_refresh_listing"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:foreground="?selectableItemBackground"
         android:src="@drawable/ic_refresh"
         android:tint="@color/colorAccent"
         app:layout_constraintBottom_toBottomOf="@+id/currency_symbol"

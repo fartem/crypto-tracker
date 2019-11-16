@@ -4,6 +4,8 @@ import com.smlnskgmail.jaman.cryptotracker.model.Currency
 
 interface HolderClickTarget {
 
-    fun holderItemClick(currency: Currency)
+    fun holderItemClick(
+        currency: Currency
+    )
 
 }

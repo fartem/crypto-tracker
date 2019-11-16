@@ -1,6 +1,7 @@
 package com.smlnskgmail.jaman.cryptotracker.model
 
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 class Currency(
 
@@ -17,6 +18,21 @@ class Currency(
     @SerializedName(
         "symbol"
     )
-    val symbol: String
+    val symbol: String,
 
-)
+    @SerializedName(
+        "slug"
+    )
+    val slug: String,
+
+    @SerializedName(
+        "first_historical_data"
+    )
+    val firstHistoricalData: String,
+
+    @SerializedName(
+        "last_historical_data"
+    )
+    val lastHistoricalData: String
+
+) : Serializable

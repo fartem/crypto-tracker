@@ -1,6 +1,7 @@
 package com.smlnskgmail.jaman.cryptotracker.list.holder
 
 import android.annotation.SuppressLint
+import android.graphics.Color
 import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
@@ -35,10 +36,18 @@ class CurrencyHolder(
             )
         )
         itemView.currency_symbol.text = currency.symbol
+        itemView.currency_symbol.setTextColor(
+            Color.parseColor(
+                currencyMedia.accentColor
+            )
+        )
+
         itemView.currency_name.text = currency.name
 
         itemView.currency_refresh_listing.setOnClickListener {
-            loadCurrencyListing(currency)
+            loadCurrencyListing(
+                currency
+            )
         }
 
         itemView.setOnClickListener {
@@ -60,7 +69,9 @@ class CurrencyHolder(
         }
     }
 
-    private fun loadCurrencyListing(currency: Currency) {
+    private fun loadCurrencyListing(
+        currency: Currency
+    ) {
         CurrencyApi.currencyService().listing(
             currency.id
         ).enqueue(

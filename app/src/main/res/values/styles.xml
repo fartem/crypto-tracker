@@ -9,6 +9,16 @@
         <item name="android:fontFamily">@font/ft_google_sans_regular</item>
     </style>
 
+    <style name="AppLogoTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:statusBarColor">@color/colorPrimary</item>
+        <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
+        <item name="android:fontFamily">@font/ft_google_sans_regular</item>
+    </style>
+
     <style name="TextAppearance.AppCompat.Widget.ActionBar.Title"
         parent="@android:style/TextAppearance">
         <item name="android:textColor">?attr/colorAccent</item>

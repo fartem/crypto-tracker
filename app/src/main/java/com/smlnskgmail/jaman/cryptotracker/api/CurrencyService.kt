@@ -14,7 +14,7 @@ interface CurrencyService {
         "v1/cryptocurrency/map"
     )
     @Headers(
-        "X-CMC_PRO_API_KEY: ",
+        "X-CMC_PRO_API_KEY: API_KEY",
         "Accept: application/json"
     )
     fun currencyList(
@@ -27,7 +27,7 @@ interface CurrencyService {
         "v1/cryptocurrency/quotes/latest"
     )
     @Headers(
-        "X-CMC_PRO_API_KEY: ",
+        "X-CMC_PRO_API_KEY: API_KEY",
         "Accept: application/json"
     )
     fun listing(
