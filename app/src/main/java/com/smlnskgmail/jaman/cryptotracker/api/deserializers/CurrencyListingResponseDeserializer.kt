@@ -1,4 +1,4 @@
-package com.smlnskgmail.jaman.cryptotracker.api.desirealizers
+package com.smlnskgmail.jaman.cryptotracker.api.deserializers
 
 import com.google.gson.Gson
 import com.google.gson.JsonDeserializationContext
@@ -10,7 +10,7 @@ import com.smlnskgmail.jaman.cryptotracker.api.responses.CurrencyListingResponse
 import com.smlnskgmail.jaman.cryptotracker.model.CurrencyListing
 import java.lang.reflect.Type
 
-class CurrencyListingResponseDesirealizer : JsonDeserializer<CurrencyListingResponse> {
+class CurrencyListingResponseDeserializer : JsonDeserializer<CurrencyListingResponse> {
 
     override fun deserialize(
         json: JsonElement?,

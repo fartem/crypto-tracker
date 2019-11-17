@@ -1,8 +1,8 @@
 package com.smlnskgmail.jaman.cryptotracker.api
 
 import com.google.gson.GsonBuilder
-import com.smlnskgmail.jaman.cryptotracker.api.desirealizers.CurrencyListingResponseDesirealizer
-import com.smlnskgmail.jaman.cryptotracker.api.desirealizers.CurrencyResponseDesirealizer
+import com.smlnskgmail.jaman.cryptotracker.api.deserializers.CurrencyListingResponseDeserializer
+import com.smlnskgmail.jaman.cryptotracker.api.deserializers.CurrencyResponseDeserializer
 import com.smlnskgmail.jaman.cryptotracker.api.responses.CurrencyListingResponse
 import com.smlnskgmail.jaman.cryptotracker.api.responses.CurrencyResponse
 import retrofit2.Retrofit
@@ -13,11 +13,11 @@ object CurrencyApi {
     private val gson = GsonBuilder()
         .registerTypeAdapter(
             CurrencyResponse::class.java,
-            CurrencyResponseDesirealizer()
+            CurrencyResponseDeserializer()
         )
         .registerTypeAdapter(
             CurrencyListingResponse::class.java,
-            CurrencyListingResponseDesirealizer()
+            CurrencyListingResponseDeserializer()
         )
         .setLenient()
         .create()
@@ -32,6 +32,10 @@ object CurrencyApi {
             )
         )
         .build()
+
+    fun configuration(): Retrofit {
+        return retrofit
+    }
 
     fun currencyService(): CurrencyService {
         return retrofit.create(
