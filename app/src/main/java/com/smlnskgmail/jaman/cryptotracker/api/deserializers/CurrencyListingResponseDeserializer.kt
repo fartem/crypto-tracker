@@ -25,13 +25,13 @@ class CurrencyListingResponseDeserializer : JsonDeserializer<CurrencyListingResp
         val dataJson = json!!.asJsonObject.get(
             "data"
         )
-        val priceInfo = dataJson.asJsonObject.entrySet().first().value.asJsonObject.get(
+        val quoteUSD = dataJson.asJsonObject.entrySet().first().value.asJsonObject.get(
             "quote"
         ).asJsonObject.get(
             "USD"
         )
         val currencyListing: CurrencyListing = gson.fromJson(
-            priceInfo,
+            quoteUSD,
             currencyListingType
         )
 

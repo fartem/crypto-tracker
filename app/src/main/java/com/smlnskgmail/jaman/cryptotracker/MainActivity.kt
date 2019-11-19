@@ -51,6 +51,9 @@ class MainActivity : AppCompatActivity(), HolderClickTarget {
     }
 
     private fun loadCurrencies() {
+        CurrencyApi.init(
+            this
+        )
         CurrencyApi.currencyService().currencyList(
             CurrencyMedia.supportedSymbols().joinToString(
                 ","
