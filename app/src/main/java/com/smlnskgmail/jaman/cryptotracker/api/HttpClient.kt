@@ -15,16 +15,14 @@ class HttpClient(
         10 * 1024 * 1024
     )
 
-    fun withLocalCache(): OkHttpClient {
+    fun withLocalCache(isOnlinePredicate: () -> Boolean): OkHttpClient {
         return OkHttpClient.Builder()
             .cache(
                 cache
             )
             .addInterceptor {
                 val request = it.request()
-                if (!isOnline(
-                        context
-                    )) {
+                if (!isOnlinePredicate()) {
                     it.request().newBuilder().addHeader(
                         "Cache-control",
                         "public, only-if-cached, max-stale=${60 * 60 * 24 * 7}"

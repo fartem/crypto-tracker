@@ -25,8 +25,9 @@ object CurrencyApi {
         .setLenient()
         .create()
 
-    fun init(
-        context: Context
+    fun initWithCache(
+        context: Context,
+        isOnlinePredicate: () -> Boolean
     ) {
         if (retrofit != null) {
             retrofit = null
@@ -43,7 +44,9 @@ object CurrencyApi {
             .client(
                 HttpClient(
                     context
-                ).withLocalCache()
+                ).withLocalCache(
+                    isOnlinePredicate
+                )
             )
             .build()
     }

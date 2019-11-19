@@ -1,10 +1,14 @@
 package com.smlnskgmail.jaman.cryptotracker
 
+import android.content.Context
 import android.content.Intent
+import android.net.ConnectivityManager
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.snackbar.Snackbar
 import com.smlnskgmail.jaman.cryptotracker.api.CurrencyApi
 import com.smlnskgmail.jaman.cryptotracker.api.responses.CurrencyResponse
 import com.smlnskgmail.jaman.cryptotracker.list.CurrenciesAdapter
@@ -51,9 +55,11 @@ class MainActivity : AppCompatActivity(), HolderClickTarget {
     }
 
     private fun loadCurrencies() {
-        CurrencyApi.init(
+        CurrencyApi.initWithCache(
             this
-        )
+        ) {
+            isOnline()
+        }
         CurrencyApi.currencyService().currencyList(
             CurrencyMedia.supportedSymbols().joinToString(
                 ","
@@ -81,6 +87,11 @@ class MainActivity : AppCompatActivity(), HolderClickTarget {
                             emptyList()
                         )
                     } else {
+                        if (!isOnline()) {
+                            showSnackbar(
+                                "Device is offline. Data loading from cache!"
+                            )
+                        }
                         createList(
                             body.currencies
                         )
@@ -159,6 +170,29 @@ class MainActivity : AppCompatActivity(), HolderClickTarget {
             menu
         )
         return true
+    }
+
+    @Suppress(
+        "DEPRECATION"
+    )
+    private fun isOnline(): Boolean {
+        val connectivityManager = getSystemService(
+            Context.CONNECTIVITY_SERVICE
+        ) as ConnectivityManager
+        val networkInfo = connectivityManager.activeNetworkInfo
+        return networkInfo?.isConnected!!
+    }
+
+    private fun showSnackbar(
+        message: String
+    ) {
+        Snackbar.make(
+            findViewById(
+                android.R.id.content
+            ),
+            message,
+            Snackbar.LENGTH_LONG
+        ).show()
     }
 
 }
