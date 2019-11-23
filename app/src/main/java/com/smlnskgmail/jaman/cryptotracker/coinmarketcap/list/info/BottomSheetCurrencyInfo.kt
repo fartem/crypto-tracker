@@ -18,7 +18,9 @@ import java.text.SimpleDateFormat
 
 class BottomSheetCurrencyInfo : BottomSheetDialogFragment() {
 
-    @SuppressLint("SetTextI18n")
+    @SuppressLint(
+        "SetTextI18n"
+    )
     override fun onViewCreated(
         view: View,
         savedInstanceState: Bundle?

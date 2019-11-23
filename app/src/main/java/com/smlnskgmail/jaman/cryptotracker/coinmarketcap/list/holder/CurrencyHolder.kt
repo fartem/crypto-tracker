@@ -8,6 +8,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.smlnskgmail.jaman.cryptotracker.R
 import com.smlnskgmail.jaman.cryptotracker.coinmarketcap.api.CurrencyApi
 import com.smlnskgmail.jaman.cryptotracker.coinmarketcap.api.responses.CurrencyListingResponse
+import com.smlnskgmail.jaman.cryptotracker.coinmarketcap.loaders.price.CurrencyPriceLoader
+import com.smlnskgmail.jaman.cryptotracker.coinmarketcap.loaders.price.CurrencyPriceLoaderTarget
 import com.smlnskgmail.jaman.cryptotracker.coinmarketcap.model.Currency
 import com.smlnskgmail.jaman.cryptotracker.coinmarketcap.model.CurrencyListing
 import com.smlnskgmail.jaman.cryptotracker.coinmarketcap.model.CurrencyMedia
@@ -18,7 +20,9 @@ import retrofit2.Response
 
 class CurrencyHolder(
     itemView: View,
-    private val holderClickTarget: HolderClickTarget
+    private val holderClickTarget: HolderClickTarget,
+    private val currencyPriceLoaderTarget: CurrencyPriceLoaderTarget,
+    private val api: CurrencyApi
 ) : RecyclerView.ViewHolder(
     itemView
 ) {
@@ -61,7 +65,13 @@ class CurrencyHolder(
     private fun loadCurrencyListing(
         currency: Currency
     ) {
-        CurrencyApi.currencyService().listing(
+        CurrencyPriceLoader(
+            api,
+            currency,
+            currencyPriceLoaderTarget
+        ).loadPrice()
+
+        api.currencyService().listing(
             currency.id
         ).enqueue(
             object : Callback<CurrencyListingResponse> {
@@ -72,7 +82,9 @@ class CurrencyHolder(
                     showErrorInfo()
                 }
 
-                @SuppressLint("SetTextI18n")
+                @SuppressLint(
+                    "SetTextI18n"
+                )
                 override fun onResponse(
                     call: Call<CurrencyListingResponse>,
                     response: Response<CurrencyListingResponse>
@@ -89,7 +101,9 @@ class CurrencyHolder(
         )
     }
 
-    @SuppressLint("SetTextI18n")
+    @SuppressLint(
+        "SetTextI18n"
+    )
     private fun showCurrencyListing(
         currencyListing: CurrencyListing
     ) {

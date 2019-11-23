@@ -8,13 +8,15 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.snackbar.Snackbar
-import com.smlnskgmail.jaman.cryptotracker.coinmarketcap.CurrencyListLoader
-import com.smlnskgmail.jaman.cryptotracker.coinmarketcap.CurrencyListLoaderTarget
 import com.smlnskgmail.jaman.cryptotracker.coinmarketcap.api.CurrencyApi
 import com.smlnskgmail.jaman.cryptotracker.coinmarketcap.list.CurrenciesAdapter
 import com.smlnskgmail.jaman.cryptotracker.coinmarketcap.list.holder.HolderClickTarget
 import com.smlnskgmail.jaman.cryptotracker.coinmarketcap.list.info.BottomSheetCurrencyInfo
+import com.smlnskgmail.jaman.cryptotracker.coinmarketcap.loaders.currencies.CurrencyListLoader
+import com.smlnskgmail.jaman.cryptotracker.coinmarketcap.loaders.currencies.CurrencyListLoaderTarget
+import com.smlnskgmail.jaman.cryptotracker.coinmarketcap.loaders.price.CurrencyPriceLoaderTarget
 import com.smlnskgmail.jaman.cryptotracker.coinmarketcap.model.Currency
+import com.smlnskgmail.jaman.cryptotracker.coinmarketcap.model.CurrencyListing
 import com.smlnskgmail.jaman.cryptotracker.logger.L
 import com.smlnskgmail.jaman.cryptotracker.preferences.PreferencesManager
 import com.smlnskgmail.jaman.cryptotracker.preferences.theme.Theme
@@ -22,7 +24,8 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.list_empty_message.*
 import kotlinx.android.synthetic.main.list_progress_bar.*
 
-class MainActivity : AppCompatActivity(), CurrencyListLoaderTarget, HolderClickTarget {
+class MainActivity : AppCompatActivity(),
+    CurrencyListLoaderTarget, HolderClickTarget, CurrencyPriceLoaderTarget {
 
     override fun onCreate(
         savedInstanceState: Bundle?
@@ -65,26 +68,31 @@ class MainActivity : AppCompatActivity(), CurrencyListLoaderTarget, HolderClickT
         ).loadCurrencies()
     }
 
-    override fun loaderResult(
+    override fun currencyListLoaderResult(
         currencies: List<Currency>,
-        throwable: Throwable?
+        throwable: Throwable?,
+        api: CurrencyApi
     ) {
         if (throwable != null) {
             showLoaderError(
-                throwable
+                throwable,
+                api
             )
         } else {
             showCurrenciesList(
-                currencies
+                currencies,
+                api
             )
         }
     }
 
     private fun showLoaderError(
-        throwable: Throwable
+        throwable: Throwable,
+        api: CurrencyApi
     ) {
         createList(
-            emptyList()
+            emptyList(),
+            api
         )
         L.e(
             throwable
@@ -92,7 +100,8 @@ class MainActivity : AppCompatActivity(), CurrencyListLoaderTarget, HolderClickT
     }
 
     private fun showCurrenciesList(
-        currencies: List<Currency>
+        currencies: List<Currency>,
+        api: CurrencyApi
     ) {
         if (currencies.isNotEmpty() && !isOnline()) {
             showSnackbar(
@@ -102,16 +111,20 @@ class MainActivity : AppCompatActivity(), CurrencyListLoaderTarget, HolderClickT
             )
         }
         createList(
-            currencies
+            currencies,
+            api
         )
     }
 
     private fun createList(
-        currencies: List<Currency>
+        currencies: List<Currency>,
+        api: CurrencyApi
     ) {
         currencies_list.adapter = CurrenciesAdapter(
             currencies,
-            this
+            this,
+            this,
+            api
         )
     }
 
@@ -129,6 +142,17 @@ class MainActivity : AppCompatActivity(), CurrencyListLoaderTarget, HolderClickT
         bottomSheetCurrencyInfo.show(
             supportFragmentManager,
             BottomSheetCurrencyInfo::class.java.canonicalName
+        )
+    }
+
+    override fun currencyPriceLoaderResult(
+        currency: Currency,
+        currencyListing: CurrencyListing?,
+        throwable: Throwable?,
+        api: CurrencyApi
+    ) {
+        (currencies_list.adapter as CurrenciesAdapter).invalidateCurrency(
+            currency
         )
     }
 

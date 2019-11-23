@@ -4,14 +4,18 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.smlnskgmail.jaman.cryptotracker.R
+import com.smlnskgmail.jaman.cryptotracker.coinmarketcap.api.CurrencyApi
 import com.smlnskgmail.jaman.cryptotracker.coinmarketcap.list.holder.CurrencyHolder
 import com.smlnskgmail.jaman.cryptotracker.coinmarketcap.list.holder.HolderClickTarget
+import com.smlnskgmail.jaman.cryptotracker.coinmarketcap.loaders.price.CurrencyPriceLoaderTarget
 import com.smlnskgmail.jaman.cryptotracker.coinmarketcap.model.Currency
 import com.smlnskgmail.jaman.cryptotracker.coinmarketcap.model.CurrencyMedia
 
 class CurrenciesAdapter(
     private val currencies: List<Currency>,
-    private val holderClickTarget: HolderClickTarget
+    private val holderClickTarget: HolderClickTarget,
+    private val currencyPriceLoaderTarget: CurrencyPriceLoaderTarget,
+    private val api: CurrencyApi
 ) : RecyclerView.Adapter<CurrencyHolder>() {
 
     override fun onCreateViewHolder(
@@ -26,7 +30,9 @@ class CurrenciesAdapter(
                 parent,
                 false
             ),
-            holderClickTarget
+            holderClickTarget,
+            currencyPriceLoaderTarget,
+            api
         )
     }
 
@@ -43,9 +49,18 @@ class CurrenciesAdapter(
         )
     }
 
+    fun invalidateCurrency(
+        currency: Currency
+    ) {
+        notifyItemChanged(
+            currencies.indexOf(
+                currency
+            )
+        )
+    }
+
     override fun getItemCount(): Int {
         return currencies.count()
     }
-
 
 }

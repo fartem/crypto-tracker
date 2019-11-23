@@ -13,10 +13,20 @@ Demo application with statistics of some cryptocurrencies.
 
 Provided by [CoinMarketCap](https://pro.coinmarketcap.com).
 
-## Resources
-
-Original icons provided by [cryptocurrency-icons](https://github.com/atomiclabs/cryptocurrency-icons)
-
 ### API key
 
 In `CurrencyService` class replace `API_KEY` in each header.
+
+## Resources
+
+Original icons provided by [cryptocurrency-icons](https://github.com/atomiclabs/cryptocurrency-icons).
+
+## Screenshots
+
+<br/>
+<p align="center">
+  <img src="media/screenshots/scr_01.png" width="150" />
+  <img src="media/screenshots/scr_02.png" width="150" />
+  <img src="media/screenshots/scr_03.png" width="150" />
+  <img src="media/screenshots/scr_04.png" width="150" />
+</p>

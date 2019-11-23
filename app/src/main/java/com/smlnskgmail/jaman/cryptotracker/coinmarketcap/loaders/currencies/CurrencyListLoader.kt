@@ -1,4 +1,4 @@
-package com.smlnskgmail.jaman.cryptotracker.coinmarketcap
+package com.smlnskgmail.jaman.cryptotracker.coinmarketcap.loaders.currencies
 
 import com.smlnskgmail.jaman.cryptotracker.coinmarketcap.api.CurrencyApi
 import com.smlnskgmail.jaman.cryptotracker.coinmarketcap.api.responses.CurrencyResponse
@@ -25,9 +25,10 @@ class CurrencyListLoader(
                     call: Call<CurrencyResponse>,
                     t: Throwable
                 ) {
-                    currencyListLoaderTarget.loaderResult(
+                    currencyListLoaderTarget.currencyListLoaderResult(
                         emptyList(),
-                        t
+                        t,
+                        api
                     )
                 }
 
@@ -37,14 +38,16 @@ class CurrencyListLoader(
                 ) {
                     val body = response.body()
                     if (body == null) {
-                        currencyListLoaderTarget.loaderResult(
+                        currencyListLoaderTarget.currencyListLoaderResult(
                             emptyList(),
-                            null
+                            null,
+                            api
                         )
                     } else {
-                        currencyListLoaderTarget.loaderResult(
+                        currencyListLoaderTarget.currencyListLoaderResult(
                             body.currencies,
-                            null
+                            null,
+                            api
                         )
                     }
                 }
