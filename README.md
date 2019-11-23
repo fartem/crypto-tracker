@@ -5,15 +5,18 @@
 ![Repo size](https://img.shields.io/github/repo-size/fartem/crypto-tracker.svg?color=02778b)
 [![License](https://img.shields.io/github/license/fartem/crypto-tracker.svg?color=7ea4b0)](https://github.com/fartem/crypto-tracker/blob/master/LICENSE)
 
-
 ## About
 
 Demo application with statistics of some cryptocurrencies.
 
 ## API
 
-Provided by [CoinMarketCap](https://pro.coinmarketcap.com) site.
+Provided by [CoinMarketCap](https://pro.coinmarketcap.com).
 
-### API auth data
+## Resources
+
+Original icons provided by [cryptocurrency-icons](https://github.com/atomiclabs/cryptocurrency-icons)
+
+### API key
 
 In `CurrencyService` class replace `API_KEY` in each header.

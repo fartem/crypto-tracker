@@ -1,4 +1,4 @@
-package com.smlnskgmail.jaman.cryptotracker.list
+package com.smlnskgmail.jaman.cryptotracker.coinmarketcap.list
 
 import android.content.Context
 import android.util.AttributeSet

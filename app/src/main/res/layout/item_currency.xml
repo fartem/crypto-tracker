@@ -7,7 +7,8 @@
     android:layout_height="wrap_content"
     android:padding="16dp"
     android:foreground="?selectableItemBackground"
-    android:clickable="true">
+    android:clickable="true"
+    tools:ignore="KeyboardInaccessibleWidget,UnusedAttribute">
 
     <ImageView
         android:id="@+id/currency_image"
@@ -15,7 +16,8 @@
         android:layout_height="38dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:src="@drawable/ic_btc" />
+        tools:src="@drawable/ic_btc"
+        tools:ignore="ContentDescription" />
 
     <TextView
         android:id="@+id/currency_symbol"
@@ -72,6 +74,7 @@
         android:src="@drawable/ic_refresh"
         android:tint="?attr/colorAccent"
         app:layout_constraintBottom_toBottomOf="@+id/currency_symbol"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:ignore="ContentDescription" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,4 +1,4 @@
-package com.smlnskgmail.jaman.cryptotracker.model
+package com.smlnskgmail.jaman.cryptotracker.coinmarketcap.model
 
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable

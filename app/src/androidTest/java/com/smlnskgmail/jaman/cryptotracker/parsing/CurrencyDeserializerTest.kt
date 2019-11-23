@@ -1,7 +1,7 @@
 package com.smlnskgmail.jaman.cryptotracker.parsing
 
 import com.google.gson.JsonDeserializer
-import com.smlnskgmail.jaman.cryptotracker.api.deserializers.CurrencyResponseDeserializer
+import com.smlnskgmail.jaman.cryptotracker.coinmarketcap.api.deserializers.CurrencyResponseDeserializer
 
 class CurrencyDeserializerTest : BaseDeserializerTest() {
 

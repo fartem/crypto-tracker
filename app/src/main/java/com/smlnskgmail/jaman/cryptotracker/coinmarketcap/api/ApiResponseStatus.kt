@@ -1,13 +1,8 @@
-package com.smlnskgmail.jaman.cryptotracker.api
+package com.smlnskgmail.jaman.cryptotracker.coinmarketcap.api
 
 import com.google.gson.annotations.SerializedName
 
 class ApiResponseStatus(
-
-    @SerializedName(
-        "timestamp"
-    )
-    val timestamp: String,
 
     @SerializedName(
         "error_code"

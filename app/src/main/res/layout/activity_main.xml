@@ -8,7 +8,7 @@
     <include layout="@layout/list_progress_bar" />
     <include layout="@layout/list_empty_message" />
 
-    <com.smlnskgmail.jaman.cryptotracker.list.AdaptiveRecyclerView
+    <com.smlnskgmail.jaman.cryptotracker.coinmarketcap.list.AdaptiveRecyclerView
         android:id="@+id/currencies_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

@@ -1,4 +1,4 @@
-package com.smlnskgmail.jaman.cryptotracker.list.info
+package com.smlnskgmail.jaman.cryptotracker.coinmarketcap.list.info
 
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -11,8 +11,8 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.smlnskgmail.jaman.cryptotracker.R
-import com.smlnskgmail.jaman.cryptotracker.model.Currency
-import com.smlnskgmail.jaman.cryptotracker.model.CurrencyMedia
+import com.smlnskgmail.jaman.cryptotracker.coinmarketcap.model.Currency
+import com.smlnskgmail.jaman.cryptotracker.coinmarketcap.model.CurrencyMedia
 import kotlinx.android.synthetic.main.bottom_sheet_currency.*
 import java.text.SimpleDateFormat
 

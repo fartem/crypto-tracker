@@ -1,13 +1,13 @@
-package com.smlnskgmail.jaman.cryptotracker.list
+package com.smlnskgmail.jaman.cryptotracker.coinmarketcap.list
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.smlnskgmail.jaman.cryptotracker.R
-import com.smlnskgmail.jaman.cryptotracker.list.holder.CurrencyHolder
-import com.smlnskgmail.jaman.cryptotracker.list.holder.HolderClickTarget
-import com.smlnskgmail.jaman.cryptotracker.model.Currency
-import com.smlnskgmail.jaman.cryptotracker.model.CurrencyMedia
+import com.smlnskgmail.jaman.cryptotracker.coinmarketcap.list.holder.CurrencyHolder
+import com.smlnskgmail.jaman.cryptotracker.coinmarketcap.list.holder.HolderClickTarget
+import com.smlnskgmail.jaman.cryptotracker.coinmarketcap.model.Currency
+import com.smlnskgmail.jaman.cryptotracker.coinmarketcap.model.CurrencyMedia
 
 class CurrenciesAdapter(
     private val currencies: List<Currency>,

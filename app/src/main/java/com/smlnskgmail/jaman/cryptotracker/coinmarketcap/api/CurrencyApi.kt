@@ -1,15 +1,15 @@
-package com.smlnskgmail.jaman.cryptotracker.api
+package com.smlnskgmail.jaman.cryptotracker.coinmarketcap.api
 
 import android.content.Context
 import com.google.gson.GsonBuilder
-import com.smlnskgmail.jaman.cryptotracker.api.deserializers.CurrencyListingResponseDeserializer
-import com.smlnskgmail.jaman.cryptotracker.api.deserializers.CurrencyResponseDeserializer
-import com.smlnskgmail.jaman.cryptotracker.api.responses.CurrencyListingResponse
-import com.smlnskgmail.jaman.cryptotracker.api.responses.CurrencyResponse
+import com.smlnskgmail.jaman.cryptotracker.coinmarketcap.api.deserializers.CurrencyListingResponseDeserializer
+import com.smlnskgmail.jaman.cryptotracker.coinmarketcap.api.deserializers.CurrencyResponseDeserializer
+import com.smlnskgmail.jaman.cryptotracker.coinmarketcap.api.responses.CurrencyListingResponse
+import com.smlnskgmail.jaman.cryptotracker.coinmarketcap.api.responses.CurrencyResponse
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-object CurrencyApi {
+class CurrencyApi {
 
     private var retrofit: Retrofit? = null
 

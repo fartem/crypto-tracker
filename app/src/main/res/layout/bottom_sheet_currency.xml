@@ -14,7 +14,8 @@
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:src="@drawable/ic_btc" />
+        tools:src="@drawable/ic_btc"
+        tools:ignore="ContentDescription" />
 
     <TextView
         android:id="@+id/currency_id"
@@ -98,10 +99,11 @@
         android:layout_height="wrap_content"
         android:background="@color/colorAccent"
         android:foreground="?selectableItemBackground"
-        android:text="Visit on site"
+        android:text="@string/currency_action_visit_on_site"
         android:textColor="?attr/colorWhite"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="UnusedAttribute" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

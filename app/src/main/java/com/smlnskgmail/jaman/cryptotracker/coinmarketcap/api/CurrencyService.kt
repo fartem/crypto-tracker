@@ -1,7 +1,7 @@
-package com.smlnskgmail.jaman.cryptotracker.api
+package com.smlnskgmail.jaman.cryptotracker.coinmarketcap.api
 
-import com.smlnskgmail.jaman.cryptotracker.api.responses.CurrencyListingResponse
-import com.smlnskgmail.jaman.cryptotracker.api.responses.CurrencyResponse
+import com.smlnskgmail.jaman.cryptotracker.coinmarketcap.api.responses.CurrencyListingResponse
+import com.smlnskgmail.jaman.cryptotracker.coinmarketcap.api.responses.CurrencyResponse
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Headers

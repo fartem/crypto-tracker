@@ -1,14 +1,14 @@
-package com.smlnskgmail.jaman.cryptotracker.api.deserializers
+package com.smlnskgmail.jaman.cryptotracker.coinmarketcap.api.deserializers
 
 import com.google.gson.Gson
 import com.google.gson.JsonDeserializationContext
 import com.google.gson.JsonDeserializer
 import com.google.gson.JsonElement
 import com.google.gson.reflect.TypeToken
-import com.smlnskgmail.jaman.cryptotracker.api.ApiResponseStatus
-import com.smlnskgmail.jaman.cryptotracker.api.responses.CurrencyResponse
-import com.smlnskgmail.jaman.cryptotracker.model.Currency
-import com.smlnskgmail.jaman.cryptotracker.model.CurrencyListing
+import com.smlnskgmail.jaman.cryptotracker.coinmarketcap.api.ApiResponseStatus
+import com.smlnskgmail.jaman.cryptotracker.coinmarketcap.api.responses.CurrencyResponse
+import com.smlnskgmail.jaman.cryptotracker.coinmarketcap.model.Currency
+import com.smlnskgmail.jaman.cryptotracker.coinmarketcap.model.CurrencyListing
 import java.lang.reflect.Type
 
 class CurrencyResponseDeserializer : JsonDeserializer<CurrencyResponse> {

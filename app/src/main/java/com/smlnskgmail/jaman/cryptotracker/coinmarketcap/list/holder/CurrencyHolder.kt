@@ -1,4 +1,4 @@
-package com.smlnskgmail.jaman.cryptotracker.list.holder
+package com.smlnskgmail.jaman.cryptotracker.coinmarketcap.list.holder
 
 import android.annotation.SuppressLint
 import android.graphics.Color
@@ -6,11 +6,11 @@ import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.smlnskgmail.jaman.cryptotracker.R
-import com.smlnskgmail.jaman.cryptotracker.api.CurrencyApi
-import com.smlnskgmail.jaman.cryptotracker.api.responses.CurrencyListingResponse
-import com.smlnskgmail.jaman.cryptotracker.model.Currency
-import com.smlnskgmail.jaman.cryptotracker.model.CurrencyListing
-import com.smlnskgmail.jaman.cryptotracker.model.CurrencyMedia
+import com.smlnskgmail.jaman.cryptotracker.coinmarketcap.api.CurrencyApi
+import com.smlnskgmail.jaman.cryptotracker.coinmarketcap.api.responses.CurrencyListingResponse
+import com.smlnskgmail.jaman.cryptotracker.coinmarketcap.model.Currency
+import com.smlnskgmail.jaman.cryptotracker.coinmarketcap.model.CurrencyListing
+import com.smlnskgmail.jaman.cryptotracker.coinmarketcap.model.CurrencyMedia
 import kotlinx.android.synthetic.main.item_currency.view.*
 import retrofit2.Call
 import retrofit2.Callback

@@ -4,12 +4,11 @@
     <color name="colorPrimaryDark">#FFFFFF</color>
     <color name="colorAccent">#D81B60</color>
 
-    <color name="ic_launcher_background">#FFFFFF</color>
+    <!-- launcher -->
+    <color name="ic_launcher_background">#F7931A</color>
 
     <!-- commons -->
-    <color name="colorTextPrimary">#212121</color>
     <color name="colorTextSecondary">#757575</color>
-    <color name="colorWhite">#FFFFFF</color>
 
     <!-- currency listing -->
     <color name="colorCurrencyPriceUp">#66bb6a</color>
