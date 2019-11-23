@@ -25,8 +25,8 @@ Original icons provided by [cryptocurrency-icons](https://github.com/atomiclabs/
 
 <br/>
 <p align="center">
-  <img src="media/screenshots/scr_01.png" width="150" />
-  <img src="media/screenshots/scr_02.png" width="150" />
-  <img src="media/screenshots/scr_03.png" width="150" />
-  <img src="media/screenshots/scr_04.png" width="150" />
+  <img src="media/screenshots/scr_01.png" width="210" />
+  <img src="media/screenshots/scr_02.png" width="210" />
+  <img src="media/screenshots/scr_03.png" width="210" />
+  <img src="media/screenshots/scr_04.png" width="210" />
 </p>
