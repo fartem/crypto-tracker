@@ -26,8 +26,7 @@ class CurrencyPriceLoader(
                     currencyPriceLoaderTarget.currencyPriceLoaderResult(
                         currency,
                         null,
-                        t,
-                        api
+                        t
                     )
                 }
 
@@ -41,8 +40,7 @@ class CurrencyPriceLoader(
                     currencyPriceLoaderTarget.currencyPriceLoaderResult(
                         currency,
                         response.body()!!.currencyListing,
-                        null,
-                        api
+                        null
                     )
                 }
             }

@@ -27,6 +27,8 @@ import kotlinx.android.synthetic.main.list_progress_bar.*
 class MainActivity : AppCompatActivity(),
     CurrencyListLoaderTarget, HolderClickTarget, CurrencyPriceLoaderTarget {
 
+    private lateinit var api: CurrencyApi
+
     override fun onCreate(
         savedInstanceState: Bundle?
     ) {
@@ -70,8 +72,7 @@ class MainActivity : AppCompatActivity(),
 
     override fun currencyListLoaderResult(
         currencies: List<Currency>,
-        throwable: Throwable?,
-        api: CurrencyApi
+        throwable: Throwable?
     ) {
         if (throwable != null) {
             showLoaderError(
@@ -148,10 +149,9 @@ class MainActivity : AppCompatActivity(),
     override fun currencyPriceLoaderResult(
         currency: Currency,
         currencyListing: CurrencyListing?,
-        throwable: Throwable?,
-        api: CurrencyApi
+        throwable: Throwable?
     ) {
-        (currencies_list.adapter as CurrenciesAdapter).invalidateCurrency(
+        (currencies_list.adapter as CurrenciesAdapter).refreshCurrency(
             currency
         )
     }

@@ -49,7 +49,7 @@ class CurrenciesAdapter(
         )
     }
 
-    fun invalidateCurrency(
+    fun refreshCurrency(
         currency: Currency
     ) {
         notifyItemChanged(

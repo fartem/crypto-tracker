@@ -27,8 +27,7 @@ class CurrencyListLoader(
                 ) {
                     currencyListLoaderTarget.currencyListLoaderResult(
                         emptyList(),
-                        t,
-                        api
+                        t
                     )
                 }
 
@@ -40,14 +39,12 @@ class CurrencyListLoader(
                     if (body == null) {
                         currencyListLoaderTarget.currencyListLoaderResult(
                             emptyList(),
-                            null,
-                            api
+                            null
                         )
                     } else {
                         currencyListLoaderTarget.currencyListLoaderResult(
                             body.currencies,
-                            null,
-                            api
+                            null
                         )
                     }
                 }
