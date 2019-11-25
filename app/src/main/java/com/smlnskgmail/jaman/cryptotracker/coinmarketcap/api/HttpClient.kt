@@ -19,7 +19,9 @@ class HttpClient(
         cacheSize
     )
 
-    fun withLocalCache(cachePredicate: () -> Boolean): OkHttpClient {
+    fun withLocalCache(
+        cachePredicate: () -> Boolean
+    ): OkHttpClient {
         return OkHttpClient.Builder()
             .cache(
                 cache

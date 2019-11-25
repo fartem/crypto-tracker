@@ -10,7 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.snackbar.Snackbar
 import com.smlnskgmail.jaman.cryptotracker.coinmarketcap.api.CurrencyApi
 import com.smlnskgmail.jaman.cryptotracker.coinmarketcap.list.CurrenciesAdapter
-import com.smlnskgmail.jaman.cryptotracker.coinmarketcap.list.holder.HolderClickTarget
+import com.smlnskgmail.jaman.cryptotracker.coinmarketcap.list.holder.CurrencyHolderClickTarget
 import com.smlnskgmail.jaman.cryptotracker.coinmarketcap.list.info.BottomSheetCurrencyInfo
 import com.smlnskgmail.jaman.cryptotracker.coinmarketcap.loaders.currencies.CurrencyListLoader
 import com.smlnskgmail.jaman.cryptotracker.coinmarketcap.loaders.currencies.CurrencyListLoaderTarget
@@ -25,7 +25,7 @@ import kotlinx.android.synthetic.main.list_empty_message.*
 import kotlinx.android.synthetic.main.list_progress_bar.*
 
 class MainActivity : AppCompatActivity(),
-    CurrencyListLoaderTarget, HolderClickTarget, CurrencyPriceLoaderTarget {
+    CurrencyListLoaderTarget, CurrencyHolderClickTarget, CurrencyPriceLoaderTarget {
 
     private lateinit var api: CurrencyApi
 
@@ -129,7 +129,7 @@ class MainActivity : AppCompatActivity(),
         )
     }
 
-    override fun holderItemClick(
+    override fun onCurrencyRefreshClick(
         currency: Currency
     ) {
         val bundle = Bundle()

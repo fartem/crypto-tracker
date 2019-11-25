@@ -6,14 +6,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.smlnskgmail.jaman.cryptotracker.R
 import com.smlnskgmail.jaman.cryptotracker.coinmarketcap.api.CurrencyApi
 import com.smlnskgmail.jaman.cryptotracker.coinmarketcap.list.holder.CurrencyHolder
-import com.smlnskgmail.jaman.cryptotracker.coinmarketcap.list.holder.HolderClickTarget
+import com.smlnskgmail.jaman.cryptotracker.coinmarketcap.list.holder.CurrencyHolderClickTarget
 import com.smlnskgmail.jaman.cryptotracker.coinmarketcap.loaders.price.CurrencyPriceLoaderTarget
 import com.smlnskgmail.jaman.cryptotracker.coinmarketcap.model.Currency
 import com.smlnskgmail.jaman.cryptotracker.coinmarketcap.model.CurrencyMedia
 
 class CurrenciesAdapter(
     private val currencies: List<Currency>,
-    private val holderClickTarget: HolderClickTarget,
+    private val currencyHolderClickTarget: CurrencyHolderClickTarget,
     private val currencyPriceLoaderTarget: CurrencyPriceLoaderTarget,
     private val api: CurrencyApi
 ) : RecyclerView.Adapter<CurrencyHolder>() {
@@ -30,7 +30,7 @@ class CurrenciesAdapter(
                 parent,
                 false
             ),
-            holderClickTarget,
+            currencyHolderClickTarget,
             currencyPriceLoaderTarget,
             api
         )

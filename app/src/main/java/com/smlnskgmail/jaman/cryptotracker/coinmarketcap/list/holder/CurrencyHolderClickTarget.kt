@@ -2,9 +2,9 @@ package com.smlnskgmail.jaman.cryptotracker.coinmarketcap.list.holder
 
 import com.smlnskgmail.jaman.cryptotracker.coinmarketcap.model.Currency
 
-interface HolderClickTarget {
+interface CurrencyHolderClickTarget {
 
-    fun holderItemClick(
+    fun onCurrencyRefreshClick(
         currency: Currency
     )
 

@@ -20,7 +20,7 @@ import retrofit2.Response
 
 class CurrencyHolder(
     itemView: View,
-    private val holderClickTarget: HolderClickTarget,
+    private val currencyHolderClickTarget: CurrencyHolderClickTarget,
     private val currencyPriceLoaderTarget: CurrencyPriceLoaderTarget,
     private val api: CurrencyApi
 ) : RecyclerView.ViewHolder(
@@ -54,7 +54,7 @@ class CurrencyHolder(
         }
 
         itemView.setOnClickListener {
-            holderClickTarget.holderItemClick(currency)
+            currencyHolderClickTarget.onCurrencyRefreshClick(currency)
         }
 
         showCurrencyListing(

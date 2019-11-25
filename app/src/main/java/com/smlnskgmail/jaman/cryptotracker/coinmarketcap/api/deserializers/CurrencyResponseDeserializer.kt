@@ -5,7 +5,6 @@ import com.google.gson.JsonDeserializationContext
 import com.google.gson.JsonDeserializer
 import com.google.gson.JsonElement
 import com.google.gson.reflect.TypeToken
-import com.smlnskgmail.jaman.cryptotracker.coinmarketcap.api.ApiResponseStatus
 import com.smlnskgmail.jaman.cryptotracker.coinmarketcap.api.responses.CurrencyResponse
 import com.smlnskgmail.jaman.cryptotracker.coinmarketcap.model.Currency
 import com.smlnskgmail.jaman.cryptotracker.coinmarketcap.model.CurrencyListing
@@ -22,7 +21,6 @@ class CurrencyResponseDeserializer : JsonDeserializer<CurrencyResponse> {
 
         val currencyType = object : TypeToken<Currency>() {}.type
         val currencyListingType = object : TypeToken<CurrencyListing>() {}.type
-        val apiResponseStatusType = object : TypeToken<ApiResponseStatus>() {}.type
 
         val currencies = arrayListOf<Currency>()
 
@@ -54,17 +52,8 @@ class CurrencyResponseDeserializer : JsonDeserializer<CurrencyResponse> {
             )
         }
 
-        val apiResponseStatusData = json.asJsonObject.get(
-            "status"
-        ).toString()
-        val apiStatus: ApiResponseStatus = gson.fromJson(
-            apiResponseStatusData,
-            apiResponseStatusType
-        )
-
         return CurrencyResponse(
-            currencies,
-            apiStatus
+            currencies
         )
     }
 
