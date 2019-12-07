@@ -5,7 +5,7 @@ import com.smlnskgmail.jaman.cryptotracker.R
 @Suppress(
     "unused"
 )
-enum class CurrencyMedia(
+enum class CurrencyEntitiy(
     val currencySymbol: String,
     val iconResId: Int,
     val accentColor: String,
@@ -165,9 +165,7 @@ enum class CurrencyMedia(
             }
         }
 
-        fun mediaForCurrency(
-            currency: Currency
-        ): CurrencyMedia {
+        fun mediaForCurrency(currency: Currency): CurrencyEntitiy {
             values().forEach {
                 if (currency.symbol == it.currencySymbol) {
                     return it

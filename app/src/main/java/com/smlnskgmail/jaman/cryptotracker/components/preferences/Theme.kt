@@ -1,4 +1,4 @@
-package com.smlnskgmail.jaman.cryptotracker.preferences.theme
+package com.smlnskgmail.jaman.cryptotracker.components.preferences
 
 import com.smlnskgmail.jaman.cryptotracker.R
 

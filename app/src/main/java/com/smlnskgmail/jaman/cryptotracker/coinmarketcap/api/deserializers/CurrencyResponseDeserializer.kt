@@ -24,9 +24,7 @@ class CurrencyResponseDeserializer : JsonDeserializer<CurrencyResponse> {
 
         val currencies = arrayListOf<Currency>()
 
-        val dataJson = json!!.asJsonObject.get(
-            "data"
-        )
+        val dataJson = json!!.asJsonObject.get("data")
         for (data in dataJson.asJsonObject.entrySet()) {
             val currency = gson.fromJson(
                 data.value,
@@ -35,26 +33,18 @@ class CurrencyResponseDeserializer : JsonDeserializer<CurrencyResponse> {
 
             val currencyAsJson = gson.toJsonTree(data.value)
 
-            val priceInfo = currencyAsJson.asJsonObject.get(
-                "quote"
-            ).asJsonObject.get(
-                "USD"
-            )
+            val priceInfo = currencyAsJson.asJsonObject
+                .get("quote").asJsonObject
+                .get("USD")
             val currencyListing: CurrencyListing = gson.fromJson(
                 priceInfo,
                 currencyListingType
             )
 
             currency.listing = currencyListing
-
-            currencies.add(
-                currency
-            )
+            currencies.add(currency)
         }
-
-        return CurrencyResponse(
-            currencies
-        )
+        return CurrencyResponse(currencies)
     }
 
 }

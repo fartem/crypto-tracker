@@ -1,4 +1,4 @@
-package com.smlnskgmail.jaman.cryptotracker.coinmarketcap.list.holder
+package com.smlnskgmail.jaman.cryptotracker.components.currencieslist
 
 import android.annotation.SuppressLint
 import android.graphics.Color
@@ -8,11 +8,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.smlnskgmail.jaman.cryptotracker.R
 import com.smlnskgmail.jaman.cryptotracker.coinmarketcap.api.CurrencyApi
 import com.smlnskgmail.jaman.cryptotracker.coinmarketcap.api.responses.CurrencyListingResponse
-import com.smlnskgmail.jaman.cryptotracker.coinmarketcap.loaders.price.CurrencyPriceLoader
-import com.smlnskgmail.jaman.cryptotracker.coinmarketcap.loaders.price.CurrencyPriceLoaderTarget
+import com.smlnskgmail.jaman.cryptotracker.coinmarketcap.loaders.CurrencyPriceLoader
 import com.smlnskgmail.jaman.cryptotracker.coinmarketcap.model.Currency
+import com.smlnskgmail.jaman.cryptotracker.coinmarketcap.model.CurrencyEntitiy
 import com.smlnskgmail.jaman.cryptotracker.coinmarketcap.model.CurrencyListing
-import com.smlnskgmail.jaman.cryptotracker.coinmarketcap.model.CurrencyMedia
 import kotlinx.android.synthetic.main.item_currency.view.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -21,7 +20,7 @@ import retrofit2.Response
 class CurrencyHolder(
     itemView: View,
     private val currencyHolderClickTarget: CurrencyHolderClickTarget,
-    private val currencyPriceLoaderTarget: CurrencyPriceLoaderTarget,
+    private val currencyPriceLoaderTarget: CurrencyPriceLoader.CurrencyPriceLoaderTarget,
     private val api: CurrencyApi
 ) : RecyclerView.ViewHolder(
     itemView
@@ -29,19 +28,19 @@ class CurrencyHolder(
 
     fun bind(
         currency: Currency,
-        currencyMedia: CurrencyMedia
+        currencyEntitiy: CurrencyEntitiy
     ) {
         resetData()
         itemView.currency_image.setImageDrawable(
             ContextCompat.getDrawable(
                 itemView.context,
-                currencyMedia.iconResId
+                currencyEntitiy.iconResId
             )
         )
         itemView.currency_symbol.text = currency.symbol
         itemView.currency_symbol.setTextColor(
             Color.parseColor(
-                currencyMedia.accentColor
+                currencyEntitiy.accentColor
             )
         )
 
@@ -71,9 +70,7 @@ class CurrencyHolder(
             currencyPriceLoaderTarget
         ).loadPrice()
 
-        api.currencyService().listing(
-            currency.id
-        ).enqueue(
+        api.currencyService().listing(currency.id).enqueue(
             object : Callback<CurrencyListingResponse> {
                 override fun onFailure(
                     call: Call<CurrencyListingResponse>,
@@ -93,9 +90,7 @@ class CurrencyHolder(
                     if (body != null) {
                         currency.listing = response.body()!!.currencyListing
                     }
-                    showCurrencyListing(
-                        currency.listing
-                    )
+                    showCurrencyListing(currency.listing)
                 }
             }
         )
@@ -131,12 +126,8 @@ class CurrencyHolder(
         )
     }
 
-    private fun formattedCurrencyPrice(
-        price: Float
-    ): String {
-        return "%.3f $".format(
-            price
-        )
+    private fun formattedCurrencyPrice(price: Float): String {
+        return "%.3f $".format(price)
     }
 
     private fun resetData() {
@@ -149,6 +140,14 @@ class CurrencyHolder(
     private fun showErrorInfo() {
         itemView.currency_price.text = "-"
         itemView.currency_price_at_last_hour.text = "-"
+    }
+
+    interface CurrencyHolderClickTarget {
+
+        fun onCurrencyRefreshClick(
+            currency: Currency
+        )
+
     }
 
 }

@@ -9,30 +9,22 @@ import retrofit2.http.Query
 
 interface CurrencyService {
 
-    @GET(
-        "v1/cryptocurrency/quotes/latest"
-    )
+    @GET("v1/cryptocurrency/quotes/latest")
     @Headers(
         "X-CMC_PRO_API_KEY: API_KEY",
         "Accept: application/json"
     )
     fun currencyList(
-        @Query(
-            "symbol"
-        ) currencies: String
+        @Query("symbol") currencies: String
     ): Call<CurrencyResponse>
 
-    @GET(
-        "v1/cryptocurrency/quotes/latest"
-    )
+    @GET("v1/cryptocurrency/quotes/latest")
     @Headers(
         "X-CMC_PRO_API_KEY: API_KEY",
         "Accept: application/json"
     )
     fun listing(
-        @Query(
-            "id"
-        ) currencyId: Int
+        @Query("id") currencyId: Int
     ): Call<CurrencyListingResponse>
 
 }

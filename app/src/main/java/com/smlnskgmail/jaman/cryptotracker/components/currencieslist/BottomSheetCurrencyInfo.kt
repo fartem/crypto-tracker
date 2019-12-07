@@ -1,4 +1,4 @@
-package com.smlnskgmail.jaman.cryptotracker.coinmarketcap.list.info
+package com.smlnskgmail.jaman.cryptotracker.components.currencieslist
 
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -12,15 +12,13 @@ import androidx.core.content.ContextCompat
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.smlnskgmail.jaman.cryptotracker.R
 import com.smlnskgmail.jaman.cryptotracker.coinmarketcap.model.Currency
-import com.smlnskgmail.jaman.cryptotracker.coinmarketcap.model.CurrencyMedia
+import com.smlnskgmail.jaman.cryptotracker.coinmarketcap.model.CurrencyEntitiy
 import kotlinx.android.synthetic.main.bottom_sheet_currency.*
 import java.text.SimpleDateFormat
 
 class BottomSheetCurrencyInfo : BottomSheetDialogFragment() {
 
-    @SuppressLint(
-        "SetTextI18n"
-    )
+    @SuppressLint("SetTextI18n")
     override fun onViewCreated(
         view: View,
         savedInstanceState: Bundle?
@@ -34,7 +32,7 @@ class BottomSheetCurrencyInfo : BottomSheetDialogFragment() {
             "currency"
         ) as Currency
 
-        val currencyMedia = CurrencyMedia.mediaForCurrency(
+        val currencyMedia = CurrencyEntitiy.mediaForCurrency(
             currency
         )
 
@@ -50,9 +48,7 @@ class BottomSheetCurrencyInfo : BottomSheetDialogFragment() {
 
         currency_symbol.text = currency.symbol
         currency_symbol.setTextColor(
-            Color.parseColor(
-                currencyMedia.accentColor
-            )
+            Color.parseColor(currencyMedia.accentColor)
         )
 
         currency_slug.text = currency.slug
@@ -67,26 +63,18 @@ class BottomSheetCurrencyInfo : BottomSheetDialogFragment() {
         currency_price.text = "%.2f $".format(currency.listing.price)
 
         currency_site.background.setTint(
-            Color.parseColor(
-                currencyMedia.accentColor
-            )
+            Color.parseColor(currencyMedia.accentColor)
         )
         currency_site.setOnClickListener {
             val browserIntent = Intent(
                 Intent.ACTION_VIEW,
-                Uri.parse(
-                    currencyMedia.site
-                )
+                Uri.parse(currencyMedia.site)
             )
-            startActivity(
-                browserIntent
-            )
+            startActivity(browserIntent)
         }
     }
 
-    @SuppressLint(
-        "SimpleDateFormat"
-    )
+    @SuppressLint("SimpleDateFormat")
     private fun dateFromTimestamp(
         timestamp: String
     ): String {

@@ -1,20 +1,18 @@
-package com.smlnskgmail.jaman.cryptotracker.coinmarketcap.list
+package com.smlnskgmail.jaman.cryptotracker.components.currencieslist
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.smlnskgmail.jaman.cryptotracker.R
 import com.smlnskgmail.jaman.cryptotracker.coinmarketcap.api.CurrencyApi
-import com.smlnskgmail.jaman.cryptotracker.coinmarketcap.list.holder.CurrencyHolder
-import com.smlnskgmail.jaman.cryptotracker.coinmarketcap.list.holder.CurrencyHolderClickTarget
-import com.smlnskgmail.jaman.cryptotracker.coinmarketcap.loaders.price.CurrencyPriceLoaderTarget
+import com.smlnskgmail.jaman.cryptotracker.coinmarketcap.loaders.CurrencyPriceLoader
 import com.smlnskgmail.jaman.cryptotracker.coinmarketcap.model.Currency
-import com.smlnskgmail.jaman.cryptotracker.coinmarketcap.model.CurrencyMedia
+import com.smlnskgmail.jaman.cryptotracker.coinmarketcap.model.CurrencyEntitiy
 
 class CurrenciesAdapter(
     private val currencies: List<Currency>,
-    private val currencyHolderClickTarget: CurrencyHolderClickTarget,
-    private val currencyPriceLoaderTarget: CurrencyPriceLoaderTarget,
+    private val currencyHolderClickTarget: CurrencyHolder.CurrencyHolderClickTarget,
+    private val currencyPriceLoaderTarget: CurrencyPriceLoader.CurrencyPriceLoaderTarget,
     private val api: CurrencyApi
 ) : RecyclerView.Adapter<CurrencyHolder>() {
 
@@ -23,9 +21,7 @@ class CurrenciesAdapter(
         viewType: Int
     ): CurrencyHolder {
         return CurrencyHolder(
-            LayoutInflater.from(
-                parent.context
-            ).inflate(
+            LayoutInflater.from(parent.context).inflate(
                 R.layout.item_currency,
                 parent,
                 false
@@ -43,9 +39,7 @@ class CurrenciesAdapter(
         val currency = currencies[position]
         holder.bind(
             currency,
-            CurrencyMedia.mediaForCurrency(
-                currency
-            )
+            CurrencyEntitiy.mediaForCurrency(currency)
         )
     }
 
@@ -53,9 +47,7 @@ class CurrenciesAdapter(
         currency: Currency
     ) {
         notifyItemChanged(
-            currencies.indexOf(
-                currency
-            )
+            currencies.indexOf(currency)
         )
     }
 

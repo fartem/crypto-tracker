@@ -33,18 +33,12 @@ class CurrencyApi {
             retrofit = null
         }
         retrofit = Retrofit.Builder()
-            .baseUrl(
-                "https://pro-api.coinmarketcap.com/"
-            )
+            .baseUrl("https://pro-api.coinmarketcap.com/")
             .addConverterFactory(
-                GsonConverterFactory.create(
-                    gson
-                )
+                GsonConverterFactory.create(gson)
             )
             .client(
-                HttpClient(
-                    context
-                ).withLocalCache(
+                HttpClient(context).withLocalCache(
                     isOnlinePredicate
                 )
             )
@@ -57,9 +51,7 @@ class CurrencyApi {
                 "You must need init Retrofit before using service!"
             )
         }
-        return retrofit!!.create(
-            CurrencyService::class.java
-        )
+        return retrofit!!.create(CurrencyService::class.java)
     }
 
 }

@@ -1,14 +1,11 @@
-package com.smlnskgmail.jaman.cryptotracker.preferences
+package com.smlnskgmail.jaman.cryptotracker.components.preferences
 
 import android.content.Context
 import android.preference.PreferenceManager
-import com.smlnskgmail.jaman.cryptotracker.preferences.theme.Theme
 
 object PreferencesManager {
 
-    fun theme(
-        context: Context
-    ): Theme {
+    fun theme(context: Context): Theme {
         return Theme.valueOf(
             stringPreference(
                 context,

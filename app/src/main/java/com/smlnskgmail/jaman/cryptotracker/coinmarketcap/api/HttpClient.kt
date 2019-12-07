@@ -19,13 +19,9 @@ class HttpClient(
         cacheSize
     )
 
-    fun withLocalCache(
-        cachePredicate: () -> Boolean
-    ): OkHttpClient {
+    fun withLocalCache(cachePredicate: () -> Boolean): OkHttpClient {
         return OkHttpClient.Builder()
-            .cache(
-                cache
-            )
+            .cache(cache)
             .addInterceptor {
                 val request = it.request()
                 if (!cachePredicate()) {
@@ -34,9 +30,7 @@ class HttpClient(
                         "public, only-if-cached, max-stale=$cacheAge"
                     ).build()
                 }
-                return@addInterceptor it.proceed(
-                    request
-                )
+                return@addInterceptor it.proceed(request)
             }
             .build()
     }

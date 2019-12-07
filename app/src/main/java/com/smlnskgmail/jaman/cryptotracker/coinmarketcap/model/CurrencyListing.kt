@@ -5,14 +5,10 @@ import java.io.Serializable
 
 class CurrencyListing(
 
-    @SerializedName(
-        "price"
-    )
+    @SerializedName("price")
     val price: Float,
 
-    @SerializedName(
-        "percent_change_1h"
-    )
+    @SerializedName("percent_change_1h")
     val chengeHour: Float
 
 ) : Serializable

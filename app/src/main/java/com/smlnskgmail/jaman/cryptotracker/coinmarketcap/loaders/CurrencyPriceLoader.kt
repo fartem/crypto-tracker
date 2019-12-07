@@ -1,9 +1,10 @@
-package com.smlnskgmail.jaman.cryptotracker.coinmarketcap.loaders.price
+package com.smlnskgmail.jaman.cryptotracker.coinmarketcap.loaders
 
 import android.annotation.SuppressLint
 import com.smlnskgmail.jaman.cryptotracker.coinmarketcap.api.CurrencyApi
 import com.smlnskgmail.jaman.cryptotracker.coinmarketcap.api.responses.CurrencyListingResponse
 import com.smlnskgmail.jaman.cryptotracker.coinmarketcap.model.Currency
+import com.smlnskgmail.jaman.cryptotracker.coinmarketcap.model.CurrencyListing
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -15,9 +16,7 @@ class CurrencyPriceLoader(
 ) {
 
     fun loadPrice() {
-        api.currencyService().listing(
-            currency.id
-        ).enqueue(
+        api.currencyService().listing(currency.id).enqueue(
             object : Callback<CurrencyListingResponse> {
                 override fun onFailure(
                     call: Call<CurrencyListingResponse>,
@@ -30,9 +29,7 @@ class CurrencyPriceLoader(
                     )
                 }
 
-                @SuppressLint(
-                    "SetTextI18n"
-                )
+                @SuppressLint("SetTextI18n")
                 override fun onResponse(
                     call: Call<CurrencyListingResponse>,
                     response: Response<CurrencyListingResponse>
@@ -45,6 +42,16 @@ class CurrencyPriceLoader(
                 }
             }
         )
+    }
+
+    interface CurrencyPriceLoaderTarget {
+
+        fun currencyPriceLoaderResult(
+            currency: Currency,
+            currencyListing: CurrencyListing?,
+            throwable: Throwable?
+        )
+
     }
 
 }

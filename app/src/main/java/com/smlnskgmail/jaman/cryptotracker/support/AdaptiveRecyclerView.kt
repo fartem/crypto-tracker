@@ -1,4 +1,4 @@
-package com.smlnskgmail.jaman.cryptotracker.coinmarketcap.list
+package com.smlnskgmail.jaman.cryptotracker.support
 
 import android.content.Context
 import android.util.AttributeSet
@@ -36,27 +36,19 @@ class AdaptiveRecyclerView @JvmOverloads constructor(
         }
     }
 
-    fun withMessage(
-        message: View
-    ) {
+    fun withMessage(message: View) {
         this.emptyListMessageView = message
     }
 
-    fun withProgressBar(
-        progressBar: ProgressBar
-    ) {
+    fun withProgressBar(progressBar: ProgressBar) {
         this.progressBar = progressBar
     }
 
-    override fun setAdapter(
-        adapter: Adapter<*>?
-    ) {
+    override fun setAdapter(adapter: Adapter<*>?) {
         getAdapter()?.unregisterAdapterDataObserver(
             recyclerViewObserver
         )
-        super.setAdapter(
-            adapter
-        )
+        super.setAdapter(adapter)
         adapter?.registerAdapterDataObserver(
             recyclerViewObserver
         )

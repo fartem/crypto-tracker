@@ -9,23 +9,21 @@ import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.snackbar.Snackbar
 import com.smlnskgmail.jaman.cryptotracker.coinmarketcap.api.CurrencyApi
-import com.smlnskgmail.jaman.cryptotracker.coinmarketcap.list.CurrenciesAdapter
-import com.smlnskgmail.jaman.cryptotracker.coinmarketcap.list.holder.CurrencyHolderClickTarget
-import com.smlnskgmail.jaman.cryptotracker.coinmarketcap.list.info.BottomSheetCurrencyInfo
-import com.smlnskgmail.jaman.cryptotracker.coinmarketcap.loaders.currencies.CurrencyListLoader
-import com.smlnskgmail.jaman.cryptotracker.coinmarketcap.loaders.currencies.CurrencyListLoaderTarget
-import com.smlnskgmail.jaman.cryptotracker.coinmarketcap.loaders.price.CurrencyPriceLoaderTarget
+import com.smlnskgmail.jaman.cryptotracker.coinmarketcap.loaders.CurrencyListLoader
+import com.smlnskgmail.jaman.cryptotracker.coinmarketcap.loaders.CurrencyPriceLoader
 import com.smlnskgmail.jaman.cryptotracker.coinmarketcap.model.Currency
 import com.smlnskgmail.jaman.cryptotracker.coinmarketcap.model.CurrencyListing
-import com.smlnskgmail.jaman.cryptotracker.logger.L
-import com.smlnskgmail.jaman.cryptotracker.preferences.PreferencesManager
-import com.smlnskgmail.jaman.cryptotracker.preferences.theme.Theme
+import com.smlnskgmail.jaman.cryptotracker.components.currencieslist.BottomSheetCurrencyInfo
+import com.smlnskgmail.jaman.cryptotracker.components.currencieslist.CurrenciesAdapter
+import com.smlnskgmail.jaman.cryptotracker.components.currencieslist.CurrencyHolder
+import com.smlnskgmail.jaman.cryptotracker.components.logger.L
+import com.smlnskgmail.jaman.cryptotracker.components.preferences.PreferencesManager
+import com.smlnskgmail.jaman.cryptotracker.components.preferences.Theme
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.list_empty_message.*
 import kotlinx.android.synthetic.main.list_progress_bar.*
 
-class MainActivity : AppCompatActivity(),
-    CurrencyListLoaderTarget, CurrencyHolderClickTarget, CurrencyPriceLoaderTarget {
+class MainActivity : AppCompatActivity() {
 
     private lateinit var api: CurrencyApi
 
@@ -33,76 +31,58 @@ class MainActivity : AppCompatActivity(),
         savedInstanceState: Bundle?
     ) {
         setTheme(
-            PreferencesManager.theme(
-                this
-            ).themeResId
+            PreferencesManager.theme(this).themeResId
         )
-        super.onCreate(
-            savedInstanceState
-        )
-        setContentView(
-            R.layout.activity_main
-        )
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
         showLoader()
         loadCurrencies()
     }
 
     private fun showLoader() {
-        currencies_list.withMessage(
-            list_empty_message
-        )
-        currencies_list.withProgressBar(
-            list_progress_bar
-        )
+        currencies_list.withMessage(list_empty_message)
+        currencies_list.withProgressBar(list_progress_bar)
     }
 
     private fun loadCurrencies() {
-        val api = CurrencyApi()
-        api.initWithCache(
-            this
-        ) {
+        api = CurrencyApi()
+        api.initWithCache(this) {
             isOnline()
         }
 
         CurrencyListLoader(
             api,
-            this
+            loaderTarget()
         ).loadCurrencies()
     }
 
-    override fun currencyListLoaderResult(
-        currencies: List<Currency>,
-        throwable: Throwable?
-    ) {
-        if (throwable != null) {
-            showLoaderError(
-                throwable,
-                api
-            )
-        } else {
-            showCurrenciesList(
-                currencies,
-                api
-            )
+    private fun loaderTarget(): CurrencyListLoader.CurrencyListLoaderTarget {
+        return object : CurrencyListLoader.CurrencyListLoaderTarget {
+            override fun currencyListLoaderResult(
+                currencies: List<Currency>,
+                throwable: Throwable?
+            ) {
+                if (throwable != null) {
+                    showLoaderError(throwable)
+                } else {
+                    showCurrenciesList(currencies)
+                }
+            }
         }
     }
 
     private fun showLoaderError(
-        throwable: Throwable,
-        api: CurrencyApi
+        throwable: Throwable
     ) {
         createList(
             emptyList(),
             api
         )
-        L.e(
-            throwable
-        )
+        L.e(throwable)
     }
 
     private fun showCurrenciesList(
-        currencies: List<Currency>,
-        api: CurrencyApi
+        currencies: List<Currency>
     ) {
         if (currencies.isNotEmpty() && !isOnline()) {
             showSnackbar(
@@ -123,37 +103,43 @@ class MainActivity : AppCompatActivity(),
     ) {
         currencies_list.adapter = CurrenciesAdapter(
             currencies,
-            this,
-            this,
+            currencyClickTarget(),
+            priceRefreshTarget(),
             api
         )
     }
 
-    override fun onCurrencyRefreshClick(
-        currency: Currency
-    ) {
-        val bundle = Bundle()
-        bundle.putSerializable(
-            "currency",
-            currency
-        )
+    private fun currencyClickTarget(): CurrencyHolder.CurrencyHolderClickTarget {
+        return object : CurrencyHolder.CurrencyHolderClickTarget {
+            override fun onCurrencyRefreshClick(currency: Currency) {
+                val bundle = Bundle()
+                bundle.putSerializable(
+                    "currency",
+                    currency
+                )
 
-        val bottomSheetCurrencyInfo = BottomSheetCurrencyInfo()
-        bottomSheetCurrencyInfo.arguments = bundle
-        bottomSheetCurrencyInfo.show(
-            supportFragmentManager,
-            BottomSheetCurrencyInfo::class.java.canonicalName
-        )
+                val bottomSheetCurrencyInfo = BottomSheetCurrencyInfo()
+                bottomSheetCurrencyInfo.arguments = bundle
+                bottomSheetCurrencyInfo.show(
+                    supportFragmentManager,
+                    BottomSheetCurrencyInfo::class.java.canonicalName
+                )
+            }
+        }
     }
 
-    override fun currencyPriceLoaderResult(
-        currency: Currency,
-        currencyListing: CurrencyListing?,
-        throwable: Throwable?
-    ) {
-        (currencies_list.adapter as CurrenciesAdapter).refreshCurrency(
-            currency
-        )
+    private fun priceRefreshTarget(): CurrencyPriceLoader.CurrencyPriceLoaderTarget {
+        return object : CurrencyPriceLoader.CurrencyPriceLoaderTarget {
+            override fun currencyPriceLoaderResult(
+                currency: Currency,
+                currencyListing: CurrencyListing?,
+                throwable: Throwable?
+            ) {
+                (currencies_list.adapter as CurrenciesAdapter).refreshCurrency(
+                    currency
+                )
+            }
+        }
     }
 
     override fun onOptionsItemSelected(
@@ -162,9 +148,7 @@ class MainActivity : AppCompatActivity(),
         when (item.itemId) {
             R.id.menu_item_theme_change -> changeAppTheme()
         }
-        return super.onOptionsItemSelected(
-            item
-        )
+        return super.onOptionsItemSelected(item)
     }
 
     private fun changeAppTheme() {
@@ -186,9 +170,7 @@ class MainActivity : AppCompatActivity(),
             MainActivity::class.java
         )
         finish()
-        startActivity(
-            restartIntent
-        )
+        startActivity(restartIntent)
     }
 
     override fun onPrepareOptionsMenu(
@@ -201,9 +183,7 @@ class MainActivity : AppCompatActivity(),
         return true
     }
 
-    @Suppress(
-        "DEPRECATION"
-    )
+    @Suppress("DEPRECATION")
     private fun isOnline(): Boolean {
         val connectivityManager = getSystemService(
             Context.CONNECTIVITY_SERVICE
@@ -212,13 +192,9 @@ class MainActivity : AppCompatActivity(),
         return networkInfo?.isConnected!!
     }
 
-    private fun showSnackbar(
-        message: String
-    ) {
+    private fun showSnackbar(message: String) {
         Snackbar.make(
-            findViewById(
-                android.R.id.content
-            ),
+            findViewById(android.R.id.content),
             message,
             Snackbar.LENGTH_LONG
         ).show()
