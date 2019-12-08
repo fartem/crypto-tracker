@@ -1,67 +1,76 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
-
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:statusBarColor">@color/colorPrimary</item>
-        <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
-        <item name="android:fontFamily">@font/ft_google_sans_regular</item>
-        <item name="colorBackground">#FFFFFF</item>
-        <item name="colorTextPrimary">#212121</item>
-        <item name="colorTextSecondary">#757575</item>
-        <item name="colorWhite">#FFFFFF</item>
-        <item name="colorCurrencyPriceUp">#66bb6a</item>
-        <item name="colorCurrencyPriceDown">#ef5350</item>
-        <item name="colorCurrencyPriceStable">@color/colorTextSecondary</item>
-    </style>
-
-    <style name="AppThemeDark" parent="Theme.AppCompat.Light.DarkActionBar">
-        <item name="colorPrimary">#272727</item>
-        <item name="colorPrimaryDark">#272727</item>
-        <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:statusBarColor">#272727</item>
-        <item name="android:windowLightStatusBar" tools:targetApi="m">false</item>
-        <item name="android:fontFamily">@font/ft_google_sans_regular</item>
-        <item name="colorBackground">#313131</item>
-        <item name="colorTextPrimary">#FFFFFF</item>
-        <item name="colorTextSecondary">#f5f5f5</item>
-        <item name="colorWhite">#e0e0e0</item>
-        <item name="colorCurrencyPriceUp">#81c784</item>
-        <item name="colorCurrencyPriceDown">#e57373</item>
-        <item name="colorCurrencyPriceStable">#e0e0e0</item>
-    </style>
-
-    <style name="AppLogoTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:windowFullscreen">true</item>
-        <item name="android:statusBarColor">@color/colorPrimary</item>
-        <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
-        <item name="android:fontFamily">@font/ft_google_sans_regular</item>
-        <item name="colorBackground">#FFFFFF</item>
-        <item name="colorTextPrimary">#212121</item>
-        <item name="colorTextSecondary">#757575</item>
-    </style>
-
-    <style name="AppLogoThemeDark" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="colorPrimary">#272727</item>
-        <item name="colorPrimaryDark">#272727</item>
-        <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:windowFullscreen">true</item>
-        <item name="android:statusBarColor">#272727</item>
-        <item name="android:windowLightStatusBar" tools:targetApi="m">false</item>
-        <item name="android:fontFamily">@font/ft_google_sans_regular</item>
-        <item name="colorBackground">#313131</item>
-        <item name="colorTextPrimary">#FFFFFF</item>
-        <item name="colorTextSecondary">#f5f5f5</item>
-    </style>
+<resources>
 
     <style name="TextAppearance.AppCompat.Widget.ActionBar.Title"
         parent="@android:style/TextAppearance">
         <item name="android:textColor">?attr/colorAccent</item>
         <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="AppMainList">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
+    <style name="AppSplashLogo">
+        <item name="android:layout_width">@dimen/image_size_splash</item>
+        <item name="android:layout_height">@dimen/image_size_splash</item>
+        <item name="android:src">@drawable/ic_bitcoin</item>
+        <item name="android:tint">@color/colorAccent</item>
+    </style>
+
+    <style name="AppSplashLogoName">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:text">@string/app_name</item>
+        <item name="android:textSize">@dimen/text_size_splash_main</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">?attr/colorTextPrimary</item>
+    </style>
+
+    <style name="AppSplashLogoVersion">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/text_size_splash_secondary</item>
+        <item name="android:textColor">?attr/colorTextSecondary</item>
+    </style>
+
+    <style name="AppCurrencyItemImage">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="AppCurrencyItemTextSmall">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">?attr/colorTextPrimary</item>
+        <item name="android:textSize">@dimen/text_size_small</item>
+    </style>
+
+    <style name="AppCurrencyItemTextPrimary">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">?attr/colorTextPrimary</item>
+        <item name="android:textSize">@dimen/text_size_medium</item>
+    </style>
+
+    <style name="AppCurrencyItemTextSecondary">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">?attr/colorTextSecondary</item>
+        <item name="android:textSize">@dimen/text_size_medium</item>
+    </style>
+
+    <style name="AppImageEmptyMessage">
+        <item name="android:layout_width">@dimen/image_size_empty_message</item>
+        <item name="android:layout_height">@dimen/image_size_empty_message</item>
+        <item name="android:src">@drawable/ic_error_outline</item>
+        <item name="android:tint">?attr/colorTextPrimary</item>
+    </style>
+
+    <style name="AppProgressBarEmptyMessage">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center</item>
     </style>
 
 </resources>

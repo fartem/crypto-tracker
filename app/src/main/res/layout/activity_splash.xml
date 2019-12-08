@@ -9,10 +9,7 @@
 
     <ImageView
         android:id="@+id/logo"
-        android:layout_width="128dp"
-        android:layout_height="128dp"
-        android:src="@drawable/ic_bitcoin"
-        android:tint="?attr/colorAccent"
+        style="@style/AppSplashLogo"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -22,24 +19,16 @@
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="@string/app_name"
-        android:textColor="?attr/colorTextPrimary"
-        android:textSize="24sp"
-        android:textStyle="bold"
+        style="@style/AppSplashLogoName"
+        android:layout_marginTop="@dimen/common_margin_double"
         app:layout_constraintEnd_toEndOf="@+id/logo"
         app:layout_constraintStart_toStartOf="@+id/logo"
         app:layout_constraintTop_toBottomOf="@+id/logo" />
 
     <TextView
         android:id="@+id/logo_version"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:textColor="?attr/colorTextSecondary"
-        android:textSize="18sp"
+        style="@style/AppSplashLogoVersion"
+        android:layout_marginTop="@dimen/common_margin"
         app:layout_constraintEnd_toEndOf="@+id/textView"
         app:layout_constraintStart_toStartOf="@+id/textView"
         app:layout_constraintTop_toBottomOf="@+id/textView"

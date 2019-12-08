@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- margins -->
+    <dimen name="common_margin">8dp</dimen>
+    <dimen name="common_margin_double">16dp</dimen>
+
+    <!-- images -->
+    <dimen name="image_size_currency">38dp</dimen>
+    <dimen name="image_size_empty_message">72dp</dimen>
+    <dimen name="image_size_splash">128dp</dimen>
+
+    <!-- text -->
+    <dimen name="text_size_small">13sp</dimen>
+    <dimen name="text_size_medium">16sp</dimen>
+    <dimen name="text_size_splash_main">24sp</dimen>
+    <dimen name="text_size_splash_secondary">18sp</dimen>
+
+</resources>

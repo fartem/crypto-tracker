@@ -6,12 +6,11 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="?attr/colorBackground"
-    android:padding="16dp">
+    android:padding="@dimen/common_margin_double">
 
     <ImageView
         android:id="@+id/currency_image"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        style="@style/AppCurrencyItemImage"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:src="@drawable/ic_btc"
@@ -19,11 +18,8 @@
 
     <TextView
         android:id="@+id/currency_id"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:textSize="16sp"
-        android:textColor="?attr/colorTextPrimary"
+        style="@style/AppCurrencyItemTextPrimary"
+        android:layout_marginStart="@dimen/common_margin_double"
         app:layout_constraintBottom_toBottomOf="@+id/currency_image"
         app:layout_constraintStart_toEndOf="@+id/currency_image"
         app:layout_constraintTop_toTopOf="@+id/currency_image"
@@ -34,59 +30,46 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:textSize="16sp"
+        android:textSize="@dimen/text_size_medium"
         app:layout_constraintBottom_toBottomOf="@+id/currency_id"
         app:layout_constraintStart_toEndOf="@+id/currency_id"
         tools:text="BTC" />
 
     <TextView
         android:id="@+id/currency_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:textSize="16sp"
-        android:textColor="?attr/colorTextSecondary"
+        style="@style/AppCurrencyItemTextSecondary"
+        android:layout_marginStart="@dimen/common_margin"
         app:layout_constraintBottom_toBottomOf="@+id/currency_symbol"
         app:layout_constraintStart_toEndOf="@+id/currency_symbol"
         tools:text="Bitcoin" />
 
     <TextView
         android:id="@+id/currency_slug"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:textColor="?attr/colorTextSecondary"
+        style="@style/AppCurrencyItemTextSecondary"
         app:layout_constraintStart_toStartOf="@+id/currency_id"
         app:layout_constraintTop_toBottomOf="@+id/currency_id"
         tools:text="bitcoin" />
 
     <TextView
         android:id="@+id/currency_price"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="?attr/colorTextPrimary"
-        android:textSize="16sp"
+        style="@style/AppCurrencyItemTextPrimary"
         app:layout_constraintBottom_toBottomOf="@+id/currency_name"
         app:layout_constraintEnd_toEndOf="parent"
         tools:text="8,891.17 $" />
 
     <TextView
         android:id="@+id/currency_first_historical_data"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        style="@style/AppCurrencyItemTextSecondary"
         android:layout_marginTop="32dp"
-        android:textColor="?attr/colorTextSecondary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/currency_slug"
         tools:text="2013-04-28" />
 
     <TextView
         android:id="@+id/currency_last_historical_data"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        style="@style/AppCurrencyItemTextSecondary"
         android:layout_marginTop="4dp"
         android:layout_marginBottom="16dp"
-        android:textColor="?attr/colorTextSecondary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintBottom_toTopOf="@+id/currency_site"
         app:layout_constraintEnd_toEndOf="@+id/currency_first_historical_data"

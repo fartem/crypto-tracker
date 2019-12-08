@@ -12,8 +12,8 @@
 
     <ImageView
         android:id="@+id/currency_image"
-        android:layout_width="38dp"
-        android:layout_height="38dp"
+        android:layout_width="@dimen/image_size_currency"
+        android:layout_height="@dimen/image_size_currency"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:src="@drawable/ic_btc"
@@ -21,11 +21,8 @@
 
     <TextView
         android:id="@+id/currency_symbol"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        style="@style/AppCurrencyItemTextPrimary"
         android:layout_marginStart="24dp"
-        android:textSize="15sp"
-        android:textColor="?attr/colorTextPrimary"
         app:layout_constraintBottom_toBottomOf="@+id/currency_image"
         app:layout_constraintStart_toEndOf="@+id/currency_image"
         app:layout_constraintTop_toTopOf="@+id/currency_image"
@@ -33,22 +30,16 @@
 
     <TextView
         android:id="@+id/currency_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:textSize="13sp"
-        android:textColor="?attr/colorTextSecondary"
+        style="@style/AppCurrencyItemTextSmall"
+        android:layout_marginTop="@dimen/common_margin"
         app:layout_constraintStart_toStartOf="@+id/currency_symbol"
         app:layout_constraintTop_toBottomOf="@+id/currency_symbol"
         tools:text="Bitcoin" />
 
     <TextView
         android:id="@+id/currency_price"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:textColor="?attr/colorTextPrimary"
-        android:textSize="15sp"
+        style="@style/AppCurrencyItemTextPrimary"
+        android:layout_marginEnd="@dimen/common_margin_double"
         app:layout_constraintBottom_toBottomOf="@+id/currency_refresh_listing"
         app:layout_constraintEnd_toStartOf="@+id/currency_refresh_listing"
         app:layout_constraintTop_toTopOf="@+id/currency_refresh_listing"
@@ -56,11 +47,8 @@
 
     <TextView
         android:id="@+id/currency_price_at_last_hour"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:textSize="13sp"
-        android:textColor="?attr/colorTextSecondary"
+        style="@style/AppCurrencyItemTextSmall"
+        android:layout_marginTop="@dimen/common_margin"
         app:layout_constraintEnd_toEndOf="@+id/currency_price"
         app:layout_constraintTop_toBottomOf="@+id/currency_price"
         tools:textColor="@color/colorCurrencyPriceUp"
