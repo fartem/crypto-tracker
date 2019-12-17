@@ -1,28 +1,32 @@
 <img src="media/ic_app.png" height="100px" />
 
+Crypto Tracker
+=======================
+
 [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-site-brightgreen?style=flat-square)](https://android-arsenal.com/details/3/7955)
 ![Open issues](https://img.shields.io/github/issues-raw/fartem/crypto-tracker.svg?color=ff534a&style=flat-square)
-![Last commit](https://img.shields.io/github/last-commit/fartem/crypto-tracker.svg?color=51539c&style=flat-square)
-![Repo size](https://img.shields.io/github/repo-size/fartem/crypto-tracker.svg?color=02778b&style=flat-square)
-[![License](https://img.shields.io/github/license/fartem/crypto-tracker.svg?color=7ea4b0&style=flat-square)](https://github.com/fartem/crypto-tracker/blob/master/LICENSE)
 
-## About
+About
+-------------------
 
 Demo application with statistics of some cryptocurrencies.
 
-## API
+API
+-------------------
 
 Provided by [CoinMarketCap](https://pro.coinmarketcap.com).
 
-### API key
+__API key__
 
 In `CurrencyService` class replace `API_KEY` in each header.
 
-## Resources
+Resources
+-------------------
 
 Original icons provided by [cryptocurrency-icons](https://github.com/atomiclabs/cryptocurrency-icons).
 
-## Screenshots
+Screenshots
+-------------------
 
 <br/>
 <p align="center">
@@ -31,3 +35,8 @@ Original icons provided by [cryptocurrency-icons](https://github.com/atomiclabs/
   <img src="media/screenshots/scr_03.png" width="210" />
   <img src="media/screenshots/scr_04.png" width="210" />
 </p>
+
+Contributors
+-------------------
+
+* [@fartem](https://github.com/fartem) as Artem Fomchenkov
