@@ -19,17 +19,11 @@ abstract class BaseDeserializerTest {
             pathToJson()
         )
         val response = BufferedReader(
-            InputStreamReader(
-                responseStream
-            )
+            InputStreamReader(responseStream)
         ).readText()
 
         val result = deserializer().deserialize(
-            Gson().toJsonTree(
-                JsonParser().parse(
-                    response
-                )
-            ),
+            Gson().toJsonTree(JsonParser().parse(response)),
             null,
             null
         )
