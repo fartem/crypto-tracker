@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'io.gitlab.arturbosch.detekt'
 
 android {
     compileSdkVersion 29
@@ -18,6 +19,11 @@ android {
             versionNameSuffix "-dev"
         }
     }
+}
+
+detekt {
+    config = files("$rootDir/detekt-config.yml")
+    filters = ".*build.*,.*/resources/.*,.*/tmp/.*,*.java"
 }
 
 dependencies {

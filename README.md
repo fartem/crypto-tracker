@@ -3,6 +3,7 @@
 Crypto Tracker
 =======================
 
+![Travis CI](https://img.shields.io/travis/fartem/crypto-tracker?style=flat-square)
 [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-site-brightgreen?style=flat-square)](https://android-arsenal.com/details/3/7955)
 ![Open issues](https://img.shields.io/github/issues-raw/fartem/crypto-tracker.svg?color=ff534a&style=flat-square)
 

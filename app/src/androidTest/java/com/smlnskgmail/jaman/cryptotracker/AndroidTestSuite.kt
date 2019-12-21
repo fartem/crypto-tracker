@@ -9,7 +9,5 @@ import org.junit.runners.Suite
     CurrencyDeserializerTest::class,
     CurrencyListingDeserializerTest::class
 )
-@RunWith(
-    Suite::class
-)
+@RunWith(Suite::class)
 class AndroidTestSuite
