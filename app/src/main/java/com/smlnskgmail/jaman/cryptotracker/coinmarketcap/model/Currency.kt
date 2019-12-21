@@ -39,6 +39,12 @@ class Currency(
 
 ) : Serializable {
 
+    companion object {
+
+        const val serialVersionUID = 153L
+
+    }
+
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (javaClass != other?.javaClass) return false

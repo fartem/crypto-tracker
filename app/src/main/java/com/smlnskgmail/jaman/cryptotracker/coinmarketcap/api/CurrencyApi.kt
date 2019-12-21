@@ -46,11 +46,6 @@ class CurrencyApi {
     }
 
     fun currencyService(): CurrencyService {
-        if (retrofit == null) {
-            throw RuntimeException(
-                "You must need init Retrofit before using service!"
-            )
-        }
         return retrofit!!.create(CurrencyService::class.java)
     }
 

@@ -12,7 +12,11 @@ import kotlinx.android.synthetic.main.activity_splash.*
 
 class SplashActivity : AppCompatActivity() {
 
-    private val logoTime = 1500L
+    companion object {
+
+        private const val logoTime = 1500L
+
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         setTheme(

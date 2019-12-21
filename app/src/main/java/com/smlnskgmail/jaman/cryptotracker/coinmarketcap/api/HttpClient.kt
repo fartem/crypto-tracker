@@ -7,9 +7,16 @@ import java.io.File
 
 class HttpClient(
     context: Context,
-    cacheSize: Long = 10 * 1024 * 1024,
-    private val cacheAge: Long = 60 * 60 * 24 * 7
+    cacheSize: Long = CACHE_SIZE,
+    private val cacheAge: Long = CACHE_AGE
 ) {
+
+    companion object {
+
+        private const val CACHE_SIZE = 10 * 1024 * 1024L
+        private const val CACHE_AGE = 60 * 60 * 24 * 7L
+
+    }
 
     private val cache = Cache(
         File(

@@ -3,7 +3,7 @@ package com.smlnskgmail.jaman.cryptotracker.coinmarketcap.model
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
-class CurrencyListing(
+data class CurrencyListing(
 
     @SerializedName("price")
     val price: Float,
@@ -11,4 +11,12 @@ class CurrencyListing(
     @SerializedName("percent_change_1h")
     val chengeHour: Float
 
-) : Serializable
+) : Serializable {
+
+    companion object {
+
+        const val serialVersionUID = 579L
+
+    }
+
+}
