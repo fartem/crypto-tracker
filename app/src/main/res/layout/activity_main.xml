@@ -9,7 +9,7 @@
 
     <include layout="@layout/list_empty_message" />
 
-    <com.smlnskgmail.jaman.cryptotracker.support.AdaptiveRecyclerView
+    <com.smlnskgmail.jaman.cryptotracker.components.lists.AdaptiveRecyclerView
         android:id="@+id/currencies_list"
         style="@style/AppMainList"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />

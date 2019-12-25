@@ -1,38 +1,31 @@
 package com.smlnskgmail.jaman.cryptotracker
 
-import android.content.Context
 import android.content.Intent
-import android.net.ConnectivityManager
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.snackbar.Snackbar
-import com.smlnskgmail.jaman.cryptotracker.coinmarketcap.api.CurrencyApi
-import com.smlnskgmail.jaman.cryptotracker.coinmarketcap.loaders.CurrencyListLoader
-import com.smlnskgmail.jaman.cryptotracker.coinmarketcap.loaders.CurrencyPriceLoader
-import com.smlnskgmail.jaman.cryptotracker.coinmarketcap.model.Currency
-import com.smlnskgmail.jaman.cryptotracker.coinmarketcap.model.CurrencyListing
-import com.smlnskgmail.jaman.cryptotracker.components.currencieslist.BottomSheetCurrencyInfo
-import com.smlnskgmail.jaman.cryptotracker.components.currencieslist.CurrenciesAdapter
-import com.smlnskgmail.jaman.cryptotracker.components.currencieslist.CurrencyHolder
-import com.smlnskgmail.jaman.cryptotracker.components.logger.L
+import com.smlnskgmail.jaman.cryptotracker.components.activities.BaseActivity
 import com.smlnskgmail.jaman.cryptotracker.components.preferences.PreferencesManager
 import com.smlnskgmail.jaman.cryptotracker.components.preferences.Theme
+import com.smlnskgmail.jaman.cryptotracker.logic.api.CurrencyApi
+import com.smlnskgmail.jaman.cryptotracker.logic.api.coinmarketcup.CmcCurrencyApi
+import com.smlnskgmail.jaman.cryptotracker.logic.api.entities.Currency
+import com.smlnskgmail.jaman.cryptotracker.logic.api.entities.CurrencyListing
+import com.smlnskgmail.jaman.cryptotracker.logic.currencieslist.CurrenciesAdapter
+import com.smlnskgmail.jaman.cryptotracker.logic.currencieslist.CurrencyHolder
+import com.smlnskgmail.jaman.cryptotracker.logic.currencyinfo.BottomSheetCurrencyInfo
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.list_empty_message.*
 import kotlinx.android.synthetic.main.list_progress_bar.*
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseActivity() {
 
     private lateinit var api: CurrencyApi
 
     override fun onCreate(
         savedInstanceState: Bundle?
     ) {
-        setTheme(
-            PreferencesManager.theme(this).themeResId
-        )
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         showLoader()
@@ -45,73 +38,41 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun loadCurrencies() {
-        api = CurrencyApi()
-        api.initWithCache(this) {
-            isOnline()
-        }
-
-        CurrencyListLoader(
-            api,
-            loaderTarget()
-        ).loadCurrencies()
-    }
-
-    private fun loaderTarget(): CurrencyListLoader.CurrencyListLoaderTarget {
-        return object : CurrencyListLoader.CurrencyListLoaderTarget {
-            override fun currencyListLoaderResult(
-                currencies: List<Currency>,
-                throwable: Throwable?
-            ) {
-                if (throwable != null) {
-                    showLoaderError(throwable)
-                } else {
+        api = CmcCurrencyApi()
+        api.currencies(object : CurrencyApi.CurrenciesLoadResult {
+            override fun loaded(currencies: List<Currency>) {
+                if (currencies.isNotEmpty()) {
                     showCurrenciesList(currencies)
+                } else {
+                    showLoaderError()
                 }
             }
-        }
+        })
     }
 
-    private fun showLoaderError(
-        throwable: Throwable
-    ) {
-        createList(
-            emptyList(),
-            api
-        )
-        L.e(throwable)
+    private fun showLoaderError() {
+        createList(emptyList())
     }
 
     private fun showCurrenciesList(
         currencies: List<Currency>
     ) {
-        if (currencies.isNotEmpty() && !isOnline()) {
-            showSnackbar(
-                getString(
-                    R.string.currency_list_device_is_offline
-                )
-            )
-        }
-        createList(
-            currencies,
-            api
-        )
+        createList(currencies)
     }
 
     private fun createList(
-        currencies: List<Currency>,
-        api: CurrencyApi
+        currencies: List<Currency>
     ) {
         currencies_list.adapter = CurrenciesAdapter(
             currencies,
             currencyClickTarget(),
-            priceRefreshTarget(),
-            api
+            priceRefreshTarget()
         )
     }
 
-    private fun currencyClickTarget(): CurrencyHolder.CurrencyHolderClickTarget {
-        return object : CurrencyHolder.CurrencyHolderClickTarget {
-            override fun onCurrencyRefreshClick(currency: Currency) {
+    private fun currencyClickTarget(): CurrencyHolder.CurrencyClickTarget {
+        return object : CurrencyHolder.CurrencyClickTarget {
+            override fun onCurrencyClick(currency: Currency) {
                 val bundle = Bundle()
                 bundle.putSerializable(
                     "currency",
@@ -128,15 +89,24 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun priceRefreshTarget(): CurrencyPriceLoader.CurrencyPriceLoaderTarget {
-        return object : CurrencyPriceLoader.CurrencyPriceLoaderTarget {
-            override fun currencyPriceLoaderResult(
-                currency: Currency,
-                currencyListing: CurrencyListing?,
-                throwable: Throwable?
-            ) {
-                (currencies_list.adapter as CurrenciesAdapter).refreshCurrency(
-                    currency
+    private fun priceRefreshTarget(): CurrencyHolder.CurrencyRefreshClickTarget {
+        return object : CurrencyHolder.CurrencyRefreshClickTarget {
+            override fun onCurrencyRefreshClick(currency: Currency) {
+                api.currencyListing(
+                    currency.id,
+                    object : CurrencyApi.CurrencyListingLoadResult {
+                        override fun loaded(currencyListing: CurrencyListing?) {
+                            if (currencyListing != null) {
+                                currency.listing = currencyListing
+                                (currencies_list.adapter!! as CurrenciesAdapter)
+                                    .refreshCurrency(currency)
+                            } else {
+                                showSnackbar(
+                                    getString(R.string.currency_load_error_message)
+                                )
+                            }
+                        }
+                    }
                 )
             }
         }
@@ -183,21 +153,16 @@ class MainActivity : AppCompatActivity() {
         return true
     }
 
-    @Suppress("DEPRECATION")
-    private fun isOnline(): Boolean {
-        val connectivityManager = getSystemService(
-            Context.CONNECTIVITY_SERVICE
-        ) as ConnectivityManager
-        val networkInfo = connectivityManager.activeNetworkInfo
-        return networkInfo?.isConnected!!
-    }
-
     private fun showSnackbar(message: String) {
         Snackbar.make(
             findViewById(android.R.id.content),
             message,
             Snackbar.LENGTH_LONG
         ).show()
+    }
+
+    override fun isFullScreen(): Boolean {
+        return false
     }
 
 }

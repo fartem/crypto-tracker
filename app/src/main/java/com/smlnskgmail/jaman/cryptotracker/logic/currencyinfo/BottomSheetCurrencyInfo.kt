@@ -1,4 +1,4 @@
-package com.smlnskgmail.jaman.cryptotracker.components.currencieslist
+package com.smlnskgmail.jaman.cryptotracker.logic.currencyinfo
 
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -11,8 +11,7 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.smlnskgmail.jaman.cryptotracker.R
-import com.smlnskgmail.jaman.cryptotracker.coinmarketcap.model.Currency
-import com.smlnskgmail.jaman.cryptotracker.coinmarketcap.model.CurrencyEntitiy
+import com.smlnskgmail.jaman.cryptotracker.logic.api.entities.Currency
 import kotlinx.android.synthetic.main.bottom_sheet_currency.*
 import java.text.SimpleDateFormat
 
@@ -32,14 +31,11 @@ class BottomSheetCurrencyInfo : BottomSheetDialogFragment() {
             "currency"
         ) as Currency
 
-        val currencyMedia = CurrencyEntitiy.mediaForCurrency(
-            currency
-        )
 
         currency_image.setImageDrawable(
             ContextCompat.getDrawable(
                 context!!,
-                currencyMedia.iconResId
+                currency.type.iconResId
             )
         )
 
@@ -48,7 +44,7 @@ class BottomSheetCurrencyInfo : BottomSheetDialogFragment() {
 
         currency_symbol.text = currency.symbol
         currency_symbol.setTextColor(
-            Color.parseColor(currencyMedia.accentColor)
+            Color.parseColor(currency.type.accentColor)
         )
 
         currency_slug.text = currency.slug
@@ -63,12 +59,12 @@ class BottomSheetCurrencyInfo : BottomSheetDialogFragment() {
         currency_price.text = "%.2f $".format(currency.listing.price)
 
         currency_site.background.setTint(
-            Color.parseColor(currencyMedia.accentColor)
+            Color.parseColor(currency.type.accentColor)
         )
         currency_site.setOnClickListener {
             val browserIntent = Intent(
                 Intent.ACTION_VIEW,
-                Uri.parse(currencyMedia.site)
+                Uri.parse(currency.type.site)
             )
             startActivity(browserIntent)
         }

@@ -2,8 +2,7 @@
     <string name="app_name">Crypto Tracker</string>
 
     <!-- list -->
-    <string name="currency_list_empty_list_message">Somethings happen when data loading. Please try again.</string>
-    <string name="currency_list_device_is_offline">Device is offline. Data loading from cache!</string>
+    <string name="currency_load_error_message">Somethings happen when data loading. Please try again.</string>
 
     <!-- actions -->
     <string name="currency_action_visit_on_site">Visit on site</string>

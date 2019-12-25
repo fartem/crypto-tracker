@@ -1,4 +1,4 @@
-package com.smlnskgmail.jaman.cryptotracker.support
+package com.smlnskgmail.jaman.cryptotracker.components.lists
 
 import android.content.Context
 import android.util.AttributeSet

@@ -4,16 +4,16 @@ import com.smlnskgmail.jaman.cryptotracker.R
 
 enum class Theme(
     val themeResId: Int,
-    val logoThemeResId: Int
+    val fullScreenThemeResId: Int
 ) {
 
     Light(
         R.style.AppTheme,
-        R.style.AppLogoTheme
+        R.style.AppFullScreenTheme
     ),
     Dark(
         R.style.AppThemeDark,
-        R.style.AppLogoThemeDark
+        R.style.AppFullScreenThemeDark
     )
 
 }

@@ -14,8 +14,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".components.splash.SplashActivity"
-            android:theme="@style/AppLogoThemeDark">
+        <activity android:name=".logic.splash.SplashActivity"
+            android:theme="@style/AppFullScreenThemeDark">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

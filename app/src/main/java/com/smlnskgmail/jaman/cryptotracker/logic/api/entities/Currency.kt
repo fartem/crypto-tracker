@@ -1,41 +1,31 @@
-package com.smlnskgmail.jaman.cryptotracker.coinmarketcap.model
+package com.smlnskgmail.jaman.cryptotracker.logic.api.entities
 
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
 class Currency(
 
-    @SerializedName(
-        "id"
-    )
+    @SerializedName("id")
     val id: Int,
 
-    @SerializedName(
-        "name"
-    )
+    @SerializedName("name")
     val name: String,
 
-    @SerializedName(
-        "symbol"
-    )
+    @SerializedName("symbol")
     val symbol: String,
 
-    @SerializedName(
-        "slug"
-    )
+    @SerializedName("slug")
     val slug: String,
 
-    @SerializedName(
-        "date_added"
-    )
+    @SerializedName("date_added")
     val firstHistoricalData: String,
 
-    @SerializedName(
-        "last_updated"
-    )
+    @SerializedName("last_updated")
     val lastHistoricalData: String,
 
-    var listing: CurrencyListing
+    var listing: CurrencyListing,
+
+    var type: CurrencyType
 
 ) : Serializable {
 

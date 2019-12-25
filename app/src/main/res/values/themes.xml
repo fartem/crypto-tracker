@@ -33,7 +33,7 @@
         <item name="colorCurrencyPriceStable">#e0e0e0</item>
     </style>
 
-    <style name="AppLogoTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="AppFullScreenTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
@@ -46,7 +46,7 @@
         <item name="colorTextSecondary">#757575</item>
     </style>
 
-    <style name="AppLogoThemeDark" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="AppFullScreenThemeDark" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">#272727</item>
         <item name="colorPrimaryDark">#272727</item>
         <item name="colorAccent">@color/colorAccent</item>

@@ -24,7 +24,7 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="32dp"
-        android:text="@string/currency_list_empty_list_message"
+        android:text="@string/currency_load_error_message"
         android:textSize="@dimen/text_size_medium"
         android:textColor="?attr/colorTextPrimary"
         android:textAlignment="center"

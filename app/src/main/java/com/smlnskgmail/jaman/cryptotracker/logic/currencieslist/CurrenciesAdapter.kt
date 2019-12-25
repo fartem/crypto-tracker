@@ -1,19 +1,15 @@
-package com.smlnskgmail.jaman.cryptotracker.components.currencieslist
+package com.smlnskgmail.jaman.cryptotracker.logic.currencieslist
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.smlnskgmail.jaman.cryptotracker.R
-import com.smlnskgmail.jaman.cryptotracker.coinmarketcap.api.CurrencyApi
-import com.smlnskgmail.jaman.cryptotracker.coinmarketcap.loaders.CurrencyPriceLoader
-import com.smlnskgmail.jaman.cryptotracker.coinmarketcap.model.Currency
-import com.smlnskgmail.jaman.cryptotracker.coinmarketcap.model.CurrencyEntitiy
+import com.smlnskgmail.jaman.cryptotracker.logic.api.entities.Currency
 
 class CurrenciesAdapter(
     private val currencies: List<Currency>,
-    private val currencyHolderClickTarget: CurrencyHolder.CurrencyHolderClickTarget,
-    private val currencyPriceLoaderTarget: CurrencyPriceLoader.CurrencyPriceLoaderTarget,
-    private val api: CurrencyApi
+    private val currencyClickTarget: CurrencyHolder.CurrencyClickTarget,
+    private val currencyRefreshClickTarget: CurrencyHolder.CurrencyRefreshClickTarget
 ) : RecyclerView.Adapter<CurrencyHolder>() {
 
     override fun onCreateViewHolder(
@@ -26,9 +22,8 @@ class CurrenciesAdapter(
                 parent,
                 false
             ),
-            currencyHolderClickTarget,
-            currencyPriceLoaderTarget,
-            api
+            currencyClickTarget,
+            currencyRefreshClickTarget
         )
     }
 
@@ -37,15 +32,10 @@ class CurrenciesAdapter(
         position: Int
     ) {
         val currency = currencies[position]
-        holder.bind(
-            currency,
-            CurrencyEntitiy.mediaForCurrency(currency)
-        )
+        holder.bind(currency)
     }
 
-    fun refreshCurrency(
-        currency: Currency
-    ) {
+    fun refreshCurrency(currency: Currency) {
         notifyItemChanged(
             currencies.indexOf(currency)
         )

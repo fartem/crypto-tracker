@@ -1,13 +1,14 @@
-package com.smlnskgmail.jaman.cryptotracker.coinmarketcap.api.deserializers
+package com.smlnskgmail.jaman.cryptotracker.logic.api.coinmarketcup.deserializers
 
 import com.google.gson.Gson
 import com.google.gson.JsonDeserializationContext
 import com.google.gson.JsonDeserializer
 import com.google.gson.JsonElement
 import com.google.gson.reflect.TypeToken
-import com.smlnskgmail.jaman.cryptotracker.coinmarketcap.api.responses.CurrencyResponse
-import com.smlnskgmail.jaman.cryptotracker.coinmarketcap.model.Currency
-import com.smlnskgmail.jaman.cryptotracker.coinmarketcap.model.CurrencyListing
+import com.smlnskgmail.jaman.cryptotracker.logic.api.coinmarketcup.retrofit.responses.CurrencyResponse
+import com.smlnskgmail.jaman.cryptotracker.logic.api.entities.Currency
+import com.smlnskgmail.jaman.cryptotracker.logic.api.entities.CurrencyListing
+import com.smlnskgmail.jaman.cryptotracker.logic.api.entities.CurrencyType
 import java.lang.reflect.Type
 
 class CurrencyResponseDeserializer : JsonDeserializer<CurrencyResponse> {
@@ -19,8 +20,8 @@ class CurrencyResponseDeserializer : JsonDeserializer<CurrencyResponse> {
     ): CurrencyResponse {
         val gson = Gson()
 
-        val currencyType = object : TypeToken<Currency>() {}.type
-        val currencyListingType = object : TypeToken<CurrencyListing>() {}.type
+        val currencyTypeToken = object : TypeToken<Currency>() {}.type
+        val currencyListingTypeToken = object : TypeToken<CurrencyListing>() {}.type
 
         val currencies = arrayListOf<Currency>()
 
@@ -28,7 +29,7 @@ class CurrencyResponseDeserializer : JsonDeserializer<CurrencyResponse> {
         for (data in dataJson.asJsonObject.entrySet()) {
             val currency = gson.fromJson(
                 data.value,
-                currencyType
+                currencyTypeToken
             ) as Currency
 
             val currencyAsJson = gson.toJsonTree(data.value)
@@ -38,13 +39,19 @@ class CurrencyResponseDeserializer : JsonDeserializer<CurrencyResponse> {
                 .get("USD")
             val currencyListing: CurrencyListing = gson.fromJson(
                 priceInfo,
-                currencyListingType
+                currencyListingTypeToken
             )
 
             currency.listing = currencyListing
-            currencies.add(currency)
+            val currencyType = CurrencyType.typeForCurrency(currency)
+            if (currencyType != null) {
+                currency.type = currencyType
+                currencies.add(currency)
+            }
         }
-        return CurrencyResponse(currencies)
+        return CurrencyResponse(
+            currencies
+        )
     }
 
 }

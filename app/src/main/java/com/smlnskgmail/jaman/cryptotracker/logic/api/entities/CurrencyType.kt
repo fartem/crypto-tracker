@@ -1,11 +1,9 @@
-package com.smlnskgmail.jaman.cryptotracker.coinmarketcap.model
+package com.smlnskgmail.jaman.cryptotracker.logic.api.entities
 
 import com.smlnskgmail.jaman.cryptotracker.R
 
-@Suppress(
-    "unused"
-)
-enum class CurrencyEntitiy(
+@Suppress("unused")
+enum class CurrencyType(
     val currencySymbol: String,
     val iconResId: Int,
     val accentColor: String,
@@ -149,12 +147,6 @@ enum class CurrencyEntitiy(
         R.drawable.ic_mda,
         "#01a64f",
         "https://moedaseeds.com/"
-    ),
-    Undefined(
-        "",
-        R.drawable.ic_error_outline,
-        "#000000",
-        "https://en.wikipedia.org/wiki/Cryptocurrency"
     );
 
     companion object {
@@ -165,13 +157,13 @@ enum class CurrencyEntitiy(
             }
         }
 
-        fun mediaForCurrency(currency: Currency): CurrencyEntitiy {
+        fun typeForCurrency(currency: Currency): CurrencyType? {
             values().forEach {
                 if (currency.symbol == it.currencySymbol) {
                     return it
                 }
             }
-            return Undefined
+            return null
         }
 
     }
