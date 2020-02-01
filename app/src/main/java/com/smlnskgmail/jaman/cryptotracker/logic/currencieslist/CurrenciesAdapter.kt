@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.smlnskgmail.jaman.cryptotracker.R
-import com.smlnskgmail.jaman.cryptotracker.logic.api.entities.Currency
+import com.smlnskgmail.jaman.cryptotracker.logic.api.Currency
 
 class CurrenciesAdapter(
     private val currencies: List<Currency>,

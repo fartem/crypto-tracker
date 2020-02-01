@@ -6,8 +6,8 @@ import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.smlnskgmail.jaman.cryptotracker.R
-import com.smlnskgmail.jaman.cryptotracker.logic.api.entities.Currency
-import com.smlnskgmail.jaman.cryptotracker.logic.api.entities.CurrencyListing
+import com.smlnskgmail.jaman.cryptotracker.logic.api.Currency
+import com.smlnskgmail.jaman.cryptotracker.logic.api.CurrencyListing
 import kotlinx.android.synthetic.main.item_currency.view.*
 
 class CurrencyHolder(

@@ -11,7 +11,7 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.smlnskgmail.jaman.cryptotracker.R
-import com.smlnskgmail.jaman.cryptotracker.logic.api.entities.Currency
+import com.smlnskgmail.jaman.cryptotracker.logic.api.Currency
 import kotlinx.android.synthetic.main.bottom_sheet_currency.*
 import java.text.SimpleDateFormat
 

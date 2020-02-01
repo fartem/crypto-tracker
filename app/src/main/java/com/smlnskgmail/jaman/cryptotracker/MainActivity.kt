@@ -4,22 +4,21 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import com.google.android.material.snackbar.Snackbar
-import com.smlnskgmail.jaman.cryptotracker.components.activities.BaseActivity
+import com.smlnskgmail.jaman.cryptotracker.components.activities.BaseThemeActivity
 import com.smlnskgmail.jaman.cryptotracker.components.preferences.PreferencesManager
 import com.smlnskgmail.jaman.cryptotracker.components.preferences.Theme
+import com.smlnskgmail.jaman.cryptotracker.logic.api.Currency
 import com.smlnskgmail.jaman.cryptotracker.logic.api.CurrencyApi
-import com.smlnskgmail.jaman.cryptotracker.logic.api.coinmarketcup.CmcCurrencyApi
-import com.smlnskgmail.jaman.cryptotracker.logic.api.entities.Currency
-import com.smlnskgmail.jaman.cryptotracker.logic.api.entities.CurrencyListing
+import com.smlnskgmail.jaman.cryptotracker.logic.api.CurrencyListing
+import com.smlnskgmail.jaman.cryptotracker.logic.api.impl.coinmarketcup.CmcCurrencyApi
 import com.smlnskgmail.jaman.cryptotracker.logic.currencieslist.CurrenciesAdapter
 import com.smlnskgmail.jaman.cryptotracker.logic.currencieslist.CurrencyHolder
 import com.smlnskgmail.jaman.cryptotracker.logic.currencyinfo.BottomSheetCurrencyInfo
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.list_empty_message.*
-import kotlinx.android.synthetic.main.list_progress_bar.*
 
-class MainActivity : BaseActivity() {
+class MainActivity : BaseThemeActivity() {
 
     private lateinit var api: CurrencyApi
 
@@ -33,8 +32,10 @@ class MainActivity : BaseActivity() {
     }
 
     private fun showLoader() {
-        currencies_list.withMessage(list_empty_message)
-        currencies_list.withProgressBar(list_progress_bar)
+        currencies_list.messageView = list_empty_message
+        list_empty_message.visibility = View.GONE
+        currencies_list.visibility = View.GONE
+        list_progress_bar.visibility = View.VISIBLE
     }
 
     private fun loadCurrencies() {
@@ -46,6 +47,7 @@ class MainActivity : BaseActivity() {
                 } else {
                     showLoaderError()
                 }
+                list_progress_bar.visibility = View.GONE
             }
         })
     }

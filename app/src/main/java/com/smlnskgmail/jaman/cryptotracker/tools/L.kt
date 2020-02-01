@@ -1,4 +1,4 @@
-package com.smlnskgmail.jaman.cryptotracker.components.logger
+package com.smlnskgmail.jaman.cryptotracker.tools
 
 import android.util.Log
 import com.smlnskgmail.jaman.cryptotracker.BuildConfig

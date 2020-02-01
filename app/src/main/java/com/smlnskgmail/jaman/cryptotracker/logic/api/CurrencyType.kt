@@ -1,4 +1,4 @@
-package com.smlnskgmail.jaman.cryptotracker.logic.api.entities
+package com.smlnskgmail.jaman.cryptotracker.logic.api
 
 import com.smlnskgmail.jaman.cryptotracker.R
 

@@ -6,11 +6,11 @@ import android.os.Handler
 import com.smlnskgmail.jaman.cryptotracker.BuildConfig
 import com.smlnskgmail.jaman.cryptotracker.MainActivity
 import com.smlnskgmail.jaman.cryptotracker.R
-import com.smlnskgmail.jaman.cryptotracker.components.activities.BaseActivity
+import com.smlnskgmail.jaman.cryptotracker.components.activities.BaseThemeActivity
 import com.smlnskgmail.jaman.cryptotracker.components.preferences.PreferencesManager
 import kotlinx.android.synthetic.main.activity_splash.*
 
-class SplashActivity : BaseActivity() {
+class SplashActivity : BaseThemeActivity() {
 
     companion object {
 

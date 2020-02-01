@@ -1,17 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:arv="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="?attr/colorBackground">
 
-    <include layout="@layout/list_progress_bar" />
-
-    <include layout="@layout/list_empty_message" />
-
-    <com.smlnskgmail.jaman.cryptotracker.components.lists.AdaptiveRecyclerView
+    <com.smlnskgmail.jaman.adaptiverecyclerview.AdaptiveRecyclerView
         android:id="@+id/currencies_list"
-        style="@style/AppMainList"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+    <com.smlnskgmail.jaman.adaptiverecyclerview.AdaptiveMessageView
+        android:id="@+id/list_empty_message"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        arv:message_image="@drawable/ic_error_outline"
+        arv:message_image_tint="?attr/colorTextPrimary"
+        arv:message_text="@string/currency_load_error_message"
+        arv:message_text_size="@dimen/text_size_medium"
+        arv:message_text_color="?attr/colorTextPrimary" />
+
+    <ProgressBar
+        android:id="@+id/list_progress_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center" />
 
 </FrameLayout>
