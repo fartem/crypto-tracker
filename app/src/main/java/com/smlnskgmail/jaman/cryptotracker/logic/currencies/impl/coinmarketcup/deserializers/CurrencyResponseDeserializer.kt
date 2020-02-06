@@ -6,8 +6,9 @@ import com.google.gson.JsonDeserializer
 import com.google.gson.JsonElement
 import com.google.gson.reflect.TypeToken
 import com.smlnskgmail.jaman.cryptotracker.logic.currencies.api.Currency
-import com.smlnskgmail.jaman.cryptotracker.logic.currencies.api.CurrencyListing
 import com.smlnskgmail.jaman.cryptotracker.logic.currencies.api.CurrencyType
+import com.smlnskgmail.jaman.cryptotracker.logic.currencies.impl.coinmarketcup.CmcCurrency
+import com.smlnskgmail.jaman.cryptotracker.logic.currencies.impl.coinmarketcup.CmcCurrencyListing
 import com.smlnskgmail.jaman.cryptotracker.logic.currencies.impl.coinmarketcup.retrofit.responses.CurrencyResponse
 import java.lang.reflect.Type
 
@@ -20,8 +21,8 @@ class CurrencyResponseDeserializer : JsonDeserializer<CurrencyResponse> {
     ): CurrencyResponse {
         val gson = Gson()
 
-        val currencyTypeToken = object : TypeToken<Currency>() {}.type
-        val currencyListingTypeToken = object : TypeToken<CurrencyListing>() {}.type
+        val currencyTypeToken = object : TypeToken<CmcCurrency>() {}.type
+        val currencyListingTypeToken = object : TypeToken<CmcCurrencyListing>() {}.type
 
         val currencies = arrayListOf<Currency>()
 
@@ -30,22 +31,22 @@ class CurrencyResponseDeserializer : JsonDeserializer<CurrencyResponse> {
             val currency = gson.fromJson(
                 data.value,
                 currencyTypeToken
-            ) as Currency
+            ) as CmcCurrency
 
             val currencyAsJson = gson.toJsonTree(data.value)
 
             val priceInfo = currencyAsJson.asJsonObject
                 .get("quote").asJsonObject
                 .get("USD")
-            val currencyListing: CurrencyListing = gson.fromJson(
+            val currencyListing: CmcCurrencyListing = gson.fromJson(
                 priceInfo,
                 currencyListingTypeToken
             )
 
-            currency.listing = currencyListing
+            currency.currencyListing = currencyListing
             val currencyType = CurrencyType.typeForCurrency(currency)
             if (currencyType != null) {
-                currency.type = currencyType
+                currency.currencyType = currencyType
                 currencies.add(currency)
             }
         }

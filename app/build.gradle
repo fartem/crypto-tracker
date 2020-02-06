@@ -12,8 +12,26 @@ android {
         minSdkVersion 21
         targetSdkVersion 29
         versionCode 1
-        versionName "0.9.4"
+        versionName "0.9.5"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigField "String", "API_IMPL", "\"\""
+    }
+
+    flavorDimensions "build"
+    productFlavors {
+        coinmarketcup {
+            flavorDimensions "build"
+
+            applicationIdSuffix ".cmc"
+            buildConfigField "String", "API_IMPL", "\"CMC\""
+        }
+        debugImpl {
+            flavorDimensions "build"
+
+            applicationIdSuffix ".debug"
+            buildConfigField "String", "API_IMPL", "\"DEBUG\""
+        }
     }
 }
 

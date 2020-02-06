@@ -35,36 +35,36 @@ class BottomSheetCurrencyInfo : BottomSheetDialogFragment() {
         currency_image.setImageDrawable(
             ContextCompat.getDrawable(
                 context!!,
-                currency.type.iconResId
+                currency.currencyType().iconResId
             )
         )
 
-        currency_id.text = currency.id.toString()
-        currency_name.text = currency.name
+        currency_id.text = currency.id().toString()
+        currency_name.text = currency.name()
 
-        currency_symbol.text = currency.symbol
+        currency_symbol.text = currency.symbol()
         currency_symbol.setTextColor(
-            Color.parseColor(currency.type.accentColor)
+            Color.parseColor(currency.currencyType().accentColor)
         )
 
-        currency_slug.text = currency.slug
+        currency_slug.text = currency.slug()
 
         currency_first_historical_data.text = dateFromTimestamp(
-            currency.firstHistoricalData
+            currency.firstHistoricalData()
         )
         currency_last_historical_data.text = dateFromTimestamp(
-            currency.lastHistoricalData
+            currency.lastHistoricalData()
         )
 
-        currency_price.text = "%.2f $".format(currency.listing.price)
+        currency_price.text = "%.2f $".format(currency.currencyListing().price())
 
         currency_site.background.setTint(
-            Color.parseColor(currency.type.accentColor)
+            Color.parseColor(currency.currencyType().accentColor)
         )
         currency_site.setOnClickListener {
             val browserIntent = Intent(
                 Intent.ACTION_VIEW,
-                Uri.parse(currency.type.site)
+                Uri.parse(currency.currencyType().site)
             )
             startActivity(browserIntent)
         }

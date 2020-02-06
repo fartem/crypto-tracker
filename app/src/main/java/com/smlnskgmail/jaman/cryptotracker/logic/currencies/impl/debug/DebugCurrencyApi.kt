@@ -70,19 +70,59 @@ class DebugCurrencyApi : CurrencyApi {
         name: String,
         type: CurrencyType
     ): Currency {
-        return Currency(
-            id,
-            name,
-            type.currencySymbol,
-            type.currencySymbol,
-            date,
-            date,
-            CurrencyListing(
-                1000f,
-                0f
-            ),
-            type
-        )
+        return object : Currency {
+
+            private var currencyListing: CurrencyListing? = null
+
+            override fun id(): Int {
+                return id
+            }
+
+            override fun name(): String {
+                return name
+            }
+
+            override fun symbol(): String {
+                return type.currencySymbol
+            }
+
+            override fun slug(): String {
+                return type.currencySymbol
+            }
+
+            override fun firstHistoricalData(): String {
+                return date
+            }
+
+            override fun lastHistoricalData(): String {
+                return date
+            }
+
+            override fun updateCurrencyListing(
+                currencyListing: CurrencyListing
+            ) {
+                this.currencyListing = currencyListing
+            }
+
+            override fun currencyListing(): CurrencyListing {
+                if (currencyListing == null) {
+                    currencyListing = object : CurrencyListing {
+                        override fun price(): Float {
+                            return 1000f
+                        }
+
+                        override fun changeHour(): Float {
+                            return 0f
+                        }
+                    }
+                }
+                return currencyListing!!
+            }
+
+            override fun currencyType(): CurrencyType {
+                return type
+            }
+        }
     }
 
     override fun currencies(
@@ -97,7 +137,7 @@ class DebugCurrencyApi : CurrencyApi {
     ) {
         val currency = currencies[currencyId]
         currencyListingLoadResult.loaded(
-            currency!!.listing
+            currency!!.currencyListing()
         )
     }
 

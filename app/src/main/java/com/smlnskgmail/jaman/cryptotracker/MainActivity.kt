@@ -13,6 +13,7 @@ import com.smlnskgmail.jaman.cryptotracker.logic.currencies.api.Currency
 import com.smlnskgmail.jaman.cryptotracker.logic.currencies.api.CurrencyApi
 import com.smlnskgmail.jaman.cryptotracker.logic.currencies.api.CurrencyListing
 import com.smlnskgmail.jaman.cryptotracker.logic.currencies.impl.coinmarketcup.CmcCurrencyApi
+import com.smlnskgmail.jaman.cryptotracker.logic.currencies.impl.debug.DebugCurrencyApi
 import com.smlnskgmail.jaman.cryptotracker.logic.currencies.impl.ui.BottomSheetCurrencyInfo
 import com.smlnskgmail.jaman.cryptotracker.logic.currencies.impl.ui.currencieslist.CurrenciesAdapter
 import com.smlnskgmail.jaman.cryptotracker.logic.currencies.impl.ui.currencieslist.CurrencyHolder
@@ -39,7 +40,12 @@ class MainActivity : BaseThemeActivity() {
     }
 
     private fun loadCurrencies() {
-        api = CmcCurrencyApi()
+        @Suppress("ConstantConditionIf")
+        api = if (BuildConfig.API_IMPL == "DEBUG") {
+            DebugCurrencyApi()
+        } else {
+            CmcCurrencyApi()
+        }
         api.currencies(object : CurrencyApi.CurrenciesLoadResult {
             override fun loaded(currencies: List<Currency>) {
                 if (currencies.isNotEmpty()) {
@@ -81,8 +87,7 @@ class MainActivity : BaseThemeActivity() {
                     currency
                 )
 
-                val bottomSheetCurrencyInfo =
-                    BottomSheetCurrencyInfo()
+                val bottomSheetCurrencyInfo = BottomSheetCurrencyInfo()
                 bottomSheetCurrencyInfo.arguments = bundle
                 bottomSheetCurrencyInfo.show(
                     supportFragmentManager,
@@ -96,11 +101,11 @@ class MainActivity : BaseThemeActivity() {
         return object : CurrencyHolder.CurrencyRefreshClickTarget {
             override fun onCurrencyRefreshClick(currency: Currency) {
                 api.currencyListing(
-                    currency.id,
+                    currency.id(),
                     object : CurrencyApi.CurrencyListingLoadResult {
                         override fun loaded(currencyListing: CurrencyListing?) {
                             if (currencyListing != null) {
-                                currency.listing = currencyListing
+                                currency.updateCurrencyListing(currencyListing)
                                 (currencies_list.adapter!! as CurrenciesAdapter)
                                     .refreshCurrency(currency)
                             } else {

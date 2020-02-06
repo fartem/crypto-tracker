@@ -1,58 +1,21 @@
 package com.smlnskgmail.jaman.cryptotracker.logic.currencies.api
 
-import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
-class Currency(
+interface Currency : Serializable {
 
-    @SerializedName("id")
-    val id: Int,
+    fun id(): Int
+    fun name(): String
+    fun symbol(): String
+    fun slug(): String
+    fun firstHistoricalData(): String
+    fun lastHistoricalData(): String
 
-    @SerializedName("name")
-    val name: String,
+    fun updateCurrencyListing(
+        currencyListing: CurrencyListing
+    )
+    fun currencyListing(): CurrencyListing
 
-    @SerializedName("symbol")
-    val symbol: String,
-
-    @SerializedName("slug")
-    val slug: String,
-
-    @SerializedName("date_added")
-    val firstHistoricalData: String,
-
-    @SerializedName("last_updated")
-    val lastHistoricalData: String,
-
-    var listing: CurrencyListing,
-
-    var type: CurrencyType
-
-) : Serializable {
-
-    companion object {
-
-        const val serialVersionUID = 153L
-
-    }
-
-    override fun equals(other: Any?): Boolean {
-        if (this === other) return true
-        if (javaClass != other?.javaClass) return false
-
-        other as Currency
-
-        if (id != other.id) return false
-        if (name != other.name) return false
-        if (symbol != other.symbol) return false
-
-        return true
-    }
-
-    override fun hashCode(): Int {
-        var result = id
-        result = 31 * result + name.hashCode()
-        result = 31 * result + symbol.hashCode()
-        return result
-    }
+    fun currencyType(): CurrencyType
 
 }

@@ -5,7 +5,7 @@ import com.google.gson.JsonDeserializationContext
 import com.google.gson.JsonDeserializer
 import com.google.gson.JsonElement
 import com.google.gson.reflect.TypeToken
-import com.smlnskgmail.jaman.cryptotracker.logic.currencies.api.CurrencyListing
+import com.smlnskgmail.jaman.cryptotracker.logic.currencies.impl.coinmarketcup.CmcCurrencyListing
 import com.smlnskgmail.jaman.cryptotracker.logic.currencies.impl.coinmarketcup.retrofit.responses.CurrencyListingResponse
 import java.lang.reflect.Type
 
@@ -18,14 +18,14 @@ class CurrencyListingResponseDeserializer : JsonDeserializer<CurrencyListingResp
     ): CurrencyListingResponse {
         val gson = Gson()
 
-        val currencyListingTypeToken = object : TypeToken<CurrencyListing>() {}.type
+        val currencyListingTypeToken = object : TypeToken<CmcCurrencyListing>() {}.type
 
         val dataJson = json!!.asJsonObject.get("data")
         val quoteUSD = dataJson.asJsonObject.entrySet().first()
             .value.asJsonObject
             .get("quote").asJsonObject
             .get("USD")
-        val currencyListing: CurrencyListing = gson.fromJson(
+        val currencyListing: CmcCurrencyListing = gson.fromJson(
             quoteUSD,
             currencyListingTypeToken
         )

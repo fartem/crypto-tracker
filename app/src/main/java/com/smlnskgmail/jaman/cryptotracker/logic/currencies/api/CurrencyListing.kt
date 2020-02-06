@@ -1,22 +1,8 @@
 package com.smlnskgmail.jaman.cryptotracker.logic.currencies.api
 
-import com.google.gson.annotations.SerializedName
-import java.io.Serializable
+interface CurrencyListing {
 
-data class CurrencyListing(
-
-    @SerializedName("price")
-    val price: Float,
-
-    @SerializedName("percent_change_1h")
-    val chengeHour: Float
-
-) : Serializable {
-
-    companion object {
-
-        const val serialVersionUID = 579L
-
-    }
+    fun price(): Float
+    fun changeHour(): Float
 
 }

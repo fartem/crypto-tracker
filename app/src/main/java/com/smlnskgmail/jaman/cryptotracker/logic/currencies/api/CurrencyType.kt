@@ -159,7 +159,7 @@ enum class CurrencyType(
 
         fun typeForCurrency(currency: Currency): CurrencyType? {
             values().forEach {
-                if (currency.symbol == it.currencySymbol) {
+                if (currency.symbol() == it.currencySymbol) {
                     return it
                 }
             }
