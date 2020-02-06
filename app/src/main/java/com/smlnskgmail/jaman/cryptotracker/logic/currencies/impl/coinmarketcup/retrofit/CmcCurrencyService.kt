@@ -1,7 +1,7 @@
-package com.smlnskgmail.jaman.cryptotracker.logic.api.impl.coinmarketcup.retrofit
+package com.smlnskgmail.jaman.cryptotracker.logic.currencies.impl.coinmarketcup.retrofit
 
-import com.smlnskgmail.jaman.cryptotracker.logic.api.impl.coinmarketcup.retrofit.responses.CurrencyListingResponse
-import com.smlnskgmail.jaman.cryptotracker.logic.api.impl.coinmarketcup.retrofit.responses.CurrencyResponse
+import com.smlnskgmail.jaman.cryptotracker.logic.currencies.impl.coinmarketcup.retrofit.responses.CurrencyListingResponse
+import com.smlnskgmail.jaman.cryptotracker.logic.currencies.impl.coinmarketcup.retrofit.responses.CurrencyResponse
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Headers

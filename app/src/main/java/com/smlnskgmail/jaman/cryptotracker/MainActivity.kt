@@ -9,13 +9,13 @@ import com.google.android.material.snackbar.Snackbar
 import com.smlnskgmail.jaman.cryptotracker.components.activities.BaseThemeActivity
 import com.smlnskgmail.jaman.cryptotracker.components.preferences.PreferencesManager
 import com.smlnskgmail.jaman.cryptotracker.components.preferences.Theme
-import com.smlnskgmail.jaman.cryptotracker.logic.api.Currency
-import com.smlnskgmail.jaman.cryptotracker.logic.api.CurrencyApi
-import com.smlnskgmail.jaman.cryptotracker.logic.api.CurrencyListing
-import com.smlnskgmail.jaman.cryptotracker.logic.api.impl.coinmarketcup.CmcCurrencyApi
-import com.smlnskgmail.jaman.cryptotracker.logic.currencieslist.CurrenciesAdapter
-import com.smlnskgmail.jaman.cryptotracker.logic.currencieslist.CurrencyHolder
-import com.smlnskgmail.jaman.cryptotracker.logic.currencyinfo.BottomSheetCurrencyInfo
+import com.smlnskgmail.jaman.cryptotracker.logic.currencies.api.Currency
+import com.smlnskgmail.jaman.cryptotracker.logic.currencies.api.CurrencyApi
+import com.smlnskgmail.jaman.cryptotracker.logic.currencies.api.CurrencyListing
+import com.smlnskgmail.jaman.cryptotracker.logic.currencies.impl.coinmarketcup.CmcCurrencyApi
+import com.smlnskgmail.jaman.cryptotracker.logic.currencies.impl.ui.BottomSheetCurrencyInfo
+import com.smlnskgmail.jaman.cryptotracker.logic.currencies.impl.ui.currencieslist.CurrenciesAdapter
+import com.smlnskgmail.jaman.cryptotracker.logic.currencies.impl.ui.currencieslist.CurrencyHolder
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : BaseThemeActivity() {
@@ -81,7 +81,8 @@ class MainActivity : BaseThemeActivity() {
                     currency
                 )
 
-                val bottomSheetCurrencyInfo = BottomSheetCurrencyInfo()
+                val bottomSheetCurrencyInfo =
+                    BottomSheetCurrencyInfo()
                 bottomSheetCurrencyInfo.arguments = bundle
                 bottomSheetCurrencyInfo.show(
                     supportFragmentManager,

@@ -1,4 +1,4 @@
-package com.smlnskgmail.jaman.cryptotracker.logic.api
+package com.smlnskgmail.jaman.cryptotracker.logic.currencies.api
 
 import com.smlnskgmail.jaman.cryptotracker.R
 
@@ -140,7 +140,7 @@ enum class CurrencyType(
         "MED",
         R.drawable.ic_med,
         "#00B0FF",
-        "https://medibloc.org/en/"
+        "https://medibloc.org/"
     ),
     MDA(
         "MDA",

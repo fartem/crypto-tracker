@@ -1,10 +1,10 @@
-package com.smlnskgmail.jaman.cryptotracker.logic.currencieslist
+package com.smlnskgmail.jaman.cryptotracker.logic.currencies.impl.ui.currencieslist
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.smlnskgmail.jaman.cryptotracker.R
-import com.smlnskgmail.jaman.cryptotracker.logic.api.Currency
+import com.smlnskgmail.jaman.cryptotracker.logic.currencies.api.Currency
 
 class CurrenciesAdapter(
     private val currencies: List<Currency>,

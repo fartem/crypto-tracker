@@ -1,4 +1,4 @@
-package com.smlnskgmail.jaman.cryptotracker.logic.api
+package com.smlnskgmail.jaman.cryptotracker.logic.currencies.api
 
 interface CurrencyApi {
 
