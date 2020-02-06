@@ -26,6 +26,11 @@ Resources
 
 Original icons provided by [cryptocurrency-icons](https://github.com/atomiclabs/cryptocurrency-icons).
 
+Download
+-------------
+
+<img src="media/qrcodes/github_download.png" height="150px" />
+
 Screenshots
 -------------
 
