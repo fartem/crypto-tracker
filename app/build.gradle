@@ -23,13 +23,11 @@ android {
         coinmarketcup {
             flavorDimensions "build"
 
-            applicationIdSuffix ".cmc"
             buildConfigField "String", "API_IMPL", "\"CMC\""
         }
         debugImpl {
             flavorDimensions "build"
 
-            applicationIdSuffix ".debug"
             buildConfigField "String", "API_IMPL", "\"DEBUG\""
         }
     }
