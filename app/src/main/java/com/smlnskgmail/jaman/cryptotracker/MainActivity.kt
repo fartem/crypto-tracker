@@ -12,21 +12,22 @@ import com.smlnskgmail.jaman.cryptotracker.components.preferences.Theme
 import com.smlnskgmail.jaman.cryptotracker.logic.currencies.api.Currency
 import com.smlnskgmail.jaman.cryptotracker.logic.currencies.api.CurrencyApi
 import com.smlnskgmail.jaman.cryptotracker.logic.currencies.api.CurrencyListing
-import com.smlnskgmail.jaman.cryptotracker.logic.currencies.impl.coinmarketcup.CmcCurrencyApi
-import com.smlnskgmail.jaman.cryptotracker.logic.currencies.impl.debug.DebugCurrencyApi
 import com.smlnskgmail.jaman.cryptotracker.logic.currencies.impl.ui.BottomSheetCurrencyInfo
 import com.smlnskgmail.jaman.cryptotracker.logic.currencies.impl.ui.currencieslist.CurrenciesAdapter
 import com.smlnskgmail.jaman.cryptotracker.logic.currencies.impl.ui.currencieslist.CurrencyHolder
 import kotlinx.android.synthetic.main.activity_main.*
+import javax.inject.Inject
 
 class MainActivity : BaseThemeActivity() {
 
-    private lateinit var api: CurrencyApi
+    @Inject
+    lateinit var currencyApi: CurrencyApi
 
     override fun onCreate(
         savedInstanceState: Bundle?
     ) {
         super.onCreate(savedInstanceState)
+        App.applicationComponent.inject(this)
         setContentView(R.layout.activity_main)
         showLoader()
         loadCurrencies()
@@ -40,13 +41,7 @@ class MainActivity : BaseThemeActivity() {
     }
 
     private fun loadCurrencies() {
-        @Suppress("ConstantConditionIf")
-        api = if (BuildConfig.API_IMPL == "DEBUG") {
-            DebugCurrencyApi()
-        } else {
-            CmcCurrencyApi()
-        }
-        api.currencies(object : CurrencyApi.CurrenciesLoadResult {
+        currencyApi.currencies(object : CurrencyApi.CurrenciesLoadResult {
             override fun loaded(currencies: List<Currency>) {
                 if (currencies.isNotEmpty()) {
                     showCurrenciesList(currencies)
@@ -100,7 +95,7 @@ class MainActivity : BaseThemeActivity() {
     private fun priceRefreshTarget(): CurrencyHolder.CurrencyRefreshClickTarget {
         return object : CurrencyHolder.CurrencyRefreshClickTarget {
             override fun onCurrencyRefreshClick(currency: Currency) {
-                api.currencyListing(
+                currencyApi!!.currencyListing(
                     currency.id(),
                     object : CurrencyApi.CurrencyListingLoadResult {
                         override fun loaded(currencyListing: CurrencyListing?) {

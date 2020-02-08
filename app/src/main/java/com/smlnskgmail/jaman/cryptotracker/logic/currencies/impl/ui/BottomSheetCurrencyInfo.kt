@@ -31,7 +31,6 @@ class BottomSheetCurrencyInfo : BottomSheetDialogFragment() {
             "currency"
         ) as Currency
 
-
         currency_image.setImageDrawable(
             ContextCompat.getDrawable(
                 context!!,
