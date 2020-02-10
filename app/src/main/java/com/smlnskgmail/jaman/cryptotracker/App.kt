@@ -1,11 +1,11 @@
 package com.smlnskgmail.jaman.cryptotracker
 
 import android.app.Application
+import com.smlnskgmail.jaman.cryptotracker.currencies.impl.coinmarketcup.CmcCurrencyApi
+import com.smlnskgmail.jaman.cryptotracker.currencies.impl.debug.DebugCurrencyApi
 import com.smlnskgmail.jaman.cryptotracker.di.components.ApplicationComponent
 import com.smlnskgmail.jaman.cryptotracker.di.components.DaggerApplicationComponent
 import com.smlnskgmail.jaman.cryptotracker.di.modules.CurrencyApiModule
-import com.smlnskgmail.jaman.cryptotracker.logic.currencies.impl.coinmarketcup.CmcCurrencyApi
-import com.smlnskgmail.jaman.cryptotracker.logic.currencies.impl.debug.DebugCurrencyApi
 
 class App : Application() {
 

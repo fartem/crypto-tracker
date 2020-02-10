@@ -9,12 +9,12 @@ import com.google.android.material.snackbar.Snackbar
 import com.smlnskgmail.jaman.cryptotracker.components.activities.BaseThemeActivity
 import com.smlnskgmail.jaman.cryptotracker.components.preferences.PreferencesManager
 import com.smlnskgmail.jaman.cryptotracker.components.preferences.Theme
-import com.smlnskgmail.jaman.cryptotracker.logic.currencies.api.Currency
-import com.smlnskgmail.jaman.cryptotracker.logic.currencies.api.CurrencyApi
-import com.smlnskgmail.jaman.cryptotracker.logic.currencies.api.CurrencyListing
-import com.smlnskgmail.jaman.cryptotracker.logic.currencies.impl.ui.BottomSheetCurrencyInfo
-import com.smlnskgmail.jaman.cryptotracker.logic.currencies.impl.ui.currencieslist.CurrenciesAdapter
-import com.smlnskgmail.jaman.cryptotracker.logic.currencies.impl.ui.currencieslist.CurrencyHolder
+import com.smlnskgmail.jaman.cryptotracker.currencies.api.Currency
+import com.smlnskgmail.jaman.cryptotracker.currencies.api.CurrencyApi
+import com.smlnskgmail.jaman.cryptotracker.currencies.api.CurrencyListing
+import com.smlnskgmail.jaman.cryptotracker.currencies.impl.ui.BottomSheetCurrencyInfo
+import com.smlnskgmail.jaman.cryptotracker.currencies.impl.ui.currencieslist.CurrenciesAdapter
+import com.smlnskgmail.jaman.cryptotracker.currencies.impl.ui.currencieslist.CurrencyHolder
 import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
 
@@ -95,7 +95,7 @@ class MainActivity : BaseThemeActivity() {
     private fun priceRefreshTarget(): CurrencyHolder.CurrencyRefreshClickTarget {
         return object : CurrencyHolder.CurrencyRefreshClickTarget {
             override fun onCurrencyRefreshClick(currency: Currency) {
-                currencyApi!!.currencyListing(
+                currencyApi.currencyListing(
                     currency.id(),
                     object : CurrencyApi.CurrencyListingLoadResult {
                         override fun loaded(currencyListing: CurrencyListing?) {

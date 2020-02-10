@@ -1,7 +1,7 @@
 package com.smlnskgmail.jaman.cryptotracker
 
-import com.smlnskgmail.jaman.cryptotracker.parsing.CurrencyDeserializerTest
-import com.smlnskgmail.jaman.cryptotracker.parsing.CurrencyListingDeserializerTest
+import com.smlnskgmail.jaman.cryptotracker.api.parsing.CurrencyDeserializerTest
+import com.smlnskgmail.jaman.cryptotracker.api.parsing.CurrencyListingDeserializerTest
 import org.junit.runner.RunWith
 import org.junit.runners.Suite
 

@@ -1,6 +1,6 @@
 package com.smlnskgmail.jaman.cryptotracker.di.modules
 
-import com.smlnskgmail.jaman.cryptotracker.logic.currencies.api.CurrencyApi
+import com.smlnskgmail.jaman.cryptotracker.currencies.api.CurrencyApi
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
