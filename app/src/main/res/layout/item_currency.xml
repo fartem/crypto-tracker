@@ -16,8 +16,8 @@
         android:layout_height="@dimen/image_size_currency"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:src="@drawable/ic_btc"
-        tools:ignore="ContentDescription" />
+        tools:ignore="ContentDescription"
+        tools:src="@drawable/ic_btc" />
 
     <TextView
         android:id="@+id/currency_symbol"
@@ -40,9 +40,9 @@
         android:id="@+id/currency_price"
         style="@style/AppCurrencyItemTextPrimary"
         android:layout_marginEnd="@dimen/common_margin_double"
-        app:layout_constraintBottom_toBottomOf="@+id/currency_refresh_listing"
+        app:layout_constraintBottom_toBottomOf="@+id/currency_symbol"
         app:layout_constraintEnd_toStartOf="@+id/currency_refresh_listing"
-        app:layout_constraintTop_toTopOf="@+id/currency_refresh_listing"
+        app:layout_constraintTop_toTopOf="@+id/currency_symbol"
         tools:text="8,891.17 $" />
 
     <TextView
@@ -59,10 +59,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:foreground="?selectableItemBackground"
+        android:padding="8dp"
         android:src="@drawable/ic_refresh"
         android:tint="?attr/colorAccent"
-        app:layout_constraintBottom_toBottomOf="@+id/currency_symbol"
+        app:layout_constraintBottom_toBottomOf="@+id/currency_image"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/currency_image"
         tools:ignore="ContentDescription" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

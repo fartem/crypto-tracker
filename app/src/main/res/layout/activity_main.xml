@@ -16,6 +16,7 @@
         android:id="@+id/list_empty_message"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_margin="32dp"
         arv:message_image="@drawable/ic_error_outline"
         arv:message_image_tint="?attr/colorTextPrimary"
         arv:message_text="@string/currency_load_error_message"
