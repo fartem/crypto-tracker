@@ -32,10 +32,6 @@ android {
             buildConfigField "String", "API_IMPL", "\"DEBUG\""
         }
     }
-//    packagingOptions {
-//        exclude 'LICENSE-EPL-1.0.txt'
-//        exclude 'LICENSE-EDL-1.0.txt'
-//    }
 }
 
 dependencies {
@@ -51,6 +47,7 @@ dependencies {
     kapt 'com.google.dagger:dagger-compiler:2.24'
 
     // MapDB
+    // noinspection GradleDependency
     implementation 'org.mapdb:mapdb:2.0-beta13'
 
     // AdaptiveRecyclerView
