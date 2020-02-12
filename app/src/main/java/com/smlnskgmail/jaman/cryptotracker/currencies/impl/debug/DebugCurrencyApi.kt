@@ -124,6 +124,7 @@ class DebugCurrencyApi : CurrencyApi {
                 return type
             }
 
+            // CPD-OFF
             override fun equals(other: Any?): Boolean {
                 if (this === other) return true
 
@@ -136,10 +137,12 @@ class DebugCurrencyApi : CurrencyApi {
                 return true
             }
 
+            // CPD-OFF
             override fun compareTo(other: Currency): Int {
                 return id.compareTo(other.id())
             }
 
+            // CPD-OFF
             override fun hashCode(): Int {
                 var result = id
                 result = 31 * result + name.hashCode()
