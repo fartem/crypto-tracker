@@ -2,7 +2,7 @@ package com.smlnskgmail.jaman.cryptotracker.currencies.api
 
 import java.io.Serializable
 
-interface Currency : Serializable {
+interface Currency : Serializable, Comparable<Currency> {
 
     fun id(): Int
     fun name(): String

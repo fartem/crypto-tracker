@@ -123,6 +123,29 @@ class DebugCurrencyApi : CurrencyApi {
             override fun currencyType(): CurrencyType {
                 return type
             }
+
+            override fun equals(other: Any?): Boolean {
+                if (this === other) return true
+
+                other as Currency
+
+                if (id != other.id()) return false
+                if (name != other.name()) return false
+                if (symbol() != other.symbol()) return false
+
+                return true
+            }
+
+            override fun compareTo(other: Currency): Int {
+                return id.compareTo(other.id())
+            }
+
+            override fun hashCode(): Int {
+                var result = id
+                result = 31 * result + name.hashCode()
+                result = 31 * result + symbol().hashCode()
+                return result
+            }
         }
     }
 
@@ -148,7 +171,7 @@ class DebugCurrencyApi : CurrencyApi {
     ) : AsyncTask<Void, List<Currency>, List<Currency>>() {
 
         override fun doInBackground(vararg params: Void?): List<Currency> {
-            Thread.sleep(1_000)
+            Thread.sleep(5_000)
             return currencies.values.toList()
         }
 

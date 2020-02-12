@@ -88,6 +88,10 @@ class CmcCurrency(
         return true
     }
 
+    override fun compareTo(other: Currency): Int {
+        return id.compareTo(other.id())
+    }
+
     override fun hashCode(): Int {
         var result = id
         result = 31 * result + name.hashCode()

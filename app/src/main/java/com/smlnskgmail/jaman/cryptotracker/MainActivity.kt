@@ -11,6 +11,7 @@ import com.smlnskgmail.jaman.cryptotracker.components.preferences.PreferencesMan
 import com.smlnskgmail.jaman.cryptotracker.components.preferences.Theme
 import com.smlnskgmail.jaman.cryptotracker.currencies.api.Currency
 import com.smlnskgmail.jaman.cryptotracker.currencies.api.CurrencyApi
+import com.smlnskgmail.jaman.cryptotracker.currencies.api.CurrencyCache
 import com.smlnskgmail.jaman.cryptotracker.currencies.api.CurrencyListing
 import com.smlnskgmail.jaman.cryptotracker.currencies.impl.ui.BottomSheetCurrencyInfo
 import com.smlnskgmail.jaman.cryptotracker.currencies.impl.ui.currencieslist.CurrenciesAdapter
@@ -22,6 +23,9 @@ class MainActivity : BaseThemeActivity() {
 
     @Inject
     lateinit var currencyApi: CurrencyApi
+
+    @Inject
+    lateinit var currencyCache: CurrencyCache
 
     override fun onCreate(
         savedInstanceState: Bundle?
@@ -35,26 +39,36 @@ class MainActivity : BaseThemeActivity() {
 
     private fun showLoader() {
         currencies_list.messageView = list_empty_message
-        list_empty_message.visibility = View.GONE
-        currencies_list.visibility = View.GONE
-        list_progress_bar.visibility = View.VISIBLE
+        if (currencyCache.getCurrencies().isEmpty()) {
+            list_empty_message.visibility = View.GONE
+            currencies_list.visibility = View.GONE
+            list_progress_bar.visibility = View.VISIBLE
+        } else {
+            showCurrenciesList(
+                currencyCache.getCurrencies()
+            )
+        }
     }
 
     private fun loadCurrencies() {
         currencyApi.currencies(object : CurrencyApi.CurrenciesLoadResult {
             override fun loaded(currencies: List<Currency>) {
                 if (currencies.isNotEmpty()) {
+                    currencyCache.clear()
+                    currencyCache.putCurrencies(currencies)
+                    list_progress_bar.visibility = View.GONE
                     showCurrenciesList(currencies)
                 } else {
                     showLoaderError()
                 }
-                list_progress_bar.visibility = View.GONE
             }
         })
     }
 
     private fun showLoaderError() {
-        createList(emptyList())
+        showSnackbar(
+            getString(R.string.currency_load_error_message)
+        )
     }
 
     private fun showCurrenciesList(
@@ -103,6 +117,7 @@ class MainActivity : BaseThemeActivity() {
                                 currency.updateCurrencyListing(currencyListing)
                                 (currencies_list.adapter!! as CurrenciesAdapter)
                                     .refreshCurrency(currency)
+                                currencyCache.updateCurrency(currency)
                             } else {
                                 showSnackbar(
                                     getString(R.string.currency_load_error_message)
