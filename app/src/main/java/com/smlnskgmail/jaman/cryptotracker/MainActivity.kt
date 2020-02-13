@@ -33,30 +33,28 @@ class MainActivity : BaseThemeActivity() {
         super.onCreate(savedInstanceState)
         App.applicationComponent.inject(this)
         setContentView(R.layout.activity_main)
-        showLoader()
         loadCurrencies()
     }
 
-    private fun showLoader() {
+    private fun loadCurrencies() {
         currencies_list.messageView = list_empty_message
         if (currencyCache.getCurrencies().isEmpty()) {
             list_empty_message.visibility = View.GONE
             currencies_list.visibility = View.GONE
             list_progress_bar.visibility = View.VISIBLE
         } else {
+            top_list_progress_bar.visibility = View.VISIBLE
             showCurrenciesList(
                 currencyCache.getCurrencies()
             )
         }
-    }
-
-    private fun loadCurrencies() {
         currencyApi.currencies(object : CurrencyApi.CurrenciesLoadResult {
             override fun loaded(currencies: List<Currency>) {
                 if (currencies.isNotEmpty()) {
                     currencyCache.clear()
                     currencyCache.putCurrencies(currencies)
                     list_progress_bar.visibility = View.GONE
+                    top_list_progress_bar.visibility = View.GONE
                     showCurrenciesList(currencies)
                 } else {
                     showLoaderError()

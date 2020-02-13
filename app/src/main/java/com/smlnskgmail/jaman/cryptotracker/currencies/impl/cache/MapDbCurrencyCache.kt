@@ -34,6 +34,7 @@ class MapDbCurrencyCache(
     override fun updateCurrency(currency: Currency) {
         currencies.remove(currency)
         currencies.add(currency)
+        cache.commit()
     }
 
     override fun getCurrencies(): List<Currency> {
