@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import androidx.core.content.ContextCompat
 import com.google.android.material.snackbar.Snackbar
 import com.smlnskgmail.jaman.cryptotracker.components.activities.BaseThemeActivity
 import com.smlnskgmail.jaman.cryptotracker.components.preferences.PreferencesManager
@@ -27,13 +28,31 @@ class MainActivity : BaseThemeActivity() {
     @Inject
     lateinit var currencyCache: CurrencyCache
 
+    private var canRefresh = false
+
     override fun onCreate(
         savedInstanceState: Bundle?
     ) {
         super.onCreate(savedInstanceState)
         App.applicationComponent.inject(this)
         setContentView(R.layout.activity_main)
+        configureSwipeRefresh()
         loadCurrencies()
+    }
+
+    private fun configureSwipeRefresh() {
+        currencies_list_refresh.isEnabled = false
+        currencies_list_refresh.setColorSchemeColors(
+            ContextCompat.getColor(
+                this,
+                R.color.colorAccent
+            )
+        )
+        currencies_list_refresh.setOnRefreshListener {
+            if (canRefresh) {
+                loadCurrenciesFromApi()
+            }
+        }
     }
 
     private fun loadCurrencies() {
@@ -48,6 +67,11 @@ class MainActivity : BaseThemeActivity() {
                 currencyCache.getCurrencies()
             )
         }
+        loadCurrenciesFromApi()
+    }
+
+    private fun loadCurrenciesFromApi() {
+        canRefresh = false
         currencyApi.currencies(object : CurrencyApi.CurrenciesLoadResult {
             override fun loaded(currencies: List<Currency>) {
                 if (currencies.isNotEmpty()) {
@@ -59,6 +83,9 @@ class MainActivity : BaseThemeActivity() {
                 } else {
                     showLoaderError()
                 }
+                canRefresh = true
+                currencies_list_refresh.isRefreshing = false
+                currencies_list_refresh.isEnabled = true
             }
         })
     }
