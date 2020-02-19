@@ -2,6 +2,7 @@ package com.smlnskgmail.jaman.cryptotracker.currencies.impl.coinmarketcup
 
 import android.annotation.SuppressLint
 import com.google.gson.GsonBuilder
+import com.smlnskgmail.jaman.cryptotracker.currencies.api.Currency
 import com.smlnskgmail.jaman.cryptotracker.currencies.api.CurrencyApi
 import com.smlnskgmail.jaman.cryptotracker.currencies.api.CurrencyType
 import com.smlnskgmail.jaman.cryptotracker.currencies.impl.coinmarketcup.deserializers.CurrencyListingResponseDeserializer
@@ -81,10 +82,10 @@ class CmcCurrencyApi : CurrencyApi {
     }
 
     override fun currencyListing(
-        currencyId: Int,
+        currency: Currency,
         currencyListingLoadResult: CurrencyApi.CurrencyListingLoadResult
     ) {
-        currencyService.listing(currencyId).enqueue(
+        currencyService.listing((currency as CmcCurrency).id).enqueue(
             object : Callback<CurrencyListingResponse> {
                 override fun onFailure(
                     call: Call<CurrencyListingResponse>,

@@ -2,154 +2,73 @@ package com.smlnskgmail.jaman.cryptotracker.currencies.impl.debug
 
 import android.annotation.SuppressLint
 import android.os.AsyncTask
-import com.smlnskgmail.jaman.cryptotracker.currencies.api.*
+import com.smlnskgmail.jaman.cryptotracker.currencies.api.Currency
+import com.smlnskgmail.jaman.cryptotracker.currencies.api.CurrencyApi
+import com.smlnskgmail.jaman.cryptotracker.currencies.api.CurrencyType
 
-@Suppress("MagicNumber", "unused")
+@Suppress(
+    "unused",
+    "MagicNumber"
+)
 class DebugCurrencyApi : CurrencyApi {
 
     private val date = "2019-03-05T18:05:05.000Z"
 
-    private val currencies = hashMapOf(
-        1 to currencyFor(
-            1,
+    private val currencies = setOf(
+        currencyFor(
             "Bitcoin",
             CurrencyType.BTC
         ),
-        2 to currencyFor(
-            2,
+        currencyFor(
             "Ethereum",
             CurrencyType.ETH
         ),
-        3 to currencyFor(
-            3,
+        currencyFor(
             "Litecoin",
             CurrencyType.LTC
         ),
-        4 to currencyFor(
-            4,
+        currencyFor(
             "Binance",
             CurrencyType.BNB
         ),
-        5 to currencyFor(
-            5,
+        currencyFor(
             "Dash",
             CurrencyType.DASH
         ),
-        6 to currencyFor(
-            6,
+        currencyFor(
             "Makerdao",
             CurrencyType.MKR
         ),
-        7 to currencyFor(
-            7,
+        currencyFor(
             "Bytom",
             CurrencyType.BTM
         ),
-        8 to currencyFor(
-            8,
+        currencyFor(
             "Aeternity",
             CurrencyType.AE
         ),
-        9 to currencyFor(
-            9,
+        currencyFor(
             "Monolith",
             CurrencyType.TKN
         ),
-        10 to currencyFor(
-            10,
+        currencyFor(
             "Medibloc",
             CurrencyType.MED
         )
     )
 
     private fun currencyFor(
-        id: Int,
         name: String,
         type: CurrencyType
     ): Currency {
-        return object : Currency {
-
-            private var currencyListing: CurrencyListing? = null
-
-            override fun id(): Int {
-                return id
-            }
-
-            override fun name(): String {
-                return name
-            }
-
-            override fun symbol(): String {
-                return type.currencySymbol
-            }
-
-            override fun slug(): String {
-                return type.currencySymbol
-            }
-
-            override fun firstHistoricalData(): String {
-                return date
-            }
-
-            override fun lastHistoricalData(): String {
-                return date
-            }
-
-            override fun updateCurrencyListing(
-                currencyListing: CurrencyListing
-            ) {
-                this.currencyListing = currencyListing
-            }
-
-            override fun currencyListing(): CurrencyListing {
-                if (currencyListing == null) {
-                    currencyListing = object : CurrencyListing {
-                        override fun currentPrice(): CurrencyPriceValue {
-                            return CurrencyPriceValue(
-                                1000.751f
-                            )
-                        }
-
-                        override fun changeHour(): CurrencyPriceValue {
-                            return CurrencyPriceValue(
-                                0.19f
-                            )
-                        }
-                    }
-                }
-                return currencyListing!!
-            }
-
-            override fun currencyType(): CurrencyType {
-                return type
-            }
-
-            // CPD-OFF
-            override fun equals(other: Any?): Boolean {
-                if (this === other) return true
-
-                other as Currency
-
-                if (id != other.id()) return false
-                if (name != other.name()) return false
-                if (symbol() != other.symbol()) return false
-
-                return true
-            }
-
-            // CPD-OFF
-            override fun compareTo(other: Currency): Int {
-                return id.compareTo(other.id())
-            }
-
-            // CPD-OFF
-            override fun hashCode(): Int {
-                var result = id
-                result = 31 * result + name.hashCode()
-                result = 31 * result + symbol().hashCode()
-                return result
-            }
-        }
+        return DebugCurrency(
+            name,
+            type.currencySymbol,
+            type.currencySymbol,
+            date,
+            date,
+            type
+        )
     }
 
     override fun currencies(
@@ -159,12 +78,11 @@ class DebugCurrencyApi : CurrencyApi {
     }
 
     override fun currencyListing(
-        currencyId: Int,
+        currency: Currency,
         currencyListingLoadResult: CurrencyApi.CurrencyListingLoadResult
     ) {
-        val currency = currencies[currencyId]
         currencyListingLoadResult.loaded(
-            currency!!.currencyListing()
+            currency.currencyListing()
         )
     }
 
@@ -175,7 +93,7 @@ class DebugCurrencyApi : CurrencyApi {
 
         override fun doInBackground(vararg params: Void?): List<Currency> {
             Thread.sleep(5_000)
-            return currencies.values.toList()
+            return currencies.toList()
         }
 
         override fun onPostExecute(result: List<Currency>?) {

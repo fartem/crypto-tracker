@@ -1,8 +1,8 @@
-package com.smlnskgmail.jaman.cryptotracker.currencies.impl.cache
+package com.smlnskgmail.jaman.cryptotracker.currencies.impl.cache.mapdb
 
 import android.content.Context
 import com.smlnskgmail.jaman.cryptotracker.currencies.api.Currency
-import com.smlnskgmail.jaman.cryptotracker.currencies.api.CurrencyCache
+import com.smlnskgmail.jaman.cryptotracker.currencies.api.cache.CurrencyCache
 import org.mapdb.DBMaker
 import org.mapdb.Serializer
 import java.io.File
@@ -21,7 +21,7 @@ class MapDbCurrencyCache(
         .closeOnJvmShutdown()
         .make()
 
-    private val currencies = cache.treeSet<Currency>(
+    private val currencies = cache.hashSet<Currency>(
         "currencies",
         serializer
     )

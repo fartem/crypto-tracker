@@ -12,8 +12,8 @@ import com.smlnskgmail.jaman.cryptotracker.components.preferences.PreferencesMan
 import com.smlnskgmail.jaman.cryptotracker.components.preferences.Theme
 import com.smlnskgmail.jaman.cryptotracker.currencies.api.Currency
 import com.smlnskgmail.jaman.cryptotracker.currencies.api.CurrencyApi
-import com.smlnskgmail.jaman.cryptotracker.currencies.api.CurrencyCache
 import com.smlnskgmail.jaman.cryptotracker.currencies.api.CurrencyListing
+import com.smlnskgmail.jaman.cryptotracker.currencies.api.cache.CurrencyCache
 import com.smlnskgmail.jaman.cryptotracker.currencies.impl.ui.BottomSheetCurrencyInfo
 import com.smlnskgmail.jaman.cryptotracker.currencies.impl.ui.currencieslist.CurrenciesAdapter
 import com.smlnskgmail.jaman.cryptotracker.currencies.impl.ui.currencieslist.CurrencyHolder
@@ -99,7 +99,9 @@ class MainActivity : BaseThemeActivity() {
     private fun showCurrenciesList(
         currencies: List<Currency>
     ) {
-        createList(currencies)
+        createList(currencies.sortedBy {
+            it.currencyType().internalPosition
+        })
     }
 
     private fun createList(
@@ -135,7 +137,7 @@ class MainActivity : BaseThemeActivity() {
         return object : CurrencyHolder.CurrencyRefreshClickTarget {
             override fun onCurrencyRefreshClick(currency: Currency) {
                 currencyApi.currencyListing(
-                    currency.id(),
+                    currency,
                     object : CurrencyApi.CurrencyListingLoadResult {
                         override fun loaded(currencyListing: CurrencyListing?) {
                             if (currencyListing != null) {

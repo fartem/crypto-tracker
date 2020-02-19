@@ -1,41 +1,23 @@
-package com.smlnskgmail.jaman.cryptotracker.currencies.impl.coinmarketcup
+package com.smlnskgmail.jaman.cryptotracker.currencies.impl.debug
 
-import com.google.gson.annotations.SerializedName
 import com.smlnskgmail.jaman.cryptotracker.currencies.api.Currency
 import com.smlnskgmail.jaman.cryptotracker.currencies.api.CurrencyListing
+import com.smlnskgmail.jaman.cryptotracker.currencies.api.CurrencyPriceValue
 import com.smlnskgmail.jaman.cryptotracker.currencies.api.CurrencyType
 
-class CmcCurrency(
+// CPD-OFF
+class DebugCurrency(
 
-    @SerializedName("id")
-    val id: Int,
-
-    @SerializedName("name")
     private val name: String,
-
-    @SerializedName("symbol")
     private val symbol: String,
-
-    @SerializedName("slug")
     private val slug: String,
-
-    @SerializedName("date_added")
     private val firstHistoricalData: String,
-
-    @SerializedName("last_updated")
     private val lastHistoricalData: String,
-
-    var currencyListing: CurrencyListing,
-
-    var currencyType: CurrencyType
+    private val type: CurrencyType
 
 ) : Currency {
 
-    companion object {
-
-        const val serialVersionUID = 153L
-
-    }
+    private var currencyListing: CurrencyListing? = null
 
     override fun name(): String {
         return name
@@ -63,30 +45,44 @@ class CmcCurrency(
         this.currencyListing = currencyListing
     }
 
+    @SuppressWarnings("MagicNumber")
     override fun currencyListing(): CurrencyListing {
-        return currencyListing
+        if (currencyListing == null) {
+            currencyListing = object : CurrencyListing {
+                override fun currentPrice(): CurrencyPriceValue {
+                    return CurrencyPriceValue(
+                        1000.751f
+                    )
+                }
+
+                override fun changeHour(): CurrencyPriceValue {
+                    return CurrencyPriceValue(
+                        0.19f
+                    )
+                }
+            }
+        }
+        return currencyListing!!
     }
 
     override fun currencyType(): CurrencyType {
-        return currencyType
+        return type
     }
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
-        if (javaClass != other?.javaClass) return false
 
         other as Currency
 
         if (name != other.name()) return false
-        if (symbol != other.symbol()) return false
+        if (symbol() != other.symbol()) return false
 
         return true
     }
 
     override fun hashCode(): Int {
-        var result = id
-        result = 31 * result + name.hashCode()
-        result = 31 * result + symbol.hashCode()
+        var result = name.hashCode()
+        result = 31 * result + symbol().hashCode()
         return result
     }
 

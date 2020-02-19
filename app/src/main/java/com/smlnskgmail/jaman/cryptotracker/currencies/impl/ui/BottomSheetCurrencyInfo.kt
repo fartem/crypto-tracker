@@ -37,8 +37,6 @@ class BottomSheetCurrencyInfo : BottomSheetDialogFragment() {
                 currency.currencyType().iconResId
             )
         )
-
-        currency_id.text = currency.id().toString()
         currency_name.text = currency.name()
 
         currency_symbol.text = currency.symbol()

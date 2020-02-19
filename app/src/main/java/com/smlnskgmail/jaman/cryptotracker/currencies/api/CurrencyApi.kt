@@ -7,7 +7,7 @@ interface CurrencyApi {
     )
 
     fun currencyListing(
-        currencyId: Int,
+        currency: Currency,
         currencyListingLoadResult: CurrencyListingLoadResult
     )
 

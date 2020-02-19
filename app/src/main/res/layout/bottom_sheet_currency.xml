@@ -17,22 +17,14 @@
         tools:ignore="ContentDescription" />
 
     <TextView
-        android:id="@+id/currency_id"
-        style="@style/AppCurrencyItemTextPrimary"
-        android:layout_marginStart="@dimen/common_margin_double"
-        app:layout_constraintBottom_toBottomOf="@+id/currency_image"
-        app:layout_constraintStart_toEndOf="@+id/currency_image"
-        app:layout_constraintTop_toTopOf="@+id/currency_image"
-        tools:text="1" />
-
-    <TextView
         android:id="@+id/currency_symbol"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="@dimen/common_margin"
         android:textSize="@dimen/text_size_medium"
-        app:layout_constraintBottom_toBottomOf="@+id/currency_id"
-        app:layout_constraintStart_toEndOf="@+id/currency_id"
+        app:layout_constraintBottom_toBottomOf="@+id/currency_image"
+        app:layout_constraintStart_toEndOf="@+id/currency_image"
+        app:layout_constraintTop_toTopOf="@+id/currency_image"
         tools:text="BTC" />
 
     <TextView
@@ -46,8 +38,8 @@
     <TextView
         android:id="@+id/currency_slug"
         style="@style/AppCurrencyItemTextSecondary"
-        app:layout_constraintStart_toStartOf="@+id/currency_id"
-        app:layout_constraintTop_toBottomOf="@+id/currency_id"
+        app:layout_constraintStart_toStartOf="@+id/currency_symbol"
+        app:layout_constraintTop_toBottomOf="@+id/currency_symbol"
         tools:text="bitcoin" />
 
     <TextView
