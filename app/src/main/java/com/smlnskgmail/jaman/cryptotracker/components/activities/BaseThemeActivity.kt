@@ -16,6 +16,8 @@ abstract class BaseThemeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
     }
 
-    abstract fun isFullScreen(): Boolean
+    open fun isFullScreen(): Boolean {
+        return false
+    }
 
 }
