@@ -14,7 +14,10 @@ abstract class BaseThemeActivity : AppCompatActivity() {
         }
         setTheme(theme)
         super.onCreate(savedInstanceState)
+        setContentView(layoutResId())
     }
+
+    abstract fun layoutResId(): Int
 
     open fun isFullScreen(): Boolean {
         return false

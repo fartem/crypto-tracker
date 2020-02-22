@@ -4,73 +4,82 @@ import com.smlnskgmail.jaman.cryptotracker.model.api.cache.CurrencyCache
 import com.smlnskgmail.jaman.cryptotracker.model.api.currency.Currency
 import com.smlnskgmail.jaman.cryptotracker.model.api.currency.CurrencyApi
 import com.smlnskgmail.jaman.cryptotracker.model.api.currency.CurrencyListing
-import com.smlnskgmail.jaman.cryptotracker.view.main.CurrencyMainView
+import com.smlnskgmail.jaman.cryptotracker.view.list.CurrenciesListView
 
 class CurrenciesListPresenterImpl : CurrenciesListPresenter {
 
-    private lateinit var currencyMainView: CurrencyMainView
+    private lateinit var currenciesListView: CurrenciesListView
     private lateinit var currencyApi: CurrencyApi
     private lateinit var currencyCache: CurrencyCache
 
     private var firstStart = true
 
     override fun init(
-        currencyMainView: CurrencyMainView,
+        currenciesListView: CurrenciesListView,
         currencyApi: CurrencyApi,
         currencyCache: CurrencyCache
     ) {
-        this.currencyMainView = currencyMainView
+        this.currenciesListView = currenciesListView
         this.currencyApi = currencyApi
         this.currencyCache = currencyCache
+
+        loadCurrencies()
     }
 
-    override fun loadCurrenciesFromCache() {
+    private fun loadCurrencies() {
         val currencies = currencyCache.getCurrencies()
         firstStart = currencies.isEmpty()
         if (!firstStart) {
-            currencyMainView.showCurrencies(
+            currenciesListView.showCurrencies(
                 currencies
             )
-        }
-    }
-
-    override fun loadCurrenciesFromWeb() {
-        if (firstStart) {
-            currencyMainView.showFullScreenLoader()
+            currenciesListView.showSeekLoader()
         } else {
-            currencyMainView.showSeekLoader()
+            currenciesListView.showFullScreenLoader()
         }
         loadCurrenciesWithAction {
             if (firstStart) {
-                currencyMainView.hideFullScreenLoader()
+                currenciesListView.hideFullScreenLoader()
             } else {
-                currencyMainView.hideSeekLoader()
+                currenciesListView.hideSeekLoader()
             }
         }
     }
 
-    private fun loadCurrenciesWithAction(action: () -> Unit) {
+    private fun loadCurrenciesWithAction(
+        action: () -> Unit
+    ) {
         currencyApi.currencies(object : CurrencyApi.CurrenciesLoadResult {
             override fun loaded(currencies: List<Currency>) {
                 if (currencies.isNotEmpty()) {
-                    currencyMainView.showCurrencies(
+                    currenciesListView.showCurrencies(
                         currencies
                     )
                     currencyCache.clear()
                     currencyCache.putCurrencies(currencies)
                 } else {
-                    currencyMainView.showLoadError()
+                    currenciesListView.showLoadError()
                 }
                 action()
             }
         })
     }
 
-    override fun refreshCurrenciesFromWeb() {
+    override fun refreshCurrencies() {
         loadCurrenciesWithAction { }
     }
 
-    override fun updateCurrencyListingFor(currency: Currency) {
+    override fun currencySelected(
+        currency: Currency
+    ) {
+        currenciesListView.showCurrencyInfo(
+            currency
+        )
+    }
+
+    override fun updateCurrencyListingFor(
+        currency: Currency
+    ) {
         currencyApi.currencyListing(
             currency,
             object : CurrencyApi.CurrencyListingLoadResult {
@@ -79,10 +88,10 @@ class CurrenciesListPresenterImpl : CurrenciesListPresenter {
                         currency.updateCurrencyListing(
                             currencyListing
                         )
-                        currencyMainView.updateCurrency(currency)
+                        currenciesListView.updateCurrency(currency)
                         currencyCache.updateCurrency(currency)
                     } else {
-                        currencyMainView.showLoadError()
+                        currenciesListView.showLoadError()
                     }
                 }
             }

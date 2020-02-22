@@ -13,7 +13,7 @@ android {
         minSdkVersion 21
         targetSdkVersion 29
         versionCode 1
-        versionName "2.0.0"
+        versionName "2.1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
         buildConfigField "String", "API_IMPL", "\"\""
@@ -53,6 +53,9 @@ dependencies {
     // Retrofit
     implementation 'com.squareup.retrofit2:retrofit:2.6.2'
     implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
+
+    // Process Phoenix
+    implementation 'com.jakewharton:process-phoenix:2.0.0'
 
     // Unit tests
     testImplementation 'junit:junit:4.13'

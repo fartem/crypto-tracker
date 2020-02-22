@@ -1,4 +1,4 @@
-package com.smlnskgmail.jaman.cryptotracker.view.main.list
+package com.smlnskgmail.jaman.cryptotracker.view.list.recycler
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -42,7 +42,7 @@ class CurrenciesAdapter(
     }
 
     override fun getItemCount(): Int {
-        return currencies.count()
+        return currencies.size
     }
 
 }

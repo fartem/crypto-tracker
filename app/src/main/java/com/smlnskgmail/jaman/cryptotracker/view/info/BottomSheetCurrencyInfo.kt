@@ -2,7 +2,9 @@ package com.smlnskgmail.jaman.cryptotracker.view.info
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.Intent
 import android.graphics.Color
+import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import androidx.core.content.ContextCompat
@@ -68,12 +70,24 @@ class BottomSheetCurrencyInfo : BaseBottomSheet(), CurrencyInfoView {
         currency_price.text = currency.currencyListing().currentPrice().toString()
 
         currency_site.background.setTint(
-            Color.parseColor(currency.currencyType().accentColor)
+            Color.parseColor(
+                currency.currencyType().accentColor
+            )
         )
 
         currency_site.setOnClickListener {
-            currencyInfoPresenter.openCurrencySite()
+            currencyInfoPresenter.openCurrencySite(
+                currency
+            )
         }
+    }
+
+    override fun openCurrencySite(site: Uri) {
+        val browserIntent = Intent(
+            Intent.ACTION_VIEW,
+            site
+        )
+        startActivity(browserIntent)
     }
 
     @SuppressLint("SimpleDateFormat")

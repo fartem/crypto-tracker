@@ -1,4 +1,4 @@
-package com.smlnskgmail.jaman.cryptotracker.view.main.list
+package com.smlnskgmail.jaman.cryptotracker.view.list.recycler
 
 import android.annotation.SuppressLint
 import android.graphics.Color

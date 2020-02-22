@@ -1,17 +1,12 @@
-package com.smlnskgmail.jaman.cryptotracker.view.main
+package com.smlnskgmail.jaman.cryptotracker.view.list
 
-import android.content.Intent
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuItem
 import android.view.View
 import androidx.core.content.ContextCompat
 import com.google.android.material.snackbar.Snackbar
 import com.smlnskgmail.jaman.cryptotracker.BuildConfig
 import com.smlnskgmail.jaman.cryptotracker.R
-import com.smlnskgmail.jaman.cryptotracker.components.activities.BaseThemeActivity
-import com.smlnskgmail.jaman.cryptotracker.components.preferences.PreferencesManager
-import com.smlnskgmail.jaman.cryptotracker.components.preferences.Theme
+import com.smlnskgmail.jaman.cryptotracker.components.fragments.BaseFragment
 import com.smlnskgmail.jaman.cryptotracker.model.api.cache.CurrencyCache
 import com.smlnskgmail.jaman.cryptotracker.model.api.currency.Currency
 import com.smlnskgmail.jaman.cryptotracker.model.api.currency.CurrencyApi
@@ -24,19 +19,18 @@ import com.smlnskgmail.jaman.cryptotracker.model.impl.currency.debug.DebugCurren
 import com.smlnskgmail.jaman.cryptotracker.presenter.list.CurrenciesListPresenter
 import com.smlnskgmail.jaman.cryptotracker.presenter.list.CurrenciesListPresenterImpl
 import com.smlnskgmail.jaman.cryptotracker.view.info.BottomSheetCurrencyInfo
-import com.smlnskgmail.jaman.cryptotracker.view.main.list.CurrenciesAdapter
-import com.smlnskgmail.jaman.cryptotracker.view.main.list.CurrencyHolder
-import kotlinx.android.synthetic.main.activity_main.*
+import com.smlnskgmail.jaman.cryptotracker.view.list.recycler.CurrenciesAdapter
+import com.smlnskgmail.jaman.cryptotracker.view.list.recycler.CurrencyHolder
+import kotlinx.android.synthetic.main.fragment_currencies_list.*
 
-class MainActivity : BaseThemeActivity(), CurrencyMainView {
+class CurrenciesListFragment : BaseFragment(), CurrenciesListView {
 
     private lateinit var currenciesListPresenter: CurrenciesListPresenter
 
-    override fun onCreate(
+    override fun onViewCreated(
+        view: View,
         savedInstanceState: Bundle?
     ) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
         configureCurrenciesList()
         configureSwipeRefresh()
         currenciesListPresenter = CurrenciesListPresenterImpl()
@@ -45,20 +39,18 @@ class MainActivity : BaseThemeActivity(), CurrencyMainView {
             currencyApi(),
             currencyCache()
         )
-        currenciesListPresenter.loadCurrenciesFromCache()
-        currenciesListPresenter.loadCurrenciesFromWeb()
     }
 
     private fun configureSwipeRefresh() {
         currencies_list_refresh.isEnabled = false
         currencies_list_refresh.setColorSchemeColors(
             ContextCompat.getColor(
-                this,
+                context!!,
                 R.color.colorAccent
             )
         )
         currencies_list_refresh.setOnRefreshListener {
-            currenciesListPresenter.refreshCurrenciesFromWeb()
+            currenciesListPresenter.refreshCurrencies()
         }
     }
 
@@ -83,7 +75,7 @@ class MainActivity : BaseThemeActivity(), CurrencyMainView {
             CmcCurrencyMapDbInstanceProvider()
         }
         return MapDbCurrencyCache(
-            this,
+            context!!,
             MapDbCurrencySerializer(
                 instanceProvider
             )
@@ -105,17 +97,8 @@ class MainActivity : BaseThemeActivity(), CurrencyMainView {
     private fun currencyClickTarget(): CurrencyHolder.CurrencyClickTarget {
         return object : CurrencyHolder.CurrencyClickTarget {
             override fun onCurrencyClick(currency: Currency) {
-                val bundle = Bundle()
-                bundle.putSerializable(
-                    "currency",
+                currenciesListPresenter.currencySelected(
                     currency
-                )
-
-                val bottomSheetCurrencyInfo = BottomSheetCurrencyInfo()
-                bottomSheetCurrencyInfo.arguments = bundle
-                bottomSheetCurrencyInfo.show(
-                    supportFragmentManager,
-                    BottomSheetCurrencyInfo::class.java.canonicalName
                 )
             }
         }
@@ -153,57 +136,36 @@ class MainActivity : BaseThemeActivity(), CurrencyMainView {
         )
     }
 
+    override fun showCurrencyInfo(
+        currency: Currency
+    ) {
+        val arguments = Bundle()
+        arguments.putSerializable(
+            "currency",
+            currency
+        )
+        val bottomSheetCurrencyInfo = BottomSheetCurrencyInfo()
+        bottomSheetCurrencyInfo.arguments = arguments
+        bottomSheetCurrencyInfo.show(
+            activity!!.supportFragmentManager,
+            BottomSheetCurrencyInfo::class.java.canonicalName
+        )
+    }
+
     private fun showSnackbar(message: String) {
         Snackbar.make(
-            findViewById(android.R.id.content),
+            currencies_list_root,
             message,
             Snackbar.LENGTH_LONG
         ).show()
     }
 
     override fun updateCurrency(currency: Currency) {
-        (currencies_list.adapter!! as CurrenciesAdapter)
-            .refreshCurrency(currency)
+        (currencies_list.adapter!! as CurrenciesAdapter).refreshCurrency(currency)
     }
 
-    override fun onOptionsItemSelected(
-        item: MenuItem
-    ): Boolean {
-        when (item.itemId) {
-            R.id.menu_item_theme_change -> changeAppTheme()
-        }
-        return super.onOptionsItemSelected(item)
-    }
-
-    private fun changeAppTheme() {
-        val newTheme = if (PreferencesManager.theme(
-                this
-            ) == Theme.Light
-        ) {
-            Theme.Dark
-        } else {
-            Theme.Light
-        }
-
-        PreferencesManager.changeTheme(
-            this,
-            newTheme
-        )
-
-        val restartIntent = Intent(
-            this,
-            MainActivity::class.java
-        )
-        finish()
-        startActivity(restartIntent)
-    }
-
-    override fun onPrepareOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(
-            R.menu.menu_main,
-            menu
-        )
-        return true
+    override fun layoutResId(): Int {
+        return R.layout.fragment_currencies_list
     }
 
 }

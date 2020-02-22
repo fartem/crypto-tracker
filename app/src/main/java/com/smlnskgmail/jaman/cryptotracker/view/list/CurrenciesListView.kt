@@ -1,8 +1,8 @@
-package com.smlnskgmail.jaman.cryptotracker.view.main
+package com.smlnskgmail.jaman.cryptotracker.view.list
 
 import com.smlnskgmail.jaman.cryptotracker.model.api.currency.Currency
 
-interface CurrencyMainView {
+interface CurrenciesListView {
 
     fun showCurrencies(
         currencies: List<Currency>
@@ -16,6 +16,9 @@ interface CurrencyMainView {
 
     fun showLoadError()
 
+    fun showCurrencyInfo(
+        currency: Currency
+    )
     fun updateCurrency(
         currency: Currency
     )

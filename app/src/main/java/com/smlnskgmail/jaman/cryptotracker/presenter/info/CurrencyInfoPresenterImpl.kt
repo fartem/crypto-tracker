@@ -1,6 +1,5 @@
 package com.smlnskgmail.jaman.cryptotracker.presenter.info
 
-import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import com.smlnskgmail.jaman.cryptotracker.model.api.currency.Currency
@@ -22,15 +21,13 @@ class CurrencyInfoPresenterImpl : CurrencyInfoPresenter {
         currencyInfoView.showCurrencyInfo(currency)
     }
 
-    override fun openCurrencySite() {
-        val browserIntent = Intent(
-            Intent.ACTION_VIEW,
+    override fun openCurrencySite(
+        currency: Currency
+    ) {
+        currencyInfoView.openCurrencySite(
             Uri.parse(
                 currency.currencyType().site
             )
-        )
-        currencyInfoView.context().startActivity(
-            browserIntent
         )
     }
 
