@@ -12,12 +12,8 @@ class CurrencyInfoPresenterImpl : CurrencyInfoPresenter {
 
     override fun init(
         currencyInfoView: CurrencyInfoView,
-        arguments: Bundle
+        currency: Currency
     ) {
-        this.currencyInfoView = currencyInfoView
-        currency = arguments.getSerializable(
-            "currency"
-        ) as Currency
         currencyInfoView.showCurrencyInfo(currency)
     }
 

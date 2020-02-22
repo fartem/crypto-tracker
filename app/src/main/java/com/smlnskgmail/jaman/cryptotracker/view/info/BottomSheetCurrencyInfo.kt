@@ -32,7 +32,7 @@ class BottomSheetCurrencyInfo : BaseBottomSheet(), CurrencyInfoView {
         currencyInfoPresenter = CurrencyInfoPresenterImpl()
         currencyInfoPresenter.init(
             this,
-            arguments!!
+            arguments!!.getSerializable("currency") as Currency
         )
     }
 

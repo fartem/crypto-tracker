@@ -8,7 +8,7 @@ interface CurrencyInfoPresenter {
 
     fun init(
         currencyInfoView: CurrencyInfoView,
-        arguments: Bundle
+        currency: Currency
     )
 
     fun openCurrencySite(
