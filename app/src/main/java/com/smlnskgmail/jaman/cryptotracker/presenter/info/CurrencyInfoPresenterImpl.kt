@@ -1,7 +1,6 @@
 package com.smlnskgmail.jaman.cryptotracker.presenter.info
 
 import android.net.Uri
-import android.os.Bundle
 import com.smlnskgmail.jaman.cryptotracker.model.api.currency.Currency
 import com.smlnskgmail.jaman.cryptotracker.view.info.CurrencyInfoView
 
