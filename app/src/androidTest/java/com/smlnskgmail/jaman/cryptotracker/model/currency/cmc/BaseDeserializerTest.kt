@@ -1,4 +1,4 @@
-package com.smlnskgmail.jaman.cryptotracker.api.parsing
+package com.smlnskgmail.jaman.cryptotracker.model.currency.cmc
 
 import androidx.test.platform.app.InstrumentationRegistry
 import com.google.gson.Gson

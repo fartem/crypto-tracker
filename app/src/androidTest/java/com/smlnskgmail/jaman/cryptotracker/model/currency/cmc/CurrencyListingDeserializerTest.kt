@@ -1,4 +1,4 @@
-package com.smlnskgmail.jaman.cryptotracker.api.parsing
+package com.smlnskgmail.jaman.cryptotracker.model.currency.cmc
 
 import com.google.gson.JsonDeserializer
 import com.smlnskgmail.jaman.cryptotracker.model.impl.currency.coinmarketcup.deserializers.CurrencyListingResponseDeserializer
