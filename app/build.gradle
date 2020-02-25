@@ -4,6 +4,7 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 apply from: 'detekt.gradle'
 apply from: 'cpd.gradle'
+apply from: 'jacoco.gradle'
 
 android {
     compileSdkVersion 29
@@ -14,9 +15,14 @@ android {
         targetSdkVersion 29
         versionCode 1
         versionName "2.1.1"
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "com.smlnskgmail.jaman.cryptotracker.runner.AndroidJacocoTestRunner"
 
         buildConfigField "String", "API_IMPL", "\"\""
+    }
+    buildTypes {
+        debug {
+            testCoverageEnabled = true
+        }
     }
 
     flavorDimensions "build"
@@ -30,6 +36,17 @@ android {
             flavorDimensions "build"
 
             buildConfigField "String", "API_IMPL", "\"DEBUG\""
+        }
+    }
+
+    testOptions {
+        unitTests {
+            all {
+                jacoco {
+                    includeNoLocationClasses = true
+                }
+            }
+            includeAndroidResources = true
         }
     }
 }
