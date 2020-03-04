@@ -93,7 +93,7 @@ class DebugCurrencyApi :
     ) : AsyncTask<Void, List<Currency>, List<Currency>>() {
 
         override fun doInBackground(vararg params: Void?): List<Currency> {
-            Thread.sleep(5_000)
+            Thread.sleep(3_000)
             return currencies.toList()
         }
 

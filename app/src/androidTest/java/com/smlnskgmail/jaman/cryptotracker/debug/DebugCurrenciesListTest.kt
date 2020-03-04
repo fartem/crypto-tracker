@@ -33,7 +33,7 @@ class DebugCurrenciesListTest {
             )
         }
 
-        sleep(10_000)
+        sleep(5_000)
         onView(withId(R.id.currencies_list)).check(
             RecyclerViewCountAssertion(10)
         )
