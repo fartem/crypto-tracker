@@ -15,5 +15,6 @@
     <dimen name="text_size_medium">16sp</dimen>
     <dimen name="text_size_splash_main">24sp</dimen>
     <dimen name="text_size_splash_secondary">18sp</dimen>
+    <dimen name="bottom_sheet_radius">12dp</dimen>
 
 </resources>

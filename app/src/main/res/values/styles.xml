@@ -32,4 +32,15 @@
         <item name="android:textSize">@dimen/text_size_medium</item>
     </style>
 
+    <style name="AppBottomSheetStyle" parent="@style/Theme.Design.Light.BottomSheetDialog">
+        <item name="android:windowIsFloating">false</item>
+        <item name="bottomSheetStyle">@style/BottomSheet</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:windowSoftInputMode">adjustResize</item>
+    </style>
+
+    <style name="BottomSheet" parent="@style/Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@drawable/shape_background_bottom_sheet</item>
+    </style>
+
 </resources>
