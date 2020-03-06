@@ -47,3 +47,4 @@ Contributors
 -------------
 
 * [@fartem](https://github.com/fartem) as Artem Fomchenkov
+* [@alirezanazari](https://github.com/alirezanazari) as Alireza Nazari
