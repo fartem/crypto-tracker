@@ -109,4 +109,5 @@ class BottomSheetCurrencyInfo : BaseBottomSheet(), CurrencyInfoView {
         ).toString()
     }
 
+    override fun getTheme(): Int = R.style.AppBottomSheetStyle
 }
