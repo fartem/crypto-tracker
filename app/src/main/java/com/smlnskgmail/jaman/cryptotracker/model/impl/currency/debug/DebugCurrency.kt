@@ -7,14 +7,12 @@ import com.smlnskgmail.jaman.cryptotracker.model.api.currency.CurrencyType
 
 // CPD-OFF
 class DebugCurrency(
-
     private val name: String,
     private val symbol: String,
     private val slug: String,
     private val firstHistoricalData: String,
     private val lastHistoricalData: String,
     private val type: CurrencyType
-
 ) : Currency {
 
     private var currencyListing: CurrencyListing? = null

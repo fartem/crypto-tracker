@@ -92,7 +92,9 @@ class DebugCurrencyApi :
         private val currenciesLoadResult: CurrencyApi.CurrenciesLoadResult
     ) : AsyncTask<Void, List<Currency>, List<Currency>>() {
 
-        override fun doInBackground(vararg params: Void?): List<Currency> {
+        override fun doInBackground(
+            vararg params: Void?
+        ): List<Currency> {
             Thread.sleep(3_000)
             return currencies.toList()
         }

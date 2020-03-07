@@ -4,18 +4,10 @@ import android.os.Bundle
 import android.view.View
 import androidx.core.content.ContextCompat
 import com.google.android.material.snackbar.Snackbar
-import com.smlnskgmail.jaman.cryptotracker.BuildConfig
+import com.smlnskgmail.jaman.cryptotracker.App
 import com.smlnskgmail.jaman.cryptotracker.R
-import com.smlnskgmail.jaman.cryptotracker.components.fragments.BaseFragment
-import com.smlnskgmail.jaman.cryptotracker.model.api.cache.CurrencyCache
+import com.smlnskgmail.jaman.cryptotracker.components.BaseThemeFragment
 import com.smlnskgmail.jaman.cryptotracker.model.api.currency.Currency
-import com.smlnskgmail.jaman.cryptotracker.model.api.currency.CurrencyApi
-import com.smlnskgmail.jaman.cryptotracker.model.impl.cache.mapdb.MapDbCurrencyCache
-import com.smlnskgmail.jaman.cryptotracker.model.impl.cache.mapdb.MapDbCurrencySerializer
-import com.smlnskgmail.jaman.cryptotracker.model.impl.currency.coinmarketcup.CmcCurrencyApi
-import com.smlnskgmail.jaman.cryptotracker.model.impl.currency.coinmarketcup.cache.CmcCurrencyMapDbInstanceProvider
-import com.smlnskgmail.jaman.cryptotracker.model.impl.currency.debug.DebugCurrencyApi
-import com.smlnskgmail.jaman.cryptotracker.model.impl.currency.debug.DebugCurrencyMapDbInstanceProvider
 import com.smlnskgmail.jaman.cryptotracker.presenter.list.CurrenciesListPresenter
 import com.smlnskgmail.jaman.cryptotracker.presenter.list.CurrenciesListPresenterImpl
 import com.smlnskgmail.jaman.cryptotracker.view.info.BottomSheetCurrencyInfo
@@ -23,7 +15,7 @@ import com.smlnskgmail.jaman.cryptotracker.view.list.recycler.CurrenciesAdapter
 import com.smlnskgmail.jaman.cryptotracker.view.list.recycler.CurrencyHolder
 import kotlinx.android.synthetic.main.fragment_currencies_list.*
 
-class CurrenciesListFragment : BaseFragment(), CurrenciesListView {
+class CurrenciesListFragment : BaseThemeFragment(), CurrenciesListView {
 
     private lateinit var currenciesListPresenter: CurrenciesListPresenter
 
@@ -36,8 +28,8 @@ class CurrenciesListFragment : BaseFragment(), CurrenciesListView {
         currenciesListPresenter = CurrenciesListPresenterImpl()
         currenciesListPresenter.init(
             this,
-            currencyApi(),
-            currencyCache()
+            App.currencyApi(),
+            App.currencyCache(context!!)
         )
     }
 
@@ -56,30 +48,6 @@ class CurrenciesListFragment : BaseFragment(), CurrenciesListView {
 
     private fun configureCurrenciesList() {
         currencies_list.messageView = list_empty_message
-    }
-
-    @Suppress("ConstantConditionIf")
-    private fun currencyApi(): CurrencyApi {
-        return if (BuildConfig.API_IMPL == "DEBUG") {
-            DebugCurrencyApi()
-        } else {
-            CmcCurrencyApi()
-        }
-    }
-
-    @Suppress("ConstantConditionIf")
-    private fun currencyCache(): CurrencyCache {
-        val instanceProvider = if (BuildConfig.API_IMPL == "DEBUG") {
-            DebugCurrencyMapDbInstanceProvider()
-        } else {
-            CmcCurrencyMapDbInstanceProvider()
-        }
-        return MapDbCurrencyCache(
-            context!!,
-            MapDbCurrencySerializer(
-                instanceProvider
-            )
-        )
     }
 
     override fun showCurrencies(

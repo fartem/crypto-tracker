@@ -8,8 +8,8 @@ import androidx.test.runner.AndroidJUnit4
 import com.smlnskgmail.jaman.cryptotracker.BuildConfig
 import com.smlnskgmail.jaman.cryptotracker.MainActivity
 import com.smlnskgmail.jaman.cryptotracker.R
-import com.smlnskgmail.jaman.cryptotracker.utils.RecyclerViewCountAssertion
-import com.smlnskgmail.jaman.cryptotracker.utils.RecyclerViewItemClick
+import com.smlnskgmail.jaman.cryptotracker.support.RecyclerViewCountAssertion
+import com.smlnskgmail.jaman.cryptotracker.support.RecyclerViewItemClick
 import com.smlnskgmail.jaman.cryptotracker.view.list.recycler.CurrencyHolder
 import org.junit.Assert.fail
 import org.junit.Rule

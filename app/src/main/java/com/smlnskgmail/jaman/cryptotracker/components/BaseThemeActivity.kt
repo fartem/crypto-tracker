@@ -1,4 +1,4 @@
-package com.smlnskgmail.jaman.cryptotracker.components.activities
+package com.smlnskgmail.jaman.cryptotracker.components
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -8,9 +8,13 @@ abstract class BaseThemeActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         val theme = if (isFullScreen()) {
-            PreferencesManager.theme(this).fullScreenThemeResId
+            PreferencesManager.theme(
+                this
+            ).fullScreenThemeResId
         } else {
-            PreferencesManager.theme(this).themeResId
+            PreferencesManager.theme(
+                this
+            ).themeResId
         }
         setTheme(theme)
         super.onCreate(savedInstanceState)

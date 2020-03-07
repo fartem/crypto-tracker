@@ -25,6 +25,7 @@ data class CmcCurrencyListing(
         CurrencyPriceValue(
             price
         )
+
     private val changeHourPrice: CurrencyPriceValue =
         CurrencyPriceValue(
             changeHour

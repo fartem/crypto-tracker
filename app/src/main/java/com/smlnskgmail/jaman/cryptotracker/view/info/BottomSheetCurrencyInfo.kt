@@ -9,14 +9,14 @@ import android.os.Bundle
 import android.view.View
 import androidx.core.content.ContextCompat
 import com.smlnskgmail.jaman.cryptotracker.R
-import com.smlnskgmail.jaman.cryptotracker.components.bottomsheets.BaseBottomSheet
+import com.smlnskgmail.jaman.cryptotracker.components.BaseThemeBottomSheet
 import com.smlnskgmail.jaman.cryptotracker.model.api.currency.Currency
 import com.smlnskgmail.jaman.cryptotracker.presenter.info.CurrencyInfoPresenter
 import com.smlnskgmail.jaman.cryptotracker.presenter.info.CurrencyInfoPresenterImpl
 import kotlinx.android.synthetic.main.bottom_sheet_currency.*
 import java.text.SimpleDateFormat
 
-class BottomSheetCurrencyInfo : BaseBottomSheet(), CurrencyInfoView {
+class BottomSheetCurrencyInfo : BaseThemeBottomSheet(), CurrencyInfoView {
 
     private lateinit var currencyInfoPresenter: CurrencyInfoPresenter
 
@@ -55,7 +55,9 @@ class BottomSheetCurrencyInfo : BaseBottomSheet(), CurrencyInfoView {
 
         currency_symbol.text = currency.symbol()
         currency_symbol.setTextColor(
-            Color.parseColor(currency.currencyType().accentColor)
+            Color.parseColor(
+                currency.currencyType().accentColor
+            )
         )
 
         currency_slug.text = currency.slug()
@@ -109,5 +111,4 @@ class BottomSheetCurrencyInfo : BaseBottomSheet(), CurrencyInfoView {
         ).toString()
     }
 
-    override fun getTheme(): Int = R.style.AppBottomSheetStyle
 }

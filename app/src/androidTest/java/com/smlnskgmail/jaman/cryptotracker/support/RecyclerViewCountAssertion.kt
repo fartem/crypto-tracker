@@ -1,4 +1,4 @@
-package com.smlnskgmail.jaman.cryptotracker.utils
+package com.smlnskgmail.jaman.cryptotracker.support
 
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView

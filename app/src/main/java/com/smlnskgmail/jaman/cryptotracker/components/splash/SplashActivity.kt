@@ -6,7 +6,7 @@ import android.os.Handler
 import com.smlnskgmail.jaman.cryptotracker.BuildConfig
 import com.smlnskgmail.jaman.cryptotracker.MainActivity
 import com.smlnskgmail.jaman.cryptotracker.R
-import com.smlnskgmail.jaman.cryptotracker.components.activities.BaseThemeActivity
+import com.smlnskgmail.jaman.cryptotracker.components.BaseThemeActivity
 import com.smlnskgmail.jaman.cryptotracker.components.preferences.PreferencesManager
 import kotlinx.android.synthetic.main.activity_splash.*
 
@@ -20,7 +20,9 @@ class SplashActivity : BaseThemeActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         setTheme(
-            PreferencesManager.theme(this).fullScreenThemeResId
+            PreferencesManager.theme(
+                this
+            ).fullScreenThemeResId
         )
         super.onCreate(savedInstanceState)
         showLogo()

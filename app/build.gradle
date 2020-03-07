@@ -10,14 +10,14 @@ android {
     compileSdkVersion 29
     buildToolsVersion "29.0.2"
     defaultConfig {
-        applicationId "com.smlnskgmail.jaman.cryptotracker"
+        applicationId 'com.smlnskgmail.jaman.cryptotracker'
         minSdkVersion 21
         targetSdkVersion 29
         versionCode 1
-        versionName "2.1.1"
+        versionName '2.1.2'
         testInstrumentationRunner "com.smlnskgmail.jaman.cryptotracker.runner.AndroidJacocoTestRunner"
 
-        buildConfigField "String", "API_IMPL", "\"\""
+        buildConfigField 'String', 'API_IMPL', "\"\""
     }
     buildTypes {
         debug {
@@ -25,17 +25,17 @@ android {
         }
     }
 
-    flavorDimensions "build"
+    flavorDimensions 'build'
     productFlavors {
         coinmarketcup {
-            flavorDimensions "build"
+            flavorDimensions 'build'
 
-            buildConfigField "String", "API_IMPL", "\"CMC\""
+            buildConfigField 'String', 'API_IMPL', "\"CMC\""
         }
         debugImpl {
-            flavorDimensions "build"
+            flavorDimensions 'build'
 
-            buildConfigField "String", "API_IMPL", "\"DEBUG\""
+            buildConfigField 'String', 'API_IMPL', "\"DEBUG\""
         }
     }
 
@@ -70,9 +70,6 @@ dependencies {
     // Retrofit
     implementation 'com.squareup.retrofit2:retrofit:2.6.2'
     implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
-
-    // Process Phoenix
-    implementation 'com.jakewharton:process-phoenix:2.0.0'
 
     // Unit tests
     testImplementation 'junit:junit:4.13'

@@ -1,12 +1,13 @@
-package com.smlnskgmail.jaman.cryptotracker.components.fragments
+package com.smlnskgmail.jaman.cryptotracker.components
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import com.smlnskgmail.jaman.cryptotracker.R
 
-abstract class BaseFragment : Fragment() {
+abstract class BaseThemeBottomSheet : BottomSheetDialogFragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -21,5 +22,7 @@ abstract class BaseFragment : Fragment() {
     }
 
     abstract fun layoutResId(): Int
+
+    override fun getTheme(): Int = R.style.AppBottomSheetStyle
 
 }
