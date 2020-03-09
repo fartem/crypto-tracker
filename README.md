@@ -43,6 +43,19 @@ Screenshots
   <img src="media/screenshots/scr_04.png" width="210" />
 </p>
 
+How to contribute
+-------------
+
+Read [Commit Convention](https://github.com/fartem/repository-rules/blob/master/commit-convention/COMMIT_CONVENTION.md). Make sure your build is green before you contribute your pull request. Then:
+
+```shell
+gradlew clean
+gradlew build
+gradlew -Pandroid.testInstrumentationRunnerArguments.class=com.smlnskgmail.jaman.cryptotracker.AndroidTestSuite createDebugImplDebugCoverageReport
+```
+
+If you don't see any error messages, submit your pull request.
+
 Contributors
 -------------
 
