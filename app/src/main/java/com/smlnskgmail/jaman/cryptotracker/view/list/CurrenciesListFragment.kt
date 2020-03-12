@@ -7,29 +7,39 @@ import com.google.android.material.snackbar.Snackbar
 import com.smlnskgmail.jaman.cryptotracker.App
 import com.smlnskgmail.jaman.cryptotracker.R
 import com.smlnskgmail.jaman.cryptotracker.components.BaseThemeFragment
+import com.smlnskgmail.jaman.cryptotracker.model.api.cache.CurrencyCache
 import com.smlnskgmail.jaman.cryptotracker.model.api.currency.Currency
+import com.smlnskgmail.jaman.cryptotracker.model.api.currency.CurrencyApi
 import com.smlnskgmail.jaman.cryptotracker.presenter.list.CurrenciesListPresenter
 import com.smlnskgmail.jaman.cryptotracker.presenter.list.CurrenciesListPresenterImpl
 import com.smlnskgmail.jaman.cryptotracker.view.info.BottomSheetCurrencyInfo
 import com.smlnskgmail.jaman.cryptotracker.view.list.recycler.CurrenciesAdapter
 import com.smlnskgmail.jaman.cryptotracker.view.list.recycler.CurrencyHolder
 import kotlinx.android.synthetic.main.fragment_currencies_list.*
+import javax.inject.Inject
 
 class CurrenciesListFragment : BaseThemeFragment(), CurrenciesListView {
 
     private lateinit var currenciesListPresenter: CurrenciesListPresenter
 
+    @Inject
+    lateinit var currencyApi: CurrencyApi
+
+    @Inject
+    lateinit var currencyCache: CurrencyCache
+
     override fun onViewCreated(
         view: View,
         savedInstanceState: Bundle?
     ) {
+        App.applicationComponent.inject(this)
         configureCurrenciesList()
         configureSwipeRefresh()
         currenciesListPresenter = CurrenciesListPresenterImpl()
         currenciesListPresenter.init(
             this,
-            App.currencyApi(),
-            App.currencyCache(context!!)
+            currencyApi,
+            currencyCache
         )
     }
 

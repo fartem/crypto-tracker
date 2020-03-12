@@ -14,10 +14,10 @@ android {
         minSdkVersion 21
         targetSdkVersion 29
         versionCode 1
-        versionName '2.1.2'
+        versionName '2.2.0'
         testInstrumentationRunner "com.smlnskgmail.jaman.cryptotracker.runner.AndroidJacocoTestRunner"
 
-        buildConfigField 'String', 'API_IMPL', "\"\""
+        buildConfigField 'String', 'API', "\"\""
     }
     buildTypes {
         debug {
@@ -30,12 +30,12 @@ android {
         coinmarketcup {
             flavorDimensions 'build'
 
-            buildConfigField 'String', 'API_IMPL', "\"CMC\""
+            buildConfigField 'String', 'API', "\"CMC\""
         }
         debugImpl {
             flavorDimensions 'build'
 
-            buildConfigField 'String', 'API_IMPL', "\"DEBUG\""
+            buildConfigField 'String', 'API', "\"DEBUG\""
         }
     }
 
@@ -60,6 +60,10 @@ dependencies {
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.0.0'
 
+    // Dagger 2
+    implementation 'com.google.dagger:dagger:2.24'
+    kapt 'com.google.dagger:dagger-compiler:2.24'
+
     // MapDB
     // noinspection GradleDependency
     implementation 'org.mapdb:mapdb:2.0-beta13'
@@ -68,6 +72,7 @@ dependencies {
     implementation 'com.smlnskgmail.jaman:adaptiverecyclerview:0.1.2'
 
     // Retrofit
+    //noinspection GradleDependency
     implementation 'com.squareup.retrofit2:retrofit:2.6.2'
     implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
 

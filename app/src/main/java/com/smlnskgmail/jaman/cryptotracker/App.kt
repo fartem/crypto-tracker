@@ -2,6 +2,10 @@ package com.smlnskgmail.jaman.cryptotracker
 
 import android.app.Application
 import android.content.Context
+import com.smlnskgmail.jaman.cryptotracker.di.components.ApplicationComponent
+import com.smlnskgmail.jaman.cryptotracker.di.components.DaggerApplicationComponent
+import com.smlnskgmail.jaman.cryptotracker.di.modules.CurrencyApiModule
+import com.smlnskgmail.jaman.cryptotracker.di.modules.CurrencyCacheModule
 import com.smlnskgmail.jaman.cryptotracker.model.api.cache.CurrencyCache
 import com.smlnskgmail.jaman.cryptotracker.model.api.currency.CurrencyApi
 import com.smlnskgmail.jaman.cryptotracker.model.impl.cache.mapdb.MapDbCurrencyCache
@@ -15,39 +19,50 @@ class App : Application() {
 
     companion object {
 
-        private var currencyApi: CurrencyApi? = null
-        private var currencyCache: CurrencyCache? = null
+        lateinit var applicationComponent: ApplicationComponent
 
-        @Suppress("ConstantConditionIf")
-        fun currencyApi(): CurrencyApi {
-            if (currencyApi == null) {
-                currencyApi = if (BuildConfig.API_IMPL == "DEBUG") {
-                    DebugCurrencyApi()
-                } else {
-                    CmcCurrencyApi()
-                }
-            }
-            return currencyApi!!
-        }
+    }
 
-        @Suppress("ConstantConditionIf")
-        fun currencyCache(context: Context): CurrencyCache {
-            if (currencyCache == null) {
-                val instanceProvider = if (BuildConfig.API_IMPL == "DEBUG") {
-                    DebugCurrencyMapDbInstanceProvider()
-                } else {
-                    CmcCurrencyMapDbInstanceProvider()
-                }
-                currencyCache = MapDbCurrencyCache(
-                    context,
-                    MapDbCurrencySerializer(
-                        instanceProvider
+    override fun onCreate() {
+        super.onCreate()
+        applicationComponent = DaggerApplicationComponent.builder()
+            .currencyApiModule(
+                CurrencyApiModule(
+                    currencyApi()
+                )
+            )
+            .currencyCacheModule(
+                CurrencyCacheModule(
+                    currencyCache(
+                        this
                     )
                 )
-            }
-            return currencyCache!!
-        }
+            )
+            .build()
+    }
 
+    @Suppress("ConstantConditionIf")
+    fun currencyApi(): CurrencyApi {
+        return if (BuildConfig.API == "DEBUG") {
+            DebugCurrencyApi()
+        } else {
+            CmcCurrencyApi()
+        }
+    }
+
+    @Suppress("ConstantConditionIf")
+    fun currencyCache(context: Context): CurrencyCache {
+        val instanceProvider = if (BuildConfig.API == "DEBUG") {
+            DebugCurrencyMapDbInstanceProvider()
+        } else {
+            CmcCurrencyMapDbInstanceProvider()
+        }
+        return MapDbCurrencyCache(
+            context,
+            MapDbCurrencySerializer(
+                instanceProvider
+            )
+        )
     }
 
 }

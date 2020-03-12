@@ -27,13 +27,13 @@ class DebugCurrenciesListTest {
 
     @Test
     fun loadCurrenciesTest() {
-        if (BuildConfig.API_IMPL != "DEBUG") {
+        if (BuildConfig.API != "DEBUG") {
             fail(
-                "You must run this test in DEBUG API_IMPL!"
+                "You must run this test in DEBUG API!"
             )
         }
 
-        sleep(5_000)
+        sleep(3_000)
         onView(withId(R.id.currencies_list)).check(
             RecyclerViewCountAssertion(10)
         )

@@ -95,7 +95,7 @@ class DebugCurrencyApi :
         override fun doInBackground(
             vararg params: Void?
         ): List<Currency> {
-            Thread.sleep(3_000)
+            Thread.sleep(1_500)
             return currencies.toList()
         }
 
