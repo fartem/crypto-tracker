@@ -21,7 +21,7 @@ class MapDbCurrencyCache(
         .closeOnJvmShutdown()
         .make()
 
-    private val currencies = cache.hashSet<Currency>(
+    private val currencies = cache.hashSet(
         "currencies",
         serializer
     )

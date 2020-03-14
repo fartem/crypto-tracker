@@ -7,8 +7,9 @@ import androidx.test.runner.AndroidJUnitRunner;
 
 import java.io.IOException;
 import java.lang.reflect.Method;
-import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 
+@SuppressWarnings("unused")
 public class AndroidJacocoTestRunner extends AndroidJUnitRunner {
 
     @Override
@@ -18,6 +19,7 @@ public class AndroidJacocoTestRunner extends AndroidJUnitRunner {
     ) {
         try {
             Class rt = Class.forName("org.jacoco.agent.rt.RT");
+            @SuppressWarnings("unchecked")
             Method getAgent = rt.getMethod("getAgent");
             Method dump = getAgent.getReturnType().getMethod(
                     "dump",
@@ -30,7 +32,7 @@ public class AndroidJacocoTestRunner extends AndroidJUnitRunner {
             try {
                 System.out.write(
                         trace.getBytes(
-                                Charset.forName("UTF-8")
+                                StandardCharsets.UTF_8
                         )
                 );
             } catch (IOException ignored) {

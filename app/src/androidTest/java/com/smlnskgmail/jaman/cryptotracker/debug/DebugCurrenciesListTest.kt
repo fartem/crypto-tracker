@@ -25,6 +25,7 @@ class DebugCurrenciesListTest {
         MainActivity::class.java
     )
 
+    @Suppress("ConstantConditionIf")
     @Test
     fun loadCurrenciesTest() {
         if (BuildConfig.API != "DEBUG") {

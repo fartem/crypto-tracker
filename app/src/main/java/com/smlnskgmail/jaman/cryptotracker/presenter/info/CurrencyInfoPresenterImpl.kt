@@ -7,7 +7,6 @@ import com.smlnskgmail.jaman.cryptotracker.view.info.CurrencyInfoView
 class CurrencyInfoPresenterImpl : CurrencyInfoPresenter {
 
     private lateinit var currencyInfoView: CurrencyInfoView
-    private lateinit var currency: Currency
 
     override fun init(
         currencyInfoView: CurrencyInfoView,

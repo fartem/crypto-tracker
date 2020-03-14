@@ -95,7 +95,7 @@ class MainActivity : BaseThemeActivity() {
             themeColor,
             typedValue,
             true
-        );
+        )
         return typedValue.data
     }
 
