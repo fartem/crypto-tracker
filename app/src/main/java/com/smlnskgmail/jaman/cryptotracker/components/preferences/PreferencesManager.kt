@@ -1,7 +1,7 @@
 package com.smlnskgmail.jaman.cryptotracker.components.preferences
 
 import android.content.Context
-import android.preference.PreferenceManager
+import androidx.preference.PreferenceManager
 
 object PreferencesManager {
 

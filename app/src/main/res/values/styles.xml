@@ -40,7 +40,7 @@
     </style>
 
     <style name="BottomSheet" parent="@style/Widget.Design.BottomSheet.Modal">
-        <item name="android:background">@drawable/shape_background_bottom_sheet</item>
+        <item name="android:background">@drawable/bg_bottom_sheet</item>
     </style>
 
 </resources>

@@ -5,7 +5,7 @@
     <color name="colorAccent">#D81B60</color>
 
     <!-- launcher -->
-    <color name="ic_launcher_background">#F7931A</color>
+    <color name="colorLauncherBackground">#F7931A</color>
 
     <!-- commons -->
     <color name="colorTextSecondary">#757575</color>
