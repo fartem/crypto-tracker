@@ -64,7 +64,9 @@ class CurrenciesListFragment : BaseThemeFragment(), CurrenciesListView {
         currencies: List<Currency>
     ) {
         currencies_list.adapter = CurrenciesAdapter(
-            currencies.sortedBy { it.currencyType().internalPosition },
+            currencies.sortedBy {
+                it.currencyType().internalPosition
+            },
             currencyClickTarget(),
             priceRefreshTarget()
         )

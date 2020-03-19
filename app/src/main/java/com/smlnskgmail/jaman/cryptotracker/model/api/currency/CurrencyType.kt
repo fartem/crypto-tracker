@@ -127,7 +127,7 @@ enum class CurrencyType(
         "https://crypto.com/"
     ),
     ZIL(
-        1,
+        17,
         "ZIL",
         R.drawable.ic_zil,
         "#49c1bf",

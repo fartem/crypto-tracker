@@ -5,13 +5,8 @@ import com.smlnskgmail.jaman.cryptotracker.model.api.currency.CurrencyListing
 import com.smlnskgmail.jaman.cryptotracker.model.api.currency.CurrencyPriceValue
 
 data class CmcCurrencyListing(
-
-    @SerializedName("price")
-    private val price: Float,
-
-    @SerializedName("percent_change_1h")
-    private val changeHour: Float
-
+    private val currentPrice: CurrencyPriceValue,
+    private val changeHourPrice: CurrencyPriceValue
 ) : CurrencyListing {
 
     companion object {
@@ -20,16 +15,6 @@ data class CmcCurrencyListing(
         const val serialVersionUID = 579L
 
     }
-
-    private val currentPrice: CurrencyPriceValue =
-        CurrencyPriceValue(
-            price
-        )
-
-    private val changeHourPrice: CurrencyPriceValue =
-        CurrencyPriceValue(
-            changeHour
-        )
 
     override fun currentPrice(): CurrencyPriceValue {
         return currentPrice

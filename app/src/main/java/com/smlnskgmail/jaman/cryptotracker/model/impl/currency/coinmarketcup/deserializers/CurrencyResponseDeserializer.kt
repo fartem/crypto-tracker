@@ -6,6 +6,7 @@ import com.google.gson.JsonDeserializer
 import com.google.gson.JsonElement
 import com.google.gson.reflect.TypeToken
 import com.smlnskgmail.jaman.cryptotracker.model.api.currency.Currency
+import com.smlnskgmail.jaman.cryptotracker.model.api.currency.CurrencyPriceValue
 import com.smlnskgmail.jaman.cryptotracker.model.api.currency.CurrencyType
 import com.smlnskgmail.jaman.cryptotracker.model.impl.currency.coinmarketcup.CmcCurrency
 import com.smlnskgmail.jaman.cryptotracker.model.impl.currency.coinmarketcup.CmcCurrencyListing
@@ -38,9 +39,18 @@ class CurrencyResponseDeserializer : JsonDeserializer<CurrencyResponse> {
             val priceInfo = currencyAsJson.asJsonObject
                 .get("quote").asJsonObject
                 .get("USD")
-            val currencyListing: CmcCurrencyListing = gson.fromJson(
-                priceInfo,
-                currencyListingTypeToken
+                .asJsonObject
+            val currencyListing = CmcCurrencyListing(
+                CurrencyPriceValue(
+                    priceInfo.get(
+                        "price"
+                    ).asFloat
+                ),
+                CurrencyPriceValue(
+                    priceInfo.get(
+                        "percent_change_1h"
+                    ).asFloat
+                )
             )
 
             currency.currencyListing = currencyListing

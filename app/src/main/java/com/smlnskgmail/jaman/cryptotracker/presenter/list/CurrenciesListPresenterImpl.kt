@@ -56,7 +56,9 @@ class CurrenciesListPresenterImpl : CurrenciesListPresenter {
                         currencies
                     )
                     currencyCache.clear()
-                    currencyCache.putCurrencies(currencies)
+                    currencyCache.putCurrencies(
+                        currencies
+                    )
                 } else {
                     currenciesListView.showLoadError()
                 }
