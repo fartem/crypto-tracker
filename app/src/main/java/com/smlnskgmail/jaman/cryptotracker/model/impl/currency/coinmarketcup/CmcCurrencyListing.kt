@@ -1,6 +1,5 @@
 package com.smlnskgmail.jaman.cryptotracker.model.impl.currency.coinmarketcup
 
-import com.google.gson.annotations.SerializedName
 import com.smlnskgmail.jaman.cryptotracker.model.api.currency.CurrencyListing
 import com.smlnskgmail.jaman.cryptotracker.model.api.currency.CurrencyPriceValue
 

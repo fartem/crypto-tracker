@@ -23,7 +23,6 @@ class CurrencyResponseDeserializer : JsonDeserializer<CurrencyResponse> {
         val gson = Gson()
 
         val currencyTypeToken = object : TypeToken<CmcCurrency>() {}.type
-        val currencyListingTypeToken = object : TypeToken<CmcCurrencyListing>() {}.type
 
         val currencies = arrayListOf<Currency>()
 
