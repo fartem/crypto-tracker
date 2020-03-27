@@ -5,6 +5,7 @@ Crypto Tracker
 
 [![Travis CI](https://img.shields.io/travis/fartem/crypto-tracker)](https://travis-ci.org/fartem/crypto-tracker)
 [![Codecov](https://img.shields.io/codecov/c/github/fartem/crypto-tracker)](https://codecov.io/gh/fartem/crypto-tracker)
+[![Hits-of-Code](https://hitsofcode.com/github/fartem/crypto-tracker)](https://hitsofcode.com/view/github/fartem/crypto-tracker)
 [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-Crypto%20Tracker-brightgreen.svg?style=flat)](https://android-arsenal.com/details/3/7955)
 
 About
