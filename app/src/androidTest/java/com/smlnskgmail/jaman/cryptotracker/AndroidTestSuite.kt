@@ -1,5 +1,6 @@
 package com.smlnskgmail.jaman.cryptotracker
 
+import com.smlnskgmail.jaman.cryptotracker.components.splash.SplashActivity
 import com.smlnskgmail.jaman.cryptotracker.debug.DebugCurrenciesListTest
 import com.smlnskgmail.jaman.cryptotracker.model.cache.mapdb.MapDbCacheTest
 import com.smlnskgmail.jaman.cryptotracker.model.currency.cmc.CurrencyDeserializerTest
@@ -13,7 +14,8 @@ import org.junit.runners.Suite
     CurrencyListingDeserializerTest::class,
     DebugCurrenciesListTest::class,
     MapDbCacheTest::class,
-    ThemeChangeTest::class
+    ThemeChangeTest::class,
+    SplashActivity::class
 )
 @RunWith(Suite::class)
 class AndroidTestSuite
