@@ -1,6 +1,7 @@
 package com.smlnskgmail.jaman.cryptotracker.debug
 
 import androidx.test.espresso.Espresso.onView
+import androidx.test.espresso.Espresso.pressBack
 import androidx.test.espresso.contrib.RecyclerViewActions
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.rule.ActivityTestRule
@@ -27,14 +28,14 @@ class DebugCurrenciesListTest {
 
     @Suppress("ConstantConditionIf")
     @Test
-    fun loadCurrenciesTest() {
+    fun currenciesListTest() {
         if (BuildConfig.API != "DEBUG") {
             fail(
                 "You must run this test in DEBUG API!"
             )
         }
 
-        sleep(3_000)
+        delay(3_000)
         onView(withId(R.id.currencies_list)).check(
             RecyclerViewCountAssertion(10)
         )
@@ -42,9 +43,30 @@ class DebugCurrenciesListTest {
         onView(withId(R.id.currencies_list)).perform(
             RecyclerViewActions.actionOnItemAtPosition<CurrencyHolder>(
                 0,
-                RecyclerViewItemClick(R.id.currency_item)
+                RecyclerViewItemClick(
+                    R.id.currency_item
+                )
             )
         )
+        pressBack()
+        delay()
+
+        onView(withId(R.id.currencies_list)).perform(
+            RecyclerViewActions.actionOnItemAtPosition<CurrencyHolder>(
+                0,
+                RecyclerViewItemClick(
+                    R.id.currency_refresh_listing
+                )
+            )
+        )
+        onView(withId(R.id.currencies_list)).check(
+            RecyclerViewCountAssertion(10)
+        )
+        delay()
+    }
+
+    private fun delay(time: Long = 1_000) {
+        sleep(time)
     }
 
 }
