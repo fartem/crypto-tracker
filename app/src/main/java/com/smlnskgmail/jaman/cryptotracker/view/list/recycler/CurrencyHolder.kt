@@ -40,11 +40,15 @@ class CurrencyHolder(
             accentColor
         )
         itemView.currency_refresh_listing.setOnClickListener {
-            currencyRefreshClickTarget.onCurrencyRefreshClick(currency)
+            currencyRefreshClickTarget.onCurrencyRefreshClick(
+                currency
+            )
         }
 
         itemView.setOnClickListener {
-            currencyClickTarget.onCurrencyClick(currency)
+            currencyClickTarget.onCurrencyClick(
+                currency
+            )
         }
 
         showCurrencyListing(

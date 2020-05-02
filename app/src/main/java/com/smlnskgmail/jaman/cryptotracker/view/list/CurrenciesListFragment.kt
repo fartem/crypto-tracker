@@ -47,7 +47,7 @@ class CurrenciesListFragment : BaseThemeFragment(), CurrenciesListView {
         currencies_list_refresh.isEnabled = false
         currencies_list_refresh.setColorSchemeColors(
             ContextCompat.getColor(
-                context!!,
+                requireContext(),
                 R.color.colorAccent
             )
         )
@@ -127,7 +127,7 @@ class CurrenciesListFragment : BaseThemeFragment(), CurrenciesListView {
         val bottomSheetCurrencyInfo = BottomSheetCurrencyInfo()
         bottomSheetCurrencyInfo.arguments = arguments
         bottomSheetCurrencyInfo.show(
-            activity!!.supportFragmentManager,
+            requireActivity().supportFragmentManager,
             BottomSheetCurrencyInfo::class.java.canonicalName
         )
     }

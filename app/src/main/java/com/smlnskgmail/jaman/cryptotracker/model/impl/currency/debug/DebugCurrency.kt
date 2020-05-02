@@ -1,9 +1,6 @@
 package com.smlnskgmail.jaman.cryptotracker.model.impl.currency.debug
 
-import com.smlnskgmail.jaman.cryptotracker.model.api.currency.Currency
-import com.smlnskgmail.jaman.cryptotracker.model.api.currency.CurrencyListing
-import com.smlnskgmail.jaman.cryptotracker.model.api.currency.CurrencyPriceValue
-import com.smlnskgmail.jaman.cryptotracker.model.api.currency.CurrencyType
+import com.smlnskgmail.jaman.cryptotracker.model.api.currency.*
 
 // CPD-OFF
 class DebugCurrency(
@@ -48,14 +45,14 @@ class DebugCurrency(
         if (currencyListing == null) {
             currencyListing = object :
                 CurrencyListing {
-                override fun currentPrice(): CurrencyPriceValue {
-                    return CurrencyPriceValue(
+                override fun currentPrice(): CurrencyPrice {
+                    return CurrencyPrice(
                         1000.751f
                     )
                 }
 
-                override fun changeHour(): CurrencyPriceValue {
-                    return CurrencyPriceValue(
+                override fun changeHour(): CurrencyPricePercentChangeDay {
+                    return CurrencyPricePercentChangeDay(
                         0.19f
                     )
                 }

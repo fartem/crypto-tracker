@@ -32,7 +32,7 @@ class BottomSheetCurrencyInfo : BaseThemeBottomSheet(), CurrencyInfoView {
         currencyInfoPresenter = CurrencyInfoPresenterImpl()
         currencyInfoPresenter.init(
             this,
-            arguments!!.getSerializable("currency") as Currency
+            requireArguments().getSerializable("currency") as Currency
         )
     }
 
@@ -41,13 +41,13 @@ class BottomSheetCurrencyInfo : BaseThemeBottomSheet(), CurrencyInfoView {
     }
 
     override fun context(): Context {
-        return context!!
+        return requireContext()
     }
 
     override fun showCurrencyInfo(currency: Currency) {
         currency_image.setImageDrawable(
             ContextCompat.getDrawable(
-                context!!,
+                requireContext(),
                 currency.currencyType().iconResId
             )
         )

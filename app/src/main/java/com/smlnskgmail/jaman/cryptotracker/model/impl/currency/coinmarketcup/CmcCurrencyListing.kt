@@ -1,11 +1,12 @@
 package com.smlnskgmail.jaman.cryptotracker.model.impl.currency.coinmarketcup
 
 import com.smlnskgmail.jaman.cryptotracker.model.api.currency.CurrencyListing
-import com.smlnskgmail.jaman.cryptotracker.model.api.currency.CurrencyPriceValue
+import com.smlnskgmail.jaman.cryptotracker.model.api.currency.CurrencyPricePercentChangeDay
+import com.smlnskgmail.jaman.cryptotracker.model.api.currency.CurrencyPrice
 
 data class CmcCurrencyListing(
-    private val currentPrice: CurrencyPriceValue,
-    private val changeHourPrice: CurrencyPriceValue
+    private val currentPrice: CurrencyPrice,
+    private val changeHourPrice: CurrencyPricePercentChangeDay
 ) : CurrencyListing {
 
     companion object {
@@ -15,11 +16,11 @@ data class CmcCurrencyListing(
 
     }
 
-    override fun currentPrice(): CurrencyPriceValue {
+    override fun currentPrice(): CurrencyPrice {
         return currentPrice
     }
 
-    override fun changeHour(): CurrencyPriceValue {
+    override fun changeHour(): CurrencyPricePercentChangeDay {
         return changeHourPrice
     }
 

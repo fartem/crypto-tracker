@@ -18,7 +18,7 @@ abstract class BaseThemeFragment : Fragment() {
         val contextThemeWrapper = ContextThemeWrapper(
             activity,
             PreferencesManager.theme(
-                context!!
+                requireContext()
             ).themeResId
         )
         val localInflater = inflater.cloneInContext(

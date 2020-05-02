@@ -2,7 +2,8 @@ package com.smlnskgmail.jaman.cryptotracker.model.impl.currency.coinmarketcup.ca
 
 import com.smlnskgmail.jaman.cryptotracker.model.api.cache.CurrencyInstanceProvider
 import com.smlnskgmail.jaman.cryptotracker.model.api.currency.Currency
-import com.smlnskgmail.jaman.cryptotracker.model.api.currency.CurrencyPriceValue
+import com.smlnskgmail.jaman.cryptotracker.model.api.currency.CurrencyPricePercentChangeDay
+import com.smlnskgmail.jaman.cryptotracker.model.api.currency.CurrencyPrice
 import com.smlnskgmail.jaman.cryptotracker.model.api.currency.CurrencyType
 import com.smlnskgmail.jaman.cryptotracker.model.impl.currency.coinmarketcup.CmcCurrency
 import com.smlnskgmail.jaman.cryptotracker.model.impl.currency.coinmarketcup.CmcCurrencyListing
@@ -46,10 +47,10 @@ class CmcCurrencyMapDbInstanceProvider : CurrencyInstanceProvider {
             reader.readUTF(),
             reader.readUTF(),
             CmcCurrencyListing(
-                CurrencyPriceValue(
+                CurrencyPrice(
                     reader.readFloat()
                 ),
-                CurrencyPriceValue(
+                CurrencyPricePercentChangeDay(
                     reader.readFloat()
                 )
             ),

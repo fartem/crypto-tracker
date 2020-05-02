@@ -24,7 +24,9 @@ class MapDbCurrencySerializer(
         input: DataInput,
         available: Int
     ): Currency {
-        return currencyInstanceProvider.currencyFrom(input)
+        return currencyInstanceProvider.currencyFrom(
+            input
+        )
     }
 
 }

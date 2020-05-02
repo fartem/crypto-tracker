@@ -44,7 +44,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/currency_symbol"
         app:layout_constraintEnd_toStartOf="@+id/currency_refresh_listing"
         app:layout_constraintTop_toTopOf="@+id/currency_symbol"
-        tools:text="8,891.17 $" />
+        tools:text="$8,891.17" />
 
     <TextView
         android:id="@+id/currency_price_at_last_hour"
@@ -53,7 +53,7 @@
         app:layout_constraintEnd_toEndOf="@+id/currency_price"
         app:layout_constraintTop_toBottomOf="@+id/currency_price"
         tools:textColor="@color/colorCurrencyPriceUp"
-        tools:text="0.191 $" />
+        tools:text="0.191%" />
 
     <ImageView
         android:id="@+id/currency_refresh_listing"

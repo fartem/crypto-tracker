@@ -46,7 +46,7 @@
         style="@style/AppCurrencyItemTextPrimary"
         app:layout_constraintBottom_toBottomOf="@+id/currency_name"
         app:layout_constraintEnd_toEndOf="parent"
-        tools:text="8,891.17 $" />
+        tools:text="$8,891.17" />
 
     <TextView
         android:id="@+id/currency_first_historical_data"

@@ -60,6 +60,9 @@ class CurrenciesListPresenterImpl : CurrenciesListPresenter {
                         currencies
                     )
                 } else {
+                    currenciesListView.showCurrencies(
+                        emptyList()
+                    )
                     currenciesListView.showLoadError()
                 }
                 action()
