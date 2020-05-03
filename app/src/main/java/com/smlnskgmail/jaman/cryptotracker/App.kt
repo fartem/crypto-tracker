@@ -10,8 +10,8 @@ import com.smlnskgmail.jaman.cryptotracker.model.api.cache.CurrencyCache
 import com.smlnskgmail.jaman.cryptotracker.model.api.currency.CurrencyApi
 import com.smlnskgmail.jaman.cryptotracker.model.impl.cache.mapdb.MapDbCurrencyCache
 import com.smlnskgmail.jaman.cryptotracker.model.impl.cache.mapdb.MapDbCurrencySerializer
-import com.smlnskgmail.jaman.cryptotracker.model.impl.currency.coinmarketcup.CmcCurrencyApi
-import com.smlnskgmail.jaman.cryptotracker.model.impl.currency.coinmarketcup.cache.CmcCurrencyMapDbInstanceProvider
+import com.smlnskgmail.jaman.cryptotracker.model.impl.currency.coinmarketcap.CmcCurrencyApi
+import com.smlnskgmail.jaman.cryptotracker.model.impl.currency.coinmarketcap.cache.CmcCurrencyMapDbInstanceProvider
 import com.smlnskgmail.jaman.cryptotracker.model.impl.currency.debug.DebugCurrencyApi
 import com.smlnskgmail.jaman.cryptotracker.model.impl.currency.debug.DebugCurrencyMapDbInstanceProvider
 

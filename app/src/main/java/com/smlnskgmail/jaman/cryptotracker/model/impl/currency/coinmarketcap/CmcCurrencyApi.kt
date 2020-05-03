@@ -1,15 +1,15 @@
-package com.smlnskgmail.jaman.cryptotracker.model.impl.currency.coinmarketcup
+package com.smlnskgmail.jaman.cryptotracker.model.impl.currency.coinmarketcap
 
 import android.annotation.SuppressLint
 import com.google.gson.GsonBuilder
 import com.smlnskgmail.jaman.cryptotracker.model.api.currency.Currency
 import com.smlnskgmail.jaman.cryptotracker.model.api.currency.CurrencyApi
 import com.smlnskgmail.jaman.cryptotracker.model.api.currency.CurrencyType
-import com.smlnskgmail.jaman.cryptotracker.model.impl.currency.coinmarketcup.deserializers.CurrencyListingResponseDeserializer
-import com.smlnskgmail.jaman.cryptotracker.model.impl.currency.coinmarketcup.deserializers.CurrencyResponseDeserializer
-import com.smlnskgmail.jaman.cryptotracker.model.impl.currency.coinmarketcup.retrofit.CmcCurrencyService
-import com.smlnskgmail.jaman.cryptotracker.model.impl.currency.coinmarketcup.retrofit.responses.CurrencyListingResponse
-import com.smlnskgmail.jaman.cryptotracker.model.impl.currency.coinmarketcup.retrofit.responses.CurrencyResponse
+import com.smlnskgmail.jaman.cryptotracker.model.impl.currency.coinmarketcap.deserializers.CurrencyListingResponseDeserializer
+import com.smlnskgmail.jaman.cryptotracker.model.impl.currency.coinmarketcap.deserializers.CurrencyResponseDeserializer
+import com.smlnskgmail.jaman.cryptotracker.model.impl.currency.coinmarketcap.retrofit.CmcCurrencyService
+import com.smlnskgmail.jaman.cryptotracker.model.impl.currency.coinmarketcap.retrofit.responses.CurrencyListingResponse
+import com.smlnskgmail.jaman.cryptotracker.model.impl.currency.coinmarketcap.retrofit.responses.CurrencyResponse
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

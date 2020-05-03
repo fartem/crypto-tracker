@@ -26,11 +26,11 @@ class DebugCurrency(
         return slug
     }
 
-    override fun firstHistoricalData(): String {
+    override fun firstHistoricalDate(): String {
         return firstHistoricalData
     }
 
-    override fun lastHistoricalData(): String {
+    override fun lastHistoricalDate(): String {
         return lastHistoricalData
     }
 
@@ -51,7 +51,7 @@ class DebugCurrency(
                     )
                 }
 
-                override fun changeHour(): CurrencyPricePercentChangeDay {
+                override fun changeDay(): CurrencyPricePercentChangeDay {
                     return CurrencyPricePercentChangeDay(
                         0.19f
                     )
@@ -66,13 +66,18 @@ class DebugCurrency(
     }
 
     override fun equals(other: Any?): Boolean {
-        if (this === other) return true
+        if (this === other) {
+            return true
+        }
 
         other as Currency
 
-        if (name != other.name()) return false
-        if (symbol() != other.symbol()) return false
-
+        if (name != other.name()) {
+            return false
+        }
+        if (symbol() != other.symbol()) {
+            return false
+        }
         return true
     }
 

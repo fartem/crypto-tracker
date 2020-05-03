@@ -17,8 +17,8 @@ class DebugCurrencyMapDbInstanceProvider : CurrencyInstanceProvider {
         writer.writeUTF(currency.name())
         writer.writeUTF(currency.symbol())
         writer.writeUTF(currency.slug())
-        writer.writeUTF(currency.firstHistoricalData())
-        writer.writeUTF(currency.lastHistoricalData())
+        writer.writeUTF(currency.firstHistoricalDate())
+        writer.writeUTF(currency.lastHistoricalDate())
         writer.writeUTF(
             currency.currencyType().toString()
         )

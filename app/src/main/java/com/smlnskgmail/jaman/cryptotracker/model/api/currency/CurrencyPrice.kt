@@ -20,4 +20,24 @@ class CurrencyPrice(
         )
     }
 
+    override fun equals(other: Any?): Boolean {
+        if (this === other) {
+            return true
+        }
+        if (javaClass != other?.javaClass) {
+            return false
+        }
+
+        other as CurrencyPrice
+
+        if (price != other.price) {
+            return false
+        }
+        return true
+    }
+
+    override fun hashCode(): Int {
+        return price.hashCode()
+    }
+
 }

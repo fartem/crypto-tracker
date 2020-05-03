@@ -61,7 +61,7 @@ class CurrencyHolder(
         currencyListing: CurrencyListing
     ) {
         val price = currencyListing.currentPrice()
-        val changeHour = currencyListing.changeHour()
+        val changeHour = currencyListing.changeDay()
 
         itemView.currency_price.text = price.toString()
         itemView.currency_price_at_last_hour.text = changeHour.toString()

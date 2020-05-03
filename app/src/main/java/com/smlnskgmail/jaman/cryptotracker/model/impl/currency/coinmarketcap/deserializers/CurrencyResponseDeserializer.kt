@@ -1,4 +1,4 @@
-package com.smlnskgmail.jaman.cryptotracker.model.impl.currency.coinmarketcup.deserializers
+package com.smlnskgmail.jaman.cryptotracker.model.impl.currency.coinmarketcap.deserializers
 
 import com.google.gson.Gson
 import com.google.gson.JsonDeserializationContext
@@ -9,9 +9,9 @@ import com.smlnskgmail.jaman.cryptotracker.model.api.currency.Currency
 import com.smlnskgmail.jaman.cryptotracker.model.api.currency.CurrencyPrice
 import com.smlnskgmail.jaman.cryptotracker.model.api.currency.CurrencyPricePercentChangeDay
 import com.smlnskgmail.jaman.cryptotracker.model.api.currency.CurrencyType
-import com.smlnskgmail.jaman.cryptotracker.model.impl.currency.coinmarketcup.CmcCurrency
-import com.smlnskgmail.jaman.cryptotracker.model.impl.currency.coinmarketcup.CmcCurrencyListing
-import com.smlnskgmail.jaman.cryptotracker.model.impl.currency.coinmarketcup.retrofit.responses.CurrencyResponse
+import com.smlnskgmail.jaman.cryptotracker.model.impl.currency.coinmarketcap.CmcCurrency
+import com.smlnskgmail.jaman.cryptotracker.model.impl.currency.coinmarketcap.CmcCurrencyListing
+import com.smlnskgmail.jaman.cryptotracker.model.impl.currency.coinmarketcap.retrofit.responses.CurrencyResponse
 import java.lang.reflect.Type
 
 class CurrencyResponseDeserializer : JsonDeserializer<CurrencyResponse> {

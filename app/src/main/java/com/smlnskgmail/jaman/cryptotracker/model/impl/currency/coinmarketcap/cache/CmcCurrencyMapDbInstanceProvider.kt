@@ -1,12 +1,12 @@
-package com.smlnskgmail.jaman.cryptotracker.model.impl.currency.coinmarketcup.cache
+package com.smlnskgmail.jaman.cryptotracker.model.impl.currency.coinmarketcap.cache
 
 import com.smlnskgmail.jaman.cryptotracker.model.api.cache.CurrencyInstanceProvider
 import com.smlnskgmail.jaman.cryptotracker.model.api.currency.Currency
 import com.smlnskgmail.jaman.cryptotracker.model.api.currency.CurrencyPrice
 import com.smlnskgmail.jaman.cryptotracker.model.api.currency.CurrencyPricePercentChangeDay
 import com.smlnskgmail.jaman.cryptotracker.model.api.currency.CurrencyType
-import com.smlnskgmail.jaman.cryptotracker.model.impl.currency.coinmarketcup.CmcCurrency
-import com.smlnskgmail.jaman.cryptotracker.model.impl.currency.coinmarketcup.CmcCurrencyListing
+import com.smlnskgmail.jaman.cryptotracker.model.impl.currency.coinmarketcap.CmcCurrency
+import com.smlnskgmail.jaman.cryptotracker.model.impl.currency.coinmarketcap.CmcCurrencyListing
 import java.io.DataInput
 import java.io.DataOutput
 
@@ -22,13 +22,13 @@ class CmcCurrencyMapDbInstanceProvider : CurrencyInstanceProvider {
         writer.writeUTF(currency.name())
         writer.writeUTF(currency.symbol())
         writer.writeUTF(currency.slug())
-        writer.writeUTF(currency.firstHistoricalData())
-        writer.writeUTF(currency.lastHistoricalData())
+        writer.writeUTF(currency.firstHistoricalDate())
+        writer.writeUTF(currency.lastHistoricalDate())
         writer.writeFloat(
             currency.currencyListing().currentPrice().value()
         )
         writer.writeFloat(
-            currency.currencyListing().changeHour().value()
+            currency.currencyListing().changeDay().value()
         )
         writer.writeUTF(
             currency.currencyType().toString()

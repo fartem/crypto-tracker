@@ -63,10 +63,10 @@ class BottomSheetCurrencyInfo : BaseThemeBottomSheet(), CurrencyInfoView {
         currency_slug.text = currency.slug()
 
         currency_first_historical_data.text = dateFromTimestamp(
-            currency.firstHistoricalData()
+            currency.firstHistoricalDate()
         )
         currency_last_historical_data.text = dateFromTimestamp(
-            currency.lastHistoricalData()
+            currency.lastHistoricalDate()
         )
 
         currency_price.text = currency.currencyListing().currentPrice().toString()

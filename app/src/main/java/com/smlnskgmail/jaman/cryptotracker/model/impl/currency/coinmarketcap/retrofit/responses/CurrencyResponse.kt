@@ -1,4 +1,4 @@
-package com.smlnskgmail.jaman.cryptotracker.model.impl.currency.coinmarketcup.retrofit.responses
+package com.smlnskgmail.jaman.cryptotracker.model.impl.currency.coinmarketcap.retrofit.responses
 
 import com.smlnskgmail.jaman.cryptotracker.model.api.currency.Currency
 

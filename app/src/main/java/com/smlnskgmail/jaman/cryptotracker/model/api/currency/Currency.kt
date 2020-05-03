@@ -7,8 +7,8 @@ interface Currency : Serializable {
     fun name(): String
     fun symbol(): String
     fun slug(): String
-    fun firstHistoricalData(): String
-    fun lastHistoricalData(): String
+    fun firstHistoricalDate(): String
+    fun lastHistoricalDate(): String
 
     fun updateCurrencyListing(
         currencyListing: CurrencyListing

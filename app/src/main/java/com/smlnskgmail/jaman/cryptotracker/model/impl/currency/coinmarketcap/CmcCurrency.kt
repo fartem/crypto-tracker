@@ -1,4 +1,4 @@
-package com.smlnskgmail.jaman.cryptotracker.model.impl.currency.coinmarketcup
+package com.smlnskgmail.jaman.cryptotracker.model.impl.currency.coinmarketcap
 
 import com.google.gson.annotations.SerializedName
 import com.smlnskgmail.jaman.cryptotracker.model.api.currency.Currency
@@ -20,10 +20,10 @@ class CmcCurrency(
     private val slug: String,
 
     @SerializedName("date_added")
-    private val firstHistoricalData: String,
+    private val firstHistoricalDate: String,
 
     @SerializedName("last_updated")
-    private val lastHistoricalData: String,
+    private val lastHistoricalDate: String,
 
     var currencyListing: CurrencyListing,
 
@@ -49,12 +49,12 @@ class CmcCurrency(
         return slug
     }
 
-    override fun firstHistoricalData(): String {
-        return firstHistoricalData
+    override fun firstHistoricalDate(): String {
+        return firstHistoricalDate
     }
 
-    override fun lastHistoricalData(): String {
-        return lastHistoricalData
+    override fun lastHistoricalDate(): String {
+        return lastHistoricalDate
     }
 
     override fun updateCurrencyListing(
@@ -72,14 +72,21 @@ class CmcCurrency(
     }
 
     override fun equals(other: Any?): Boolean {
-        if (this === other) return true
-        if (javaClass != other?.javaClass) return false
+        if (this === other) {
+            return true
+        }
+        if (javaClass != other?.javaClass) {
+            return false
+        }
 
         other as Currency
 
-        if (name != other.name()) return false
-        if (symbol != other.symbol()) return false
-
+        if (name != other.name()) {
+            return false
+        }
+        if (symbol != other.symbol()) {
+            return false
+        }
         return true
     }
 

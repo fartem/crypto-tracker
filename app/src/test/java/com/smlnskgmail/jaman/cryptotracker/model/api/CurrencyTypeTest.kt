@@ -1,10 +1,10 @@
-package com.smlnskgmail.jaman.cryptotracker.model
+package com.smlnskgmail.jaman.cryptotracker.model.api
 
 import com.smlnskgmail.jaman.cryptotracker.model.api.currency.CurrencyPrice
 import com.smlnskgmail.jaman.cryptotracker.model.api.currency.CurrencyPricePercentChangeDay
 import com.smlnskgmail.jaman.cryptotracker.model.api.currency.CurrencyType
-import com.smlnskgmail.jaman.cryptotracker.model.impl.currency.coinmarketcup.CmcCurrency
-import com.smlnskgmail.jaman.cryptotracker.model.impl.currency.coinmarketcup.CmcCurrencyListing
+import com.smlnskgmail.jaman.cryptotracker.model.impl.currency.coinmarketcap.CmcCurrency
+import com.smlnskgmail.jaman.cryptotracker.model.impl.currency.coinmarketcap.CmcCurrencyListing
 import org.junit.Assert.assertEquals
 import org.junit.Test
 
