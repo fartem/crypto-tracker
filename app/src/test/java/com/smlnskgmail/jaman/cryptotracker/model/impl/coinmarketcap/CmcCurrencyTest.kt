@@ -68,8 +68,32 @@ class CmcCurrencyTest {
             currency.currencyListing
         )
         assertEquals(
+            currencyListing,
+            currency.currencyListing()
+        )
+        assertEquals(
             currencyType,
             currency.currencyType
+        )
+        assertEquals(
+            currencyType,
+            currency.currencyType()
+        )
+
+        val updatedCurrencyListing = CmcCurrencyListing(
+            CurrencyPrice(
+                190f
+            ),
+            CurrencyPricePercentChangeDay(
+                11f
+            )
+        )
+        currency.updateCurrencyListing(
+            updatedCurrencyListing
+        )
+        assertEquals(
+            updatedCurrencyListing,
+            currency.currencyListing
         )
     }
 
@@ -133,6 +157,30 @@ class CmcCurrencyTest {
         assertNotEquals(
             secondCurrency,
             thirdCurrency
+        )
+
+        val fourthCurrency = CmcCurrency(
+            id,
+            "AE",
+            "A",
+            "AE",
+            firstHistoricalDate,
+            lastHistoricalDate,
+            currencyListing,
+            CurrencyType.AE
+        )
+        assertNotEquals(
+            thirdCurrency,
+            fourthCurrency
+        )
+
+        assertNotEquals(
+            fourthCurrency,
+            null
+        )
+        assertNotEquals(
+            "String",
+            fourthCurrency
         )
     }
 

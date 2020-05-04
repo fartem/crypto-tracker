@@ -60,20 +60,11 @@ class DebugCurrencyTest {
 
     @Test
     fun validateEquals() {
-        val id = 1
         val name = "BTC"
         val symbol = "BTC"
         val slug = "BTC"
         val firstHistoricalDate = "-"
         val lastHistoricalDate = "-"
-        val currencyListing = CmcCurrencyListing(
-            CurrencyPrice(
-                8_000f
-            ),
-            CurrencyPricePercentChangeDay(
-                3f
-            )
-        )
         val currencyType = CurrencyType.BTC
         val firstCurrency = DebugCurrency(
             name,
@@ -112,6 +103,19 @@ class DebugCurrencyTest {
         assertNotEquals(
             secondCurrency,
             thirdCurrency
+        )
+
+        val fourthCurrency = DebugCurrency(
+            "AE",
+            "A",
+            "AE",
+            firstHistoricalDate,
+            lastHistoricalDate,
+            CurrencyType.AE
+        )
+        assertNotEquals(
+            thirdCurrency,
+            fourthCurrency
         )
     }
 

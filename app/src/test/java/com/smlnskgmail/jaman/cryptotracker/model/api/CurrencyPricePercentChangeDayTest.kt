@@ -51,10 +51,16 @@ class CurrencyPricePercentChangeDayTest {
             )
         )
         assertNotEquals(
-            "String",
+            CurrencyPricePercentChangeDay(
+                9f
+            ),
+            null
+        )
+        assertNotEquals(
             CurrencyPricePercentChangeDay(
                 5f
-            )
+            ),
+            "String"
         )
     }
 

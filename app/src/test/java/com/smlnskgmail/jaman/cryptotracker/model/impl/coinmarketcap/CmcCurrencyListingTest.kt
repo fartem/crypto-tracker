@@ -67,8 +67,22 @@ class CmcCurrencyListingTest {
             currencyListing
         )
         assertNotEquals(
-            "String",
+            CmcCurrencyListing(
+                price,
+                CurrencyPricePercentChangeDay(
+                    30f
+                )
+            ),
             currencyListing
+        )
+
+        assertNotEquals(
+            currencyListing,
+            "String"
+        )
+        assertNotEquals(
+            currencyListing,
+            null
         )
     }
 

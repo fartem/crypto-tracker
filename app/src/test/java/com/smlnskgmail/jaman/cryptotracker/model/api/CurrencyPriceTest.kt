@@ -51,10 +51,16 @@ class CurrencyPriceTest {
             )
         )
         assertNotEquals(
-            "String",
+            CurrencyPrice(
+                10f
+            ),
+            null
+        )
+        assertNotEquals(
             CurrencyPrice(
                 900f
-            )
+            ),
+            "String"
         )
     }
 
