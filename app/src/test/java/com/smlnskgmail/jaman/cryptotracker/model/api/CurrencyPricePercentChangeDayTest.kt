@@ -1,19 +1,18 @@
 package com.smlnskgmail.jaman.cryptotracker.model.api
 
+import com.smlnskgmail.jaman.cryptotracker.model.BaseEntityTest
 import com.smlnskgmail.jaman.cryptotracker.model.api.currency.CurrencyPricePercentChangeDay
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotEquals
-import org.junit.Test
 
-class CurrencyPricePercentChangeDayTest {
+class CurrencyPricePercentChangeDayTest : BaseEntityTest() {
 
-    @Test
-    fun validateFields() {
-        val value = 10f
-        val currencyPricePercentChangeDay = CurrencyPricePercentChangeDay(
-            value
-        )
+    private val value = 10f
+    private val currencyPricePercentChangeDay = CurrencyPricePercentChangeDay(
+        value
+    )
 
+    override fun `Validate fields`() {
         assertEquals(
             value,
             currencyPricePercentChangeDay.value()
@@ -24,11 +23,7 @@ class CurrencyPricePercentChangeDayTest {
         )
     }
 
-    @Test
-    fun validateEquals() {
-        val currencyPricePercentChangeDay = CurrencyPricePercentChangeDay(
-            30f
-        )
+    override fun `Validate equals()`() {
         assertEquals(
             currencyPricePercentChangeDay,
             currencyPricePercentChangeDay
@@ -36,51 +31,43 @@ class CurrencyPricePercentChangeDayTest {
 
         assertEquals(
             CurrencyPricePercentChangeDay(
-                10f
+                value
             ),
-            CurrencyPricePercentChangeDay(
-                10f
-            )
+            currencyPricePercentChangeDay
         )
         assertNotEquals(
             CurrencyPricePercentChangeDay(
                 5f
             ),
-            CurrencyPricePercentChangeDay(
-                15f
-            )
+            currencyPricePercentChangeDay
         )
         assertNotEquals(
-            CurrencyPricePercentChangeDay(
-                9f
-            ),
+            currencyPricePercentChangeDay,
             null
         )
         assertNotEquals(
-            CurrencyPricePercentChangeDay(
-                5f
-            ),
+            currencyPricePercentChangeDay,
             "String"
         )
     }
 
-    @Test
-    fun validateHashCode() {
+    override fun `Validate hashCode()`() {
+        assertEquals(
+            currencyPricePercentChangeDay.hashCode(),
+            currencyPricePercentChangeDay.hashCode()
+        )
         assertEquals(
             CurrencyPricePercentChangeDay(
                 10f
             ).hashCode(),
-            CurrencyPricePercentChangeDay(
-                10f
-            ).hashCode()
+            currencyPricePercentChangeDay.hashCode()
         )
+
         assertNotEquals(
             CurrencyPricePercentChangeDay(
                 5f
             ).hashCode(),
-            CurrencyPricePercentChangeDay(
-                15f
-            ).hashCode()
+            currencyPricePercentChangeDay.hashCode()
         )
     }
 

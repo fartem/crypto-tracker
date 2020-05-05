@@ -1,27 +1,26 @@
 package com.smlnskgmail.jaman.cryptotracker.model.impl.coinmarketcap
 
+import com.smlnskgmail.jaman.cryptotracker.model.BaseEntityTest
 import com.smlnskgmail.jaman.cryptotracker.model.api.currency.CurrencyPrice
 import com.smlnskgmail.jaman.cryptotracker.model.api.currency.CurrencyPricePercentChangeDay
 import com.smlnskgmail.jaman.cryptotracker.model.impl.currency.coinmarketcap.CmcCurrencyListing
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotEquals
-import org.junit.Test
 
-class CmcCurrencyListingTest {
+class CmcCurrencyListingTest : BaseEntityTest() {
 
-    @Test
-    fun validateFields() {
-        val price = CurrencyPrice(
-            1_000f
-        )
-        val percentChange = CurrencyPricePercentChangeDay(
-            10f
-        )
-        val currencyListing = CmcCurrencyListing(
-            price,
-            percentChange
-        )
+    private val price = CurrencyPrice(
+        1_000f
+    )
+    private val percentChange = CurrencyPricePercentChangeDay(
+        10f
+    )
+    private val currencyListing = CmcCurrencyListing(
+        price,
+        percentChange
+    )
 
+    override fun `Validate fields`() {
         assertEquals(
             price,
             currencyListing.currentPrice()
@@ -32,24 +31,11 @@ class CmcCurrencyListingTest {
         )
     }
 
-    @Test
-    fun validateEquals() {
-        val price = CurrencyPrice(
-            1_000f
-        )
-        val percentChange = CurrencyPricePercentChangeDay(
-            10f
-        )
-        val currencyListing = CmcCurrencyListing(
-            price,
-            percentChange
-        )
-
+    override fun `Validate equals()`() {
         assertEquals(
             currencyListing,
             currencyListing
         )
-
         assertEquals(
             CmcCurrencyListing(
                 price,
@@ -57,6 +43,7 @@ class CmcCurrencyListingTest {
             ),
             currencyListing
         )
+
         assertNotEquals(
             CmcCurrencyListing(
                 CurrencyPrice(
@@ -75,7 +62,6 @@ class CmcCurrencyListingTest {
             ),
             currencyListing
         )
-
         assertNotEquals(
             currencyListing,
             "String"
@@ -86,19 +72,11 @@ class CmcCurrencyListingTest {
         )
     }
 
-    @Test
-    fun validateHashCode() {
-        val price = CurrencyPrice(
-            1_000f
+    override fun `Validate hashCode()`() {
+        assertEquals(
+            currencyListing.hashCode(),
+            currencyListing.hashCode()
         )
-        val percentChange = CurrencyPricePercentChangeDay(
-            10f
-        )
-        val currencyListing = CmcCurrencyListing(
-            price,
-            percentChange
-        )
-
         assertEquals(
             CmcCurrencyListing(
                 price,
@@ -106,6 +84,7 @@ class CmcCurrencyListingTest {
             ).hashCode(),
             currencyListing.hashCode()
         )
+
         assertNotEquals(
             CmcCurrencyListing(
                 CurrencyPrice(

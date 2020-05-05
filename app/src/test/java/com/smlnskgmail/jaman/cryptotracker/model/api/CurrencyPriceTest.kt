@@ -1,19 +1,18 @@
 package com.smlnskgmail.jaman.cryptotracker.model.api
 
+import com.smlnskgmail.jaman.cryptotracker.model.BaseEntityTest
 import com.smlnskgmail.jaman.cryptotracker.model.api.currency.CurrencyPrice
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotEquals
-import org.junit.Test
 
-class CurrencyPriceTest {
+class CurrencyPriceTest : BaseEntityTest() {
 
-    @Test
-    fun validateFields() {
-        val value = 8_000.5f
-        val currencyPrice = CurrencyPrice(
-            value
-        )
+    private val value = 8_000.5f
+    private val currencyPrice = CurrencyPrice(
+        value
+    )
 
+    override fun `Validate fields`() {
         assertEquals(
             value,
             currencyPrice.value()
@@ -24,63 +23,51 @@ class CurrencyPriceTest {
         )
     }
 
-    @Test
-    fun validateEquals() {
-        val currencyPrice = CurrencyPrice(
-            7_000f
-        )
+    override fun `Validate equals()`() {
         assertEquals(
             currencyPrice,
             currencyPrice
         )
-
         assertEquals(
             CurrencyPrice(
-                1_000f
+                value
             ),
-            CurrencyPrice(
-                1_000f
-            )
+            currencyPrice
         )
+
         assertNotEquals(
             CurrencyPrice(
                 3_000f
             ),
-            CurrencyPrice(
-                5_000f
-            )
+            currencyPrice
         )
         assertNotEquals(
-            CurrencyPrice(
-                10f
-            ),
+            currencyPrice,
             null
         )
         assertNotEquals(
-            CurrencyPrice(
-                900f
-            ),
+            currencyPrice,
             "String"
         )
     }
 
-    @Test
-    fun validateHashCode() {
+    override fun `Validate hashCode()`() {
+        assertEquals(
+            currencyPrice.hashCode(),
+            currencyPrice.hashCode()
+        )
         assertEquals(
             CurrencyPrice(
-                1_000f
+                value
             ).hashCode(),
-            CurrencyPrice(
-                1_000f
-            ).hashCode()
+            currencyPrice.hashCode()
         )
+
         assertNotEquals(
             CurrencyPrice(
                 3_000f
             ).hashCode(),
-            CurrencyPrice(
-                5_000f
-            ).hashCode()
+            currencyPrice.hashCode()
         )
     }
 

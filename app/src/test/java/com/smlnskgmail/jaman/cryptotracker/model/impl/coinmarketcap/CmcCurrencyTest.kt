@@ -1,5 +1,6 @@
 package com.smlnskgmail.jaman.cryptotracker.model.impl.coinmarketcap
 
+import com.smlnskgmail.jaman.cryptotracker.model.BaseEntityTest
 import com.smlnskgmail.jaman.cryptotracker.model.api.currency.CurrencyPrice
 import com.smlnskgmail.jaman.cryptotracker.model.api.currency.CurrencyPricePercentChangeDay
 import com.smlnskgmail.jaman.cryptotracker.model.api.currency.CurrencyType
@@ -7,38 +8,37 @@ import com.smlnskgmail.jaman.cryptotracker.model.impl.currency.coinmarketcap.Cmc
 import com.smlnskgmail.jaman.cryptotracker.model.impl.currency.coinmarketcap.CmcCurrencyListing
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotEquals
-import org.junit.Test
 
-class CmcCurrencyTest {
+class CmcCurrencyTest : BaseEntityTest() {
 
-    @Test
-    fun validateFields() {
-        val id = 1
-        val name = "BTC"
-        val symbol = "BTC"
-        val slug = "BTC"
-        val firstHistoricalDate = "-"
-        val lastHistoricalDate = "-"
-        val currencyListing = CmcCurrencyListing(
-            CurrencyPrice(
-                8_000f
-            ),
-            CurrencyPricePercentChangeDay(
-                3f
-            )
+    private val id = 1
+    private val name = "BTC"
+    private val symbol = "BTC"
+    private val slug = "BTC"
+    private val firstHistoricalDate = "-"
+    private val lastHistoricalDate = "-"
+    private val currencyListing = CmcCurrencyListing(
+        CurrencyPrice(
+            8_000f
+        ),
+        CurrencyPricePercentChangeDay(
+            3f
         )
-        val currencyType = CurrencyType.BTC
-        val currency = CmcCurrency(
-            id,
-            name,
-            symbol,
-            slug,
-            firstHistoricalDate,
-            lastHistoricalDate,
-            currencyListing,
-            currencyType
-        )
+    )
+    private val currencyType = CurrencyType.BTC
 
+    private val currency = CmcCurrency(
+        id,
+        name,
+        symbol,
+        slug,
+        firstHistoricalDate,
+        lastHistoricalDate,
+        currencyListing,
+        currencyType
+    )
+
+    override fun `Validate fields`() {
         assertEquals(
             id,
             currency.id
@@ -97,153 +97,92 @@ class CmcCurrencyTest {
         )
     }
 
-    @Test
-    fun validateEquals() {
-        val id = 1
-        val name = "BTC"
-        val symbol = "BTC"
-        val slug = "BTC"
-        val firstHistoricalDate = "-"
-        val lastHistoricalDate = "-"
-        val currencyListing = CmcCurrencyListing(
-            CurrencyPrice(
-                8_000f
+    override fun `Validate equals()`() {
+        assertEquals(
+            currency,
+            currency
+        )
+        assertEquals(
+            CmcCurrency(
+                id,
+                name,
+                symbol,
+                slug,
+                firstHistoricalDate,
+                lastHistoricalDate,
+                currencyListing,
+                currencyType
             ),
-            CurrencyPricePercentChangeDay(
-                3f
-            )
-        )
-        val currencyType = CurrencyType.BTC
-        val firstCurrency = CmcCurrency(
-            id,
-            name,
-            symbol,
-            slug,
-            firstHistoricalDate,
-            lastHistoricalDate,
-            currencyListing,
-            currencyType
-        )
-        assertEquals(
-            firstCurrency,
-            firstCurrency
-        )
-
-        val secondCurrency = CmcCurrency(
-            id,
-            name,
-            symbol,
-            slug,
-            firstHistoricalDate,
-            lastHistoricalDate,
-            currencyListing,
-            currencyType
-        )
-        assertEquals(
-            firstCurrency,
-            secondCurrency
-        )
-
-        val thirdCurrency = CmcCurrency(
-            id,
-            "AE",
-            "AE",
-            "AE",
-            firstHistoricalDate,
-            lastHistoricalDate,
-            currencyListing,
-            CurrencyType.AE
-        )
-        assertNotEquals(
-            secondCurrency,
-            thirdCurrency
-        )
-
-        val fourthCurrency = CmcCurrency(
-            id,
-            "AE",
-            "A",
-            "AE",
-            firstHistoricalDate,
-            lastHistoricalDate,
-            currencyListing,
-            CurrencyType.AE
-        )
-        assertNotEquals(
-            thirdCurrency,
-            fourthCurrency
+            currency
         )
 
         assertNotEquals(
-            fourthCurrency,
+            CmcCurrency(
+                id,
+                "AE",
+                symbol,
+                slug,
+                firstHistoricalDate,
+                lastHistoricalDate,
+                currencyListing,
+                currencyType
+            ),
+            currency
+        )
+        assertNotEquals(
+            CmcCurrency(
+                id,
+                name,
+                "AE",
+                slug,
+                firstHistoricalDate,
+                lastHistoricalDate,
+                currencyListing,
+                currencyType
+            ),
+            currency
+        )
+        assertNotEquals(
+            currency,
             null
         )
         assertNotEquals(
-            "String",
-            fourthCurrency
+            currency,
+            "String"
         )
     }
 
-    @Test
-    fun validateHashCode() {
-        val id = 1
-        val name = "BTC"
-        val symbol = "BTC"
-        val slug = "BTC"
-        val firstHistoricalDate = "-"
-        val lastHistoricalDate = "-"
-        val currencyListing = CmcCurrencyListing(
-            CurrencyPrice(
-                8_000f
-            ),
-            CurrencyPricePercentChangeDay(
-                3f
-            )
-        )
-        val currencyType = CurrencyType.BTC
-        val firstCurrency = CmcCurrency(
-            id,
-            name,
-            symbol,
-            slug,
-            firstHistoricalDate,
-            lastHistoricalDate,
-            currencyListing,
-            currencyType
+    override fun `Validate hashCode()`() {
+        assertEquals(
+            currency.hashCode(),
+            currency.hashCode()
         )
         assertEquals(
-            firstCurrency.hashCode(),
-            firstCurrency.hashCode()
+            CmcCurrency(
+                id,
+                name,
+                symbol,
+                slug,
+                firstHistoricalDate,
+                lastHistoricalDate,
+                currencyListing,
+                currencyType
+            ).hashCode(),
+            currency.hashCode()
         )
 
-        val secondCurrency = CmcCurrency(
-            id,
-            name,
-            symbol,
-            slug,
-            firstHistoricalDate,
-            lastHistoricalDate,
-            currencyListing,
-            currencyType
-        )
-        assertEquals(
-            firstCurrency.hashCode(),
-            secondCurrency.hashCode()
-        )
-
-        val thirdCurrency = CmcCurrency(
-            id,
-            "AE",
-            "AE",
-            "AE",
-            firstHistoricalDate,
-            lastHistoricalDate,
-            currencyListing,
-            CurrencyType.AE
-        )
         assertNotEquals(
-            secondCurrency.hashCode(),
-            thirdCurrency.hashCode()
+            CmcCurrency(
+                id,
+                "AE",
+                "AE",
+                "AE",
+                firstHistoricalDate,
+                lastHistoricalDate,
+                currencyListing,
+                CurrencyType.AE
+            ).hashCode(),
+            currency.hashCode()
         )
     }
 
