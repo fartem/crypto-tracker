@@ -49,6 +49,13 @@ android {
             includeAndroidResources = true
         }
     }
+
+    applicationVariants.all { variant ->
+        variant.outputs.each { output ->
+            def versionName = android.defaultConfig.versionName
+            output.outputFileName = "crypto-tracker_${versionName}"
+        }
+    }
 }
 
 dependencies {
