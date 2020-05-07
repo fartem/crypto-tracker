@@ -32,7 +32,7 @@ android {
 
             buildConfigField 'String', 'API', "\"CMC\""
         }
-        debugImpl {
+        demo {
             flavorDimensions 'build'
 
             buildConfigField 'String', 'API', "\"DEBUG\""
@@ -53,7 +53,9 @@ android {
     applicationVariants.all { variant ->
         variant.outputs.each { output ->
             def versionName = android.defaultConfig.versionName
-            output.outputFileName = "crypto-tracker_${versionName}"
+            def buildTypeName = variant.buildType.name
+            def productFlavorName = variant.flavorName
+            output.outputFileName = "crypto-tracker_${versionName}-${productFlavorName}-${buildTypeName}"
         }
     }
 }
