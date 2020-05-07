@@ -53,8 +53,8 @@ android {
     applicationVariants.all { variant ->
         variant.outputs.each { output ->
             def versionName = android.defaultConfig.versionName
-            def buildTypeName = variant.buildType.name
             def productFlavorName = variant.flavorName
+            def buildTypeName = variant.buildType.name
             output.outputFileName = "crypto-tracker_${versionName}-${productFlavorName}-${buildTypeName}"
         }
     }
