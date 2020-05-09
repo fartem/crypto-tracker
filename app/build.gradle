@@ -55,7 +55,7 @@ android {
             def versionName = android.defaultConfig.versionName
             def productFlavorName = variant.flavorName
             def buildTypeName = variant.buildType.name
-            output.outputFileName = "crypto-tracker_${versionName}-${productFlavorName}-${buildTypeName}"
+            output.outputFileName = "crypto-tracker_${versionName}-${productFlavorName}-${buildTypeName}.apk"
         }
     }
 }
