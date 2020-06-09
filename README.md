@@ -6,7 +6,6 @@ Crypto Tracker
 [![Travis CI](https://travis-ci.org/fartem/crypto-tracker.svg?branch=master)](https://travis-ci.org/fartem/crypto-tracker)
 [![Codebeat](https://codebeat.co/badges/5522fa61-f97e-4d99-b6f4-3f401108cf6b)](https://codebeat.co/projects/github-com-fartem-crypto-tracker-master)
 [![Codecov](https://codecov.io/gh/fartem/crypto-tracker/branch/master/graph/badge.svg)](https://codecov.io/gh/fartem/crypto-tracker)
-[![Hits-of-Code](https://hitsofcode.com/github/fartem/crypto-tracker)](https://hitsofcode.com/view/github/fartem/crypto-tracker)
 [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-Crypto%20Tracker-brightgreen.svg?style=flat)](https://android-arsenal.com/details/3/7955)
 
 About
