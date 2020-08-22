@@ -3,15 +3,15 @@ package com.smlnskgmail.jaman.cryptotracker.model.api.currency
 interface CurrencyApi {
 
     fun currencies(
-        currenciesLoadResult: CurrenciesLoadResult
+        currenciesLoadTarget: CurrenciesLoadTarget
     )
 
     fun currencyListing(
         currency: Currency,
-        currencyListingLoadResult: CurrencyListingLoadResult
+        currencyListingLoadTarget: CurrencyListingLoadTarget
     )
 
-    interface CurrenciesLoadResult {
+    interface CurrenciesLoadTarget {
 
         fun loaded(
             currencies: List<Currency>
@@ -19,7 +19,7 @@ interface CurrencyApi {
 
     }
 
-    interface CurrencyListingLoadResult {
+    interface CurrencyListingLoadTarget {
 
         fun loaded(
             currencyListing: CurrencyListing?

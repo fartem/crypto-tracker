@@ -12,8 +12,6 @@ class CurrenciesListPresenterImpl : CurrenciesListPresenter {
     private lateinit var currencyApi: CurrencyApi
     private lateinit var currencyCache: CurrencyCache
 
-    private var firstStart = true
-
     override fun init(
         currenciesListView: CurrenciesListView,
         currencyApi: CurrencyApi,
@@ -22,26 +20,26 @@ class CurrenciesListPresenterImpl : CurrenciesListPresenter {
         this.currenciesListView = currenciesListView
         this.currencyApi = currencyApi
         this.currencyCache = currencyCache
-
         loadCurrencies()
     }
 
     private fun loadCurrencies() {
         val currencies = currencyCache.getCurrencies()
-        firstStart = currencies.isEmpty()
-        if (!firstStart) {
-            currenciesListView.showCurrencies(
-                currencies
-            )
-            currenciesListView.showSeekLoader()
-        } else {
-            currenciesListView.showFullScreenLoader()
-        }
-        loadCurrenciesWithAction {
-            if (firstStart) {
-                currenciesListView.hideFullScreenLoader()
+        currencies.isEmpty().let { containsCurrencies ->
+            if (containsCurrencies) {
+                currenciesListView.showFullScreenLoader()
             } else {
-                currenciesListView.hideSeekLoader()
+                currenciesListView.showCurrencies(
+                    currencies
+                )
+                currenciesListView.showSeekLoader()
+            }
+            loadCurrenciesWithAction {
+                if (containsCurrencies) {
+                    currenciesListView.hideFullScreenLoader()
+                } else {
+                    currenciesListView.hideSeekLoader()
+                }
             }
         }
     }
@@ -49,21 +47,23 @@ class CurrenciesListPresenterImpl : CurrenciesListPresenter {
     private fun loadCurrenciesWithAction(
         action: () -> Unit
     ) {
-        currencyApi.currencies(object : CurrencyApi.CurrenciesLoadResult {
+        currencyApi.currencies(object : CurrencyApi.CurrenciesLoadTarget {
             override fun loaded(currencies: List<Currency>) {
-                if (currencies.isNotEmpty()) {
-                    currenciesListView.showCurrencies(
-                        currencies
-                    )
-                    currencyCache.clear()
-                    currencyCache.putCurrencies(
-                        currencies
-                    )
-                } else {
-                    currenciesListView.showCurrencies(
-                        emptyList()
-                    )
-                    currenciesListView.showLoadError()
+                currencies.isNotEmpty().let {  containsCurrencies ->
+                    if (containsCurrencies) {
+                        currenciesListView.showCurrencies(
+                            currencies
+                        )
+                        currencyCache.clear()
+                        currencyCache.putCurrencies(
+                            currencies
+                        )
+                    } else {
+                        currenciesListView.showCurrencies(
+                            emptyList()
+                        )
+                        currenciesListView.showLoadError()
+                    }
                 }
                 action()
             }
@@ -87,7 +87,7 @@ class CurrenciesListPresenterImpl : CurrenciesListPresenter {
     ) {
         currencyApi.currencyListing(
             currency,
-            object : CurrencyApi.CurrencyListingLoadResult {
+            object : CurrencyApi.CurrencyListingLoadTarget {
                 override fun loaded(currencyListing: CurrencyListing?) {
                     if (currencyListing != null) {
                         currency.updateCurrencyListing(

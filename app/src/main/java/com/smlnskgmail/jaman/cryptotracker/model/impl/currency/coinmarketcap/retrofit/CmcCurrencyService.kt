@@ -2,7 +2,7 @@ package com.smlnskgmail.jaman.cryptotracker.model.impl.currency.coinmarketcap.re
 
 import com.smlnskgmail.jaman.cryptotracker.model.impl.currency.coinmarketcap.retrofit.responses.CurrencyListingResponse
 import com.smlnskgmail.jaman.cryptotracker.model.impl.currency.coinmarketcap.retrofit.responses.CurrencyResponse
-import retrofit2.Call
+import io.reactivex.rxjava3.core.Observable
 import retrofit2.http.GET
 import retrofit2.http.Headers
 import retrofit2.http.Query
@@ -16,7 +16,7 @@ interface CmcCurrencyService {
     )
     fun currencies(
         @Query("symbol") currencies: String
-    ): Call<CurrencyResponse>
+    ): Observable<CurrencyResponse>
 
     @GET("v1/cryptocurrency/quotes/latest")
     @Headers(
@@ -25,6 +25,6 @@ interface CmcCurrencyService {
     )
     fun listing(
         @Query("id") currencyId: Int
-    ): Call<CurrencyListingResponse>
+    ): Observable<CurrencyListingResponse>
 
 }

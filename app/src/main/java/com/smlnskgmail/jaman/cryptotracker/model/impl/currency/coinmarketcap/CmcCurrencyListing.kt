@@ -20,7 +20,7 @@ data class CmcCurrencyListing(
         return currentPrice
     }
 
-    override fun changeDay(): CurrencyPricePercentChangeDay {
+    override fun changeHour(): CurrencyPricePercentChangeDay {
         return changeHourPrice
     }
 

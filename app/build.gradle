@@ -8,13 +8,13 @@ apply from: 'jacoco.gradle'
 
 android {
     compileSdkVersion 29
-    buildToolsVersion '29.0.2'
+    buildToolsVersion '29.0.3'
     defaultConfig {
         applicationId 'com.smlnskgmail.jaman.cryptotracker'
         minSdkVersion 21
         targetSdkVersion 29
         versionCode 1
-        versionName '2.3.1'
+        versionName '2.4.0'
         testInstrumentationRunner 'com.smlnskgmail.jaman.cryptotracker.runner.AndroidJacocoTestRunner'
 
         buildConfigField 'String', 'API', "\"\""
@@ -23,6 +23,16 @@ android {
         debug {
             testCoverageEnabled = true
         }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+    lintOptions {
+        abortOnError false
     }
 
     flavorDimensions 'build'
@@ -62,17 +72,22 @@ android {
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation 'androidx.appcompat:appcompat:1.1.0'
-    implementation 'androidx.core:core-ktx:1.2.0'
-    implementation 'com.google.android.material:material:1.1.0'
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'androidx.core:core-ktx:1.3.1'
+    implementation 'com.google.android.material:material:1.2.0'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
-    implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.0.0'
+    implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
     implementation "androidx.preference:preference:1.1.1"
 
     // Dagger 2
     implementation 'com.google.dagger:dagger:2.24'
     kapt 'com.google.dagger:dagger-compiler:2.24'
+
+    // RxJava
+    implementation 'io.reactivex.rxjava3:rxjava:3.0.0'
+    implementation 'io.reactivex.rxjava3:rxandroid:3.0.0'
+    implementation 'com.github.akarnokd:rxjava3-retrofit-adapter:3.0.0'
 
     // MapDB
     // noinspection GradleDependency

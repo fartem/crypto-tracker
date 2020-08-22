@@ -15,7 +15,7 @@ class CurrencyPricePercentChangeDayTest : BaseEntityTest() {
     override fun `Validate fields`() {
         assertEquals(
             value,
-            currencyPricePercentChangeDay.value()
+            currencyPricePercentChangeDay.value
         )
         assertEquals(
             "10%",

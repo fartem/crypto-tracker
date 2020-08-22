@@ -27,7 +27,7 @@ class CmcCurrencyListingTest : BaseEntityTest() {
         )
         assertEquals(
             percentChange,
-            currencyListing.changeDay()
+            currencyListing.changeHour()
         )
     }
 

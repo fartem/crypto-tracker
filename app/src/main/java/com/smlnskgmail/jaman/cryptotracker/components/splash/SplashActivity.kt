@@ -3,6 +3,7 @@ package com.smlnskgmail.jaman.cryptotracker.components.splash
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
+import android.os.Looper
 import com.smlnskgmail.jaman.cryptotracker.BuildConfig
 import com.smlnskgmail.jaman.cryptotracker.MainActivity
 import com.smlnskgmail.jaman.cryptotracker.R
@@ -30,7 +31,7 @@ class SplashActivity : BaseThemeActivity() {
     }
 
     private fun showLogo() {
-        Handler().postDelayed(
+        Handler(Looper.getMainLooper()).postDelayed(
             {
                 val appIntent = Intent(
                     this,

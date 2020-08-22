@@ -35,7 +35,7 @@ class DebugCurrenciesListTest {
             )
         }
 
-        delay(3_000)
+        delay(5_000)
         onView(withId(R.id.currencies_list)).check(
             RecyclerViewCountAssertion(10)
         )

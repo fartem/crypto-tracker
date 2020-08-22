@@ -6,6 +6,7 @@ public class ElapsedTimeIdlingResource implements IdlingResource {
 
     private final long startTime;
     private final long waitingTime;
+
     private ResourceCallback resourceCallback;
 
     public ElapsedTimeIdlingResource(long waitingTime) {

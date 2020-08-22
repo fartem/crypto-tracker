@@ -61,23 +61,23 @@ class CurrencyHolder(
         currencyListing: CurrencyListing
     ) {
         val price = currencyListing.currentPrice()
-        val changeHour = currencyListing.changeDay()
+        val changeHour = currencyListing.changeHour()
 
         itemView.currency_price.text = price.toString()
         itemView.currency_price_at_last_hour.text = changeHour.toString()
 
-        val changeHourColorResId = when {
-            changeHour.value() > 0 -> R.color.colorCurrencyPriceUp
-            changeHour.value() < 0 -> R.color.colorCurrencyPriceDown
+        when {
+            changeHour.value > 0 -> R.color.colorCurrencyPriceUp
+            changeHour.value < 0 -> R.color.colorCurrencyPriceDown
             else -> R.color.colorCurrencyPriceStable
-        }
-
-        itemView.currency_price_at_last_hour.setTextColor(
-            ContextCompat.getColor(
-                itemView.context,
-                changeHourColorResId
+        }.let { color ->
+            itemView.currency_price_at_last_hour.setTextColor(
+                ContextCompat.getColor(
+                    itemView.context,
+                    color
+                )
             )
-        )
+        }
     }
 
     private fun clearItem() {

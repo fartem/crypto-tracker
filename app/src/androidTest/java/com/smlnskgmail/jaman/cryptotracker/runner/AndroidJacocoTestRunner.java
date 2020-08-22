@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.lang.reflect.Method;
 import java.nio.charset.StandardCharsets;
 
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused", "RedundantSuppression"})
 public class AndroidJacocoTestRunner extends AndroidJUnitRunner {
 
     @Override
@@ -18,6 +18,7 @@ public class AndroidJacocoTestRunner extends AndroidJUnitRunner {
             Bundle results
     ) {
         try {
+            @SuppressWarnings("rawtypes")
             Class rt = Class.forName("org.jacoco.agent.rt.RT");
             @SuppressWarnings("unchecked")
             Method getAgent = rt.getMethod("getAgent");

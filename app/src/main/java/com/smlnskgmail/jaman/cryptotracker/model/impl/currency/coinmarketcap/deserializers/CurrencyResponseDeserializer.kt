@@ -22,11 +22,8 @@ class CurrencyResponseDeserializer : JsonDeserializer<CurrencyResponse> {
         context: JsonDeserializationContext?
     ): CurrencyResponse {
         val gson = Gson()
-
         val currencyTypeToken = object : TypeToken<CmcCurrency>() {}.type
-
         val currencies = arrayListOf<Currency>()
-
         val dataJson = json!!.asJsonObject.get("data")
         for (data in dataJson.asJsonObject.entrySet()) {
             val currency = gson.fromJson(

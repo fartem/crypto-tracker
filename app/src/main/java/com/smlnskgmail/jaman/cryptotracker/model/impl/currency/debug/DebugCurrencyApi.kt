@@ -1,10 +1,12 @@
 package com.smlnskgmail.jaman.cryptotracker.model.impl.currency.debug
 
-import android.annotation.SuppressLint
-import android.os.AsyncTask
 import com.smlnskgmail.jaman.cryptotracker.model.api.currency.Currency
 import com.smlnskgmail.jaman.cryptotracker.model.api.currency.CurrencyApi
 import com.smlnskgmail.jaman.cryptotracker.model.api.currency.CurrencyType
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.core.Observable
+import io.reactivex.rxjava3.schedulers.Schedulers
+import java.util.concurrent.TimeUnit
 
 @Suppress(
     "unused",
@@ -15,7 +17,7 @@ class DebugCurrencyApi :
 
     private val date = "2019-03-05T18:05:05.000Z"
 
-    private val currencies = setOf(
+    private val currencies = listOf(
         currencyFor(
             "Bitcoin",
             CurrencyType.BTC
@@ -73,36 +75,22 @@ class DebugCurrencyApi :
     }
 
     override fun currencies(
-        currenciesLoadResult: CurrencyApi.CurrenciesLoadResult
+        currenciesLoadTarget: CurrencyApi.CurrenciesLoadTarget
     ) {
-        CurrenciesLoader(currenciesLoadResult).execute()
+        Observable
+            .timer(5, TimeUnit.SECONDS)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe { currenciesLoadTarget.loaded(currencies) }
     }
 
     override fun currencyListing(
         currency: Currency,
-        currencyListingLoadResult: CurrencyApi.CurrencyListingLoadResult
+        currencyListingLoadTarget: CurrencyApi.CurrencyListingLoadTarget
     ) {
-        currencyListingLoadResult.loaded(
+        currencyListingLoadTarget.loaded(
             currency.currencyListing()
         )
-    }
-
-    @SuppressLint("StaticFieldLeak")
-    private inner class CurrenciesLoader(
-        private val currenciesLoadResult: CurrencyApi.CurrenciesLoadResult
-    ) : AsyncTask<Void, List<Currency>, List<Currency>>() {
-
-        override fun doInBackground(
-            vararg params: Void?
-        ): List<Currency> {
-            Thread.sleep(1_500)
-            return currencies.toList()
-        }
-
-        override fun onPostExecute(result: List<Currency>?) {
-            currenciesLoadResult.loaded(result!!)
-        }
-
     }
 
 }

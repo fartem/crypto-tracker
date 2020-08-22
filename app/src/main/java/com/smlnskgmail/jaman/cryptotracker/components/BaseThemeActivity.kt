@@ -7,7 +7,7 @@ import com.smlnskgmail.jaman.cryptotracker.components.preferences.PreferencesMan
 abstract class BaseThemeActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        val theme = if (isFullScreen()) {
+        if (isFullScreen()) {
             PreferencesManager.theme(
                 this
             ).fullScreenThemeResId
@@ -15,8 +15,9 @@ abstract class BaseThemeActivity : AppCompatActivity() {
             PreferencesManager.theme(
                 this
             ).themeResId
+        }.let {
+            setTheme(it)
         }
-        setTheme(theme)
         super.onCreate(savedInstanceState)
         setContentView(layoutResId())
     }

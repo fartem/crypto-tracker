@@ -15,7 +15,7 @@ class CurrencyPriceTest : BaseEntityTest() {
     override fun `Validate fields`() {
         assertEquals(
             value,
-            currencyPrice.value()
+            currencyPrice.price
         )
         assertEquals(
             "$8,000.50",

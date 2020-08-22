@@ -11,13 +11,13 @@
         android:id="@+id/logo"
         android:layout_width="@dimen/image_size_splash"
         android:layout_height="@dimen/image_size_splash"
+        android:src="@drawable/ic_bitcoin"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.40"
-        android:src="@drawable/ic_bitcoin"
-        android:tint="@color/colorAccent"
+        app:tint="@color/colorAccent"
         tools:ignore="ContentDescription" />
 
     <TextView

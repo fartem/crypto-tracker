@@ -62,7 +62,7 @@
         android:foreground="?selectableItemBackground"
         android:padding="8dp"
         android:src="@drawable/ic_refresh"
-        android:tint="?attr/colorAccent"
+        app:tint="?attr/colorAccent"
         app:layout_constraintBottom_toBottomOf="@+id/currency_image"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/currency_image"

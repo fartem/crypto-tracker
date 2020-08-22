@@ -51,7 +51,7 @@ class DebugCurrency(
                     )
                 }
 
-                override fun changeDay(): CurrencyPricePercentChangeDay {
+                override fun changeHour(): CurrencyPricePercentChangeDay {
                     return CurrencyPricePercentChangeDay(
                         0.19f
                     )

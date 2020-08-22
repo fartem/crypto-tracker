@@ -25,10 +25,10 @@ class CmcCurrencyMapDbInstanceProvider : CurrencyInstanceProvider {
         writer.writeUTF(currency.firstHistoricalDate())
         writer.writeUTF(currency.lastHistoricalDate())
         writer.writeFloat(
-            currency.currencyListing().currentPrice().value()
+            currency.currencyListing().currentPrice().price
         )
         writer.writeFloat(
-            currency.currencyListing().changeDay().value()
+            currency.currencyListing().changeHour().value
         )
         writer.writeUTF(
             currency.currencyType().toString()
