@@ -13,7 +13,11 @@ Demo application with statistics of some cryptocurrencies.
 
 ## API
 
-Provided by [CoinMarketCap](https://pro.coinmarketcap.com).
+### CoinMarketCap
+
+__Resources__
+
+[CoinMarketCap](https://pro.coinmarketcap.com).
 
 __API key__
 
