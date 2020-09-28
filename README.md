@@ -17,7 +17,7 @@ Demo application with statistics of some cryptocurrencies.
 
 __Resources__
 
-[CoinMarketCap](https://pro.coinmarketcap.com).
+* [Official site](https://pro.coinmarketcap.com).
 
 __API key__
 
