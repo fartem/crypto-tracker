@@ -27,10 +27,6 @@ In `CurrencyService` class replace `API_KEY` in each header.
 
 Original icons provided by [cryptocurrency-icons](https://github.com/atomiclabs/cryptocurrency-icons).
 
-## Download
-
-<img src="media/qrcodes/github_download.png" height="150px" />
-
 ## Screenshots
 
 <br/>
@@ -40,6 +36,10 @@ Original icons provided by [cryptocurrency-icons](https://github.com/atomiclabs/
   <img src="media/screenshots/screenshot_03.png" width="190" />
   <img src="media/screenshots/screenshot_04.png" width="190" />
 </p>
+
+## Download
+
+<img src="media/qrcodes/github_download.png" height="150px" />
 
 ## How to contribute
 
