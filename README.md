@@ -9,7 +9,7 @@
 
 ## About
 
-Demo application with statistics of some cryptocurrencies.
+Demo app with statistics of some cryptocurrencies.
 
 ## API
 
